@@ -1,4 +1,8 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dünenturm"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#170a1c">
 <style>
 html,body{margin:0;height:100%;background:#170a1c;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
 #c{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.06)}
@@ -21,13 +25,15 @@ html,body{margin:0;height:100%;background:#170a1c;overflow:hidden;font-family:sy
 #go>*{position:relative;z-index:1}#go:hover{--s:1.08}#go:active{--s:.94}
 .ic{font-size:1.15em;color:#ffe08a;text-shadow:0 0 12px #ffb347;animation:sp 3s linear infinite}#go:hover .ic{animation-duration:.7s}
 .ch{width:.45em;height:.45em;margin-left:.3em;border:solid #ffe08a;border-width:0 3px 3px 0;transform:rotate(-45deg);animation:ch 1.2s ease-in-out infinite}#go:hover .ch{animation-duration:.45s}
-h1{margin:0;display:flex;font:400 clamp(44px,min(13.5vw,14vh),124px)/1 Impact,Haettenschweiler,'Arial Narrow Bold','Arial Black',system-ui,sans-serif;letter-spacing:.05em;filter:drop-shadow(0 1px 0 #8a3414) drop-shadow(0 2px 0 #74290f) drop-shadow(0 3px 0 #5e200c) drop-shadow(0 4px 0 #461608) drop-shadow(0 10px 12px #000a) drop-shadow(0 0 34px #ff7a2a77);transition:opacity 1.2s}
-h1 span{position:relative;display:inline-block;color:transparent;-webkit-background-clip:text;background-clip:text;background:linear-gradient(105deg,#0000 38%,#fffbe6 50%,#0000 62%) 100% 0/300% 100% no-repeat,linear-gradient(#fff6dc 0,#ffd47e 26%,#ff9a3a 54%,#c4501f 80%,#8a3414 100%);-webkit-background-clip:text;background-clip:text;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both,gt 6s linear infinite;animation-delay:calc(var(--i)*.09s),calc(2.5s + var(--i)*.14s)}
+h1{margin:0;display:grid;justify-items:center;font:400 clamp(44px,min(13.5vw,14vh),124px)/1 Impact,Haettenschweiler,'Arial Narrow Bold','Arial Black',system-ui,sans-serif;letter-spacing:.05em;filter:drop-shadow(0 10px 12px #000a) drop-shadow(0 0 34px #ff7a2a77);transition:opacity 1.2s}
+.fr span{position:relative;display:inline-block;color:transparent;-webkit-background-clip:text;background-clip:text;background:linear-gradient(105deg,#0000 38%,#fffbe6 50%,#0000 62%) 100% 0/300% 100% no-repeat,linear-gradient(#fff6dc 0,#ffd47e 26%,#ff9a3a 54%,#c4501f 80%,#8a3414 100%);-webkit-background-clip:text;background-clip:text;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both,gt 6s linear infinite;animation-delay:calc(var(--i)*.09s),calc(2.5s + var(--i)*.14s)}
 .u i{position:absolute;top:.02em;width:.15em;height:.15em;border-radius:50%;background:radial-gradient(#fff,#ffd27a 45%,#ff7a1a);box-shadow:0 0 .2em .06em #ff9a3acc;animation:eye 2.6s ease-in-out infinite}.u i:nth-of-type(1){left:.12em}.u i:nth-of-type(2){left:.36em;animation-delay:.3s}
 #sub{display:flex;align-items:center;gap:.9em;font:700 clamp(12px,2.4vw,19px)/1 Georgia,'Times New Roman',serif;letter-spacing:.4em;color:#ffe3b0;text-shadow:0 2px 6px #170a1c,0 0 14px #ff8a3a88;transition:opacity 1.2s}
 #sub b{display:inline-block;color:#ffb347;font-weight:400;letter-spacing:0;animation:sp 4s linear infinite}
 #sub::before,#sub::after{content:"";width:clamp(26px,9vw,110px);height:2px;background:linear-gradient(90deg,#0000,#ffb347)}#sub::after{transform:scaleX(-1)}
 .em{position:absolute;left:var(--x);bottom:0;width:3px;height:3px;border-radius:50%;background:#ffc060;box-shadow:0 0 6px 2px #ff7a2a;opacity:0;pointer-events:none;animation:em var(--d) linear infinite;animation-delay:var(--l)}
+.bk,.fr{grid-area:1/1;display:flex}
+.bk span{display:inline-block;color:#461608;text-shadow:0 .014em 0 #8a3414,0 .028em 0 #74290f,0 .042em 0 #5e200c,0 .056em 0 #461608,0 .07em 0 #3a1008;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*.09s)}
 @keyframes rise{from{opacity:0;transform:translateY(.5em) scale(1.25);filter:blur(10px)}}
 @keyframes gt{0%{background-position:100% 0,0 0}35%,100%{background-position:0 0,0 0}}
 @keyframes eye{50%{opacity:.55;transform:scale(.8)}}
@@ -211,7 +217,7 @@ function aTick(t){if(!AC||!on)return;try{const n=AC.currentTime;
  else if(n>tn){tn=n+1.25;O=TB;pluck(n+.05,[50,57,62,65,62,57,53,57][ai++%8],.1);if(ai%8==1)choir(n+.05,[38,50,57],6,.12)}}catch(e){}}
 $('sd').onclick=()=>{on=!on;$('sd').classList.toggle('on',on);if(on){if(!AC)aInit();AC.resume();MB.gain.setTargetAtTime(.85,AC.currentTime,.05);aFilm(film?1:0)}else if(AC)MB.gain.setTargetAtTime(0,AC.currentTime,.05)};
 /* ---------- Titel & Button ---------- */
-$('h').innerHTML=[...'DÜNENTURM'].map((ch,i)=>ch=='Ü'?`<span class="u" style="--i:${i}">U<i></i><i></i></span>`:`<span style="--i:${i}">${ch}</span>`).join('');
+{const T=[...'DÜNENTURM'];$('h').innerHTML=`<div class="bk" aria-hidden="true">${T.map((ch,i)=>`<span style="--i:${i}">${ch=='Ü'?'U':ch}</span>`).join('')}</div><div class="fr">${T.map((ch,i)=>ch=='Ü'?`<span class="u" style="--i:${i}">U<i></i><i></i></span>`:`<span style="--i:${i}">${ch}</span>`).join('')}</div>`}
 for(let i=0;i<16;i++){const e=document.createElement('i');e.className='em';e.style.cssText=`--x:${Math.random()*100}%;--dx:${(Math.random()-.5)*90}px;--d:${4+Math.random()*5}s;--l:-${Math.random()*8}s`;$('ui').appendChild(e)}
 function sand(x,y,n,v){for(let i=0;i<n;i++){const e=document.createElement('i'),a=Math.random()*TAU,d=v*(.3+Math.random()),s=2+Math.random()*4;e.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:${s}px;height:${s}px;border-radius:${i%2?'50%':'1px'};background:${['#ffd28a','#ffb347','#e2822f','#fff3dc'][i%4]};box-shadow:0 0 6px #ff8a3a;pointer-events:none;z-index:9`;document.body.appendChild(e);
  e.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d*.6-d*.4}px) scale(.2)`,opacity:0}],{duration:500+Math.random()*700,easing:'cubic-bezier(.1,.7,.3,1)'}).onfinish=()=>e.remove()}}
