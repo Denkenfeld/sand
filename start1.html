@@ -109,15 +109,24 @@ function ship(t,s,eng,fire){const[x,z,y,tl]=s,L=46,ax=Math.sin(tl),ay=Math.cos(t
   glow(x,y,z,fire>12?34:20,'255,130,50',.45,1)}
  else{glow(...pt(L+2,0,0),4,'114,220,255',.5+.5*Math.sin(t*4),1);for(const u of[.2,.32,.44])glow(...pt(u*L,0,0),1.4,'255,200,110',.9,1)}}
 function worm(w,t){const k=w.h;if(k<.02)return;const gy=gh(w.x,w.z),dx=cam.x-w.x,dz=cam.z-w.z,dl=Math.hypot(dx,dz)||1,N=16,A=[],pb=P(w.x,gy,w.z);
- for(let i=0;i<=N;i++){const f=i/N,sw=Math.sin(t*.9+f*2.6+w.x)*f*w.R*.8,bd=f*f*w.R*3.4;A.push([w.x+sw+dx/dl*bd,gy-2+(w.H*k+2)*f,w.z+dz/dl*bd])}
+ for(let i=0;i<=N;i++){const f=i/N,sw=Math.sin(t*.9+f*2.6+w.x)*f*w.R*.8,bd=f*f*w.R*3.4;A.push(w.sp?w.sp(f):[w.x+sw+dx/dl*bd,gy-2+(w.H*k+2)*f,w.z+dz/dl*bd])}
  shad(w.x,w.z,w.R*1.6*Math.min(1,k*2));
- for(let i=0;i<=N;i++){const q=A[i],f=i/N;ball(q[0],q[1],q[2],w.R*(1-.25*f)*(i==N?1.05:1),`hsl(${30+i*1.6},55%,${62-i}%)`,`hsl(${22+i*1.6},52%,${38-i*.6}%)`,'hsl(14,50%,13%)',i<6&&pb?pb[1]+2:null)}
+ for(let i=0;i<=N;i++){const q=A[i],f=i/N;ball(q[0],q[1],q[2],w.R*(1-.25*f)*(i==N?1.05:1),`hsl(${30+i*1.6},55%,${62-i}%)`,`hsl(${22+i*1.6},52%,${38-i*.6}%)`,'hsl(14,50%,13%)',w.sp?gy2(q):i<6&&pb?pb[1]+2:null)}
  const a=P(...A[N]),b=P(...A[N-1]),n=P(...A[N-3]);if(!a||!b)return;const Rr=w.R*a[2],th=Math.atan2(a[1]-b[1],a[0]-b[0]);
  if(w.tame&&n)Q.push([n[3]-.2,()=>{g.strokeStyle='#2fe0c0';g.lineWidth=Math.max(1,w.R*n[2]*.2);g.beginPath();g.ellipse(n[0],n[1],w.R*n[2]*1.1,w.R*n[2]*.38,0,0,TAU);g.stroke()}]),glow(A[N-3][0],A[N-3][1],A[N-3][2],w.R*.9,'60,240,200',.7,1);
  Q.push([a[3]-1,()=>{g.save();g.translate(a[0],a[1]);g.rotate(th-PI/2);g.scale(1,.72);let q=g.createRadialGradient(-Rr*.3,-Rr*.3,Rr*.1,0,0,Rr*1.1);q.addColorStop(0,'#d99a78');q.addColorStop(1,'#7a2a22');g.fillStyle=q;g.beginPath();g.arc(0,0,Rr,0,TAU);g.fill();
   g.fillStyle='#14040a';g.beginPath();g.arc(0,0,Rr*.78,0,TAU);g.fill();q=g.createRadialGradient(0,0,0,0,0,Rr*.78);q.addColorStop(0,`rgba(255,${w.tame?200:130},60,${.55+.35*Math.sin(t*5)})`);q.addColorStop(1,'rgba(255,80,30,0)');g.fillStyle=q;g.fill();g.fillStyle='#f5ead2';
   for(const[n,ro,ri]of[[18,.76,.46],[12,.56,.26],[7,.34,.08]])for(let i=0;i<n;i++){const an=i/n*TAU+(ro==.56?.2:0)+Math.sin(t*3+i)*.03,c0=Math.cos(an),s0=Math.sin(an);g.beginPath();g.moveTo(c0*Rr*ro-s0*Rr*.07,s0*Rr*ro+c0*Rr*.07);g.lineTo(c0*Rr*ri,s0*Rr*ri);g.lineTo(c0*Rr*ro+s0*Rr*.07,s0*Rr*ro-c0*Rr*.07);g.fill()}
   g.restore();g.fillStyle=w.tame?'#fff':'#ff3a2a';for(const sd of[-1,1]){g.beginPath();g.arc(a[0]+sd*Rr*.5,a[1]-Rr*.85,Math.max(1,Rr*.1),0,TAU);g.fill()}}])}
+/* ---------- Titelbild: Staubwirbel + Sandschwimmer ---------- */
+function gy2(q){const p=P(q[0],gh(q[0],q[2]),q[2]);return p?p[1]+2:null}
+function titleFx(t){const sn=Math.sin(cam.yaw),cs=Math.cos(cam.yaw);
+ for(let d=0;d<3;d++){const D=[80,125,170][d],u=(t*.03*(1+d*.3)+d*.37)%1,off=(u*2-1)*.95*D,al=Math.sin(u*PI),bx=cam.x+sn*D+cs*off,bz=cam.z+cs*D-sn*off,by=gh(bx,bz);
+  for(let k=0;k<16;k++){const a=k*.7+t*(3+d)+d*2,r=(1.2+k*.5)*(1+d*.15);glow(bx+Math.cos(a)*r+Math.sin(k*.35+t*.8)*k*.5,by+k*2.6,bz+Math.sin(a)*r,3+k*.55,'226,170,110',.38*al*(1-k/20))}}
+ const ph=((t+23)%26)/10;if(ph>=1)return;
+ const sh=-140+280*ph,Lw=104,Dd=115,pos=s=>[cam.x+sn*Dd+cs*s,cam.z+cs*Dd-sn*s],h0=pos(sh);
+ for(const e of[-120,-40,40,120]){const dd=sh-e;if(dd>-10&&dd<Lw){const[x,z]=pos(e),b=dd<20;glow(x,gh(x,z)+4,z,b?22:12,'230,180,125',b?.55:.3)}}
+ worm({x:h0[0],z:h0[1],R:7.5,H:0,tame:0,h:1,sp:f=>{const s=sh-(1-f)*Lw,[x,z]=pos(s);return[x,gh(x,z)+36*Math.pow(Math.max(0,Math.sin(PI*(s+40)/80)),.8)-7,z]}},t)}
 /* ---------- Drehbuch ---------- */
 const lk=(K,t)=>{let i=0;while(i<K.length-2&&K[i+1][0]<=t)i++;const a=K[i],b=K[i+1],u=S(a[0],b[0],t);return a.slice(1).map((v,j)=>v+(b[j+1]-v)*u)};
 const CK=[[0,256,230,3004,235,300,3000],[10,256,230,3004,285,300,3000],[10.01,20,360,300,70,310,250],[16,110,220,170,190,290,120],[19.99,300,170,80,235,265,70],[20,300,170,80,256,256,50],[25,300,205,24,256,256,28],[30,285,215,24,256,256,30],[38,325,330,38,256,256,28],
@@ -136,8 +145,9 @@ function world(t,F,sp){
   if(cr)box(x,z,9,6,4,[120,30,45],y),glow(x,y+5,z,3,'255,60,40',.8,1);else fig(x+s*20,y,z,4,'#a82c3c','#ff7a5a',t*7+i)}
  if(F&&t>48.5&&t<56)for(let j=0;j<4;j++){const ph=(t*1.3+j*.25)%1,i=[1,5,8,10][j],rx=252+(i-5.5)*6.5+(i%2)*3,rz=455+(i%3)*7-(t-46.5)*8.2,ry=gh(rx,rz)+3,L=(u,a,b)=>mx(a,b,u);
   glow(L(ph,rx,270),L(ph,ry,22),L(ph,rz,286),1.8,'255,70,50',.9,1);const q=(ph+.5)%1;glow(L(q,270,rx),L(q,22,ry),L(q,286,rz),1.5,'114,220,255',.9,1);if(ph<.12)glow(270,22,286,6,'255,240,200',.8,1)}
- const ws=F?WF.map(([x,z,R,H,a,b,tm])=>({x,z,R,H,tame:tm,h:S(a,a+2.4,t)*(1-S(b-2.2,b,t)),a})):[{x:296,z:288,R:12,H:100,tame:1,h:.72+.28*Math.sin(t*.6)}];
+ const ws=F?WF.map(([x,z,R,H,a,b,tm])=>({x,z,R,H,tame:tm,h:S(a,a+2.4,t)*(1-S(b-2.2,b,t)),a})):[{x:296,z:288,R:12,H:100,tame:1,h:.72+.28*Math.sin(t*.6)},{x:335,z:318,R:10,H:84,tame:1,h:.6+.4*Math.sin(t*.4+2)}];
  for(const w of ws){if(F)dust(w.x,w.z,w.a,26,28,2.6,18,1.6,t);worm(w,t)}
+ if(!F)titleFx(t);
  for(let i=0;i<30;i++){const m=((hash(i)*220+t*(14+i%5*3))%220)-110;glow(cam.x+m*Math.cos(cam.yaw)+Math.sin(cam.yaw)*(10+hash(i+2)*90),cam.y+(hash(i+5)-.5)*30,cam.z-m*Math.sin(cam.yaw)+Math.cos(cam.yaw)*(10+hash(i+2)*90),.35,'255,200,140',.7,1)}}
 /* ---------- Ton: komplett synthetisch (WebAudio) ---------- */
 let AC,MB,FB,TB,NB,O,on=0,EV=[],ei=0,tn=0,ai=0;
@@ -211,13 +221,13 @@ go.addEventListener('pointerleave',()=>{go.style.setProperty('--rx','0deg');go.s
 go.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();if(go.dataset.x)return;go.dataset.x=1;const r=go.getBoundingClientRect();sand(r.left+r.width/2,r.top+r.height/2,70,420);flash();document.body.classList.add('quake');
  if(AC&&on){try{O=MB;boom(AC.currentTime+.02,.9);braam(AC.currentTime+.02,.6)}catch(_){}}setTimeout(()=>location.href=go.href,780)});
 /* ---------- Hauptschleife ---------- */
-let film=0,ft=0,tt=0,idle=0,res=192,last=0,lsc=0,capI=-1;const END=67.5,SCN=[10,20,30,38,47,55,59],cp=$('cap');
+let film=0,ft=0,tt=0,idle=0,wait=7,res=192,last=0,lsc=0,capI=-1;const END=67.5,SCN=[10,20,30,38,47,55,59],cp=$('cap');
 const flash=()=>{const f=$('fl');f.style.animation='none';f.offsetWidth;f.style.animation='fl .8s ease-out'};
 const setFilm=on=>{film=on;ft=0;idle=0;lsc=0;flash();aFilm(on);document.body.classList.toggle('film',!!on);if(!on)cp.className=''};
-addEventListener('pointerdown',e=>{idle=0;if(film&&!e.target.closest('#go,#sd'))setFilm(0)});addEventListener('keydown',()=>{idle=0});
+addEventListener('pointerdown',e=>{idle=0;wait=7;if(film&&!e.target.closest('#go,#sd'))setFilm(0)});addEventListener('keydown',()=>{idle=0;wait=7});
 function frame(now){
  const dt=Math.min(.05,(now-last)/1e3||.016);last=now;let t;
- if(film){ft+=dt;if(ft>END){ft=0;lsc=0;flash();aFilm(1)}t=ft;const sc=SCN.filter(s=>t>=s).length;if(sc!=lsc){if(lsc)flash();lsc=sc}}else{tt+=dt;idle+=dt;t=tt;if(idle>7)setFilm(1)}
+ if(film){ft+=dt;if(ft>END){setFilm(0);wait=16}t=ft;const sc=SCN.filter(s=>t>=s).length;if(sc!=lsc){if(lsc)flash();lsc=sc}}else{tt+=dt;idle+=dt;t=tt;if(idle>wait)setFilm(1)}
  res+=((film?640:192)-res)*(1-Math.exp(-dt*(film?2.2:6)));
  const W=Math.round(res/8)*8,Hh=Math.round(W*.5625),fx=W/1.6,sp=film&&t<10;
  if(c.width!=W){c.width=W;c.height=Hh;tc.width=W;tc.height=Hh;c.style.imageRendering=W<440?'pixelated':'auto'}
