@@ -220,6 +220,13 @@ go.addEventListener('pointermove',e=>{const r=go.getBoundingClientRect();go.styl
 go.addEventListener('pointerleave',()=>{go.style.setProperty('--rx','0deg');go.style.setProperty('--ry','0deg')});
 go.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();if(go.dataset.x)return;go.dataset.x=1;const r=go.getBoundingClientRect();sand(r.left+r.width/2,r.top+r.height/2,70,420);flash();document.body.classList.add('quake');
  if(AC&&on){try{O=MB;boom(AC.currentTime+.02,.9);braam(AC.currentTime+.02,.6)}catch(_){}}setTimeout(()=>location.href=go.href,780)});
+/* ---------- höchste Spielversion finden: sand7.html, sand8.html, ... ---------- */
+(async()=>{
+ const ex=n=>{const u=`sand${n}.html`;
+  if(location.protocol=='file:')return new Promise(r=>{const e=document.createElement('script');e.onload=()=>{e.remove();r(1)};e.onerror=()=>{e.remove();r(0)};e.src=u+'?'+Date.now();document.head.appendChild(e)});
+  return fetch(u,{method:'HEAD',cache:'no-store'}).then(r=>r.status==405?fetch(u,{cache:'no-store'}).then(x=>x.ok):r.ok,()=>false)};
+ let miss=0;for(let n=8;miss<3&&n<200;n++){if(await ex(n)){miss=0;go.href=`sand${n}.html`}else miss++}
+})();
 /* ---------- Hauptschleife ---------- */
 let film=0,ft=0,tt=0,idle=0,wait=7,res=192,last=0,lsc=0,capI=-1;const END=67.5,SCN=[10,20,30,38,47,55,59],cp=$('cap');
 const flash=()=>{const f=$('fl');f.style.animation='none';f.offsetWidth;f.style.animation='fl .8s ease-out'};
