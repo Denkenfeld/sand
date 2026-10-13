@@ -1,0 +1,4 @@
+/* Level 2. Registriert sich in DUE.levels[2]. */
+DUE.levels[2]={n:'Land der Würmer',sub:'Gefahr unter dem Sand',h:12,rn:4,th:.6,r0:50,rg:36,rm:24,rc:5,sp0:150,wv:[[['pl',6]],[['pz',3],['br',1]]],rd:{h:7,w:[[['pl',4]]]},p:{sp:.13,rk:.12,ne:.08,ts:.04,gb:.04,rl:.03},u:['cv','raf','kas','wel','tur','ene','fab'],
+ t:'Unter dem Sand lauern Würmer, Treibsand und Gasblasen. Hast du ein Feld freigegraben, verrät eine Zahl mit Wurm-Gesicht, wie viele Gefahren in den 8 Nachbarfeldern lauern. Tippe die Wurmflagge ⚑ und dann den Fels, unter dem du ein Nest vermutest: Ein Arbeiter geht hin und zähmt den Wurm. Er lauert auf Nachbarfeldern, schnappt sich Feinde und schwächt sie. Türme brauchen ⚡ Strom, 💧 Wasser und Munition – baue mit jedem neuen Gebäude auch Energiefelder und Taufänger nach.',
+ nw:['Gefahren-Zahlen','⚑ Wurm zähmen','Geschützturm','Fabrik + Crawler','Raid bei Höhe 7']};
