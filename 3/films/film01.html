@@ -1,0 +1,97 @@
+<!doctype html><html lang="de"><head><script src="../js/dt-audio.js"></script><script src="../js/dt-config.js"></script><script src="../js/dt-core.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 1: Die erste Nacht</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#170a1c;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.06)}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 45%,#000b 110%),linear-gradient(#000 0,#0000 7%,#0000 93%,#000 100%)}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#cap{position:fixed;left:6vw;right:6vw;bottom:calc(8vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .8s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:12vh}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0}
+#mi{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1ccc,#170a1cf2);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><h2>DIE TAUBRINGER</h2><p>WASSER IST LEBEN</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 1 · DIE ERSTE NACHT</small><small style="color:#72dcff">AUFTRAG</small><h3>Sichere das Wasser.</h3><p>Baue Taufänger und halte den Tau bis zur Dämmerung. Wer das Wasser hat, hat die Wüste.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="film-engine.js"></script>
+<script>
+const CARD=28.8,CUTS=[7,15,21];
+const K=[[0,215,170,22,256,256,36],[7,232,196,20,256,256,40],[7.01,298,262,19,290,282,17.5],[15,293,271,18,290,282,18.5],[15.01,170,172,16,256,256,40],[21,158,160,30,256,256,42],[21.01,300,232,16,258,258,18],[24,298,234,18,258,262,20],[27,292,252,26,330,398,30],[60,292,252,26,330,398,30]];
+const HUT=[[27,-8,10,10,13,[170,130,110]],[-30,6,13,9,9,[140,110,125]],[14,30,5,5,7,[120,80,80]],[-16,-28,5,5,7,[120,80,80]]],DC=[[34,26],[-38,-18],[-8,40]];
+const NI=[[4,5,20],[14,12,44],[40,28,72]],PR=[[40,18,70],[150,60,100],[255,120,90]],DY=[[26,10,48],[106,42,90],[255,154,90]];
+const lk=(K,t)=>{let i=0;while(i<K.length-2&&K[i+1][0]<=t)i++;const a=K[i],b=K[i+1],u=S(a[0],b[0],t);return a.slice(1).map((v,j)=>v+(b[j+1]-v)*u)};
+const CAP=[[.8,6.6,'Turmwart, wir haben die erste Nacht überlebt. Das hat vor uns noch niemand geschafft.'],[8.2,14.4,'Auf einer Welt ohne Regen kam das Wasser aus der Luft. Tropfen für Tropfen.'],[15.8,20.6,'Nicht Opfer. Nicht Fremde. Wir sind die Taubringer.'],[21.3,25.2,'Hörst du das? Alle sieben Sekunden. Das ist ein Herzschlag.'],[25.4,28.4,'Etwas lebt unter uns. Und wir sind nicht allein.']];
+function world(t,pk,pu){
+ const nt=1-S(7,14,t),dw=S(7,13,t),f=.7+.3*Math.sin(t*17)*Math.sin(t*11);
+ ship(t,[CX,CZ,PL,0],0,0);
+ for(const[dx,dz,w,d,h,col]of HUT){box(CX+dx,CZ+dz,w,d,h,col,PL);if(nt>.02){glow(CX+dx,PL+h*.55,CZ+dz,w*1.3,'255,190,110',.55*nt,1);glow(CX+dx,PL+1,CZ+dz,w*2.2,'255,170,90',.3*nt,1)}}
+ DC.forEach(([dx,dz],i)=>{box(CX+dx,CZ+dz,3,3,16,[130,190,200],PL);ball(CX+dx,PL+16.8,CZ+dz,2,'#e8fbff','#6ab8c8','#1b4a60');if(dw>0)glow(CX+dx,PL+18.5,CZ+dz,1.2+.8*Math.sin(t*3+i*2)**2,'220,250,255',.6*dw,1)});
+ glow(CX-12,PL+1.5,CZ-14,5*f,'255,150,50',.9*(.4+.6*nt),1);glow(CX-12,PL+3,CZ-14,2.2*f,'255,220,140',.9,1);
+ for(let i=0;i<5;i++){const u=(t*.6+i/5)%1;glow(CX-12+Math.sin(i*5+t)*1.4*u,PL+2+u*9,CZ-14+Math.cos(i*3)*u,.5,'255,190,90',.9*(1-u),1)}
+ const wp=S(8,10,t),gath=1-.4*S(15,19,t);
+ if(wp>0)for(let i=0;i<11;i++){const a=hash(i)*TAU,r=(8+hash(i+4)*30)*gath,sw=Math.sin(t*.7+i)*.4,x=i<4?CX+29+i*1.8:CX+Math.cos(a)*r+sw,z=i<4?CZ+19+(i%2)*1.5:CZ+Math.sin(a)*r;fig(x,PL,z,3.8,i%3?'#2fa7c9':'#e2a23f','#72dcff',t*2+i)}
+ for(const t0 of[9,11.4,13.4]){const u=(t-t0)/.9,top=PL+17.5,x=CX+34,z=CZ+26;
+  if(u>0&&u<1){const y=top+13*(1-u*u);glow(x,y,z,1.1,'255,255,255',1,1);for(let k=1;k<4;k++)glow(x,y+k*.9,z,.8-k*.15,'170,230,255',.5/k,1)}
+  const r=t-t0-.9;if(r>0&&r<2.2)for(let k=0;k<14;k++){const a=k/14*TAU;glow(x+Math.cos(a)*r*1.1,top-.5,z+Math.sin(a)*r*1.1,.45,'200,245,255',.8*(1-r/2.2),1)}}
+ const u=t-pk;if(pk>=5&&u<2.6)for(let k=0;k<28;k++){const a=k/28*TAU+hash(pk)*.3;glow(CX+Math.cos(a)*u*24,PL+1.5,CZ+Math.sin(a)*u*24,3.2+u*2,'255,196,130',.5*(1-u/2.6))}
+ if(t>20.5)for(const[x,z]of[[326,392],[334,398],[344,394]]){const y=gh(x,z);fig(x,y,z,4.2,'#a82c3c','#ff7a5a',t);if(x==334){box(x,z,.5,.5,7,[110,30,40],y);box(x+1.2,z,2,.3,2,[190,40,56],y+5)}}
+ if(t>25.6&&t<26.5)glow(326,gh(326,392)+3,392,3+3*Math.sin(t*40)**2,'255,255,230',1,1);
+ for(let i=0;i<24;i++){const m=((hash(i)*220+t*(14+i%5*3))%220)-110,sn=Math.sin(cam.yaw),cs=Math.cos(cam.yaw);glow(cam.x+m*cs+sn*(10+hash(i+2)*90),cam.y+(hash(i+5)-.5)*30,cam.z-m*sn+cs*(10+hash(i+2)*90),.35,'255,200,140',.7*dw,1)}}
+/* Ton */
+function build1(){const E=[],A=(t,f)=>E.push([t,f]),bell=(T,f,v)=>{V(O,T,f,{w:'sine',v,a:.003,r:2.8});V(O,T,f*2.76,{w:'sine',v:v*.3,a:.003,r:1.6})};
+ for(let p=5;p<200;p+=7)A(p,T=>{thump(T,p>=19?1:.6,52);thump(T+.3,p>=19?.6:.35,46);N(O,T,.6,.15,'lowpass',400,60,1,.01,.5)});
+ for(let b=0;b<3;b++)A(b*2.5,T=>choir(T,[50,57,62],3.4,.1+b*.03));
+ for(let k=0;k<9;k++)A(.5+k*.72+hash(k)*.3,T=>V(O,T,mt(81+[0,3,7,10,12][k%5]),{w:'sine',v:.04,a:.01,r:2}));
+ A(7,T=>{whoosh(T,2.5,.12,1);choir(T,[50,57,62,65],7,.2)});
+ [9.6,11.9,13.7].forEach((t,i)=>A(t,T=>{bell(T,mt(86-i*2),.18);V(O,T+.2,mt(93),{w:'sine',v:.03,a:.01,r:1.5})}));
+ for(let k=0;k<12;k++)A(8+k*.5,T=>pluck(T,[50,57,62,65,69,65,62,57][k%8]+12,.05));
+ A(15,T=>{choir(T,[50,57,62,65,69],6,.3);brass(T,mt(50),3,.15)});
+ [[0,62,3],[3,69,1],[4,67,2],[6,65,2]].forEach(([b,m,d])=>A(16+b*.625,T=>{brass(T,mt(m),d*.625,.2);brass(T,mt(m-12),d*.625,.1)}));
+ A(21,T=>{V(O,T,36.7,{w:'sine',v:.5,a:1.5,h:4,r:2});N(O,T,5,.1,'lowpass',500,120,1,2,2)});
+ for(let k=0;k<12;k++)A(21+k*.33,T=>V(O,T,mt(86+k%3),{v:.015+k*.003,a:.05,r:.2,lp:3000,l2:800}));
+ A(25.6,T=>{braam(T,.55);whoosh(T,2,.15,1)});A(29,T=>choir(T,[50,57,62,65],7,.25));
+ return E.sort((a,b)=>a[0]-b[0])}
+/* Ablauf */
+let t=0,last=0,ci=-1,want=0;const cp=$('cap'),sd=$('sd');try{want=localStorage.getItem('dtSnd')!=='0'?1:0}catch(e){want=1}
+const fade=()=>{const f=$('fd');f.style.animation='none';f.offsetWidth;f.style.animation='fd 1s ease-out both'};
+function seek(x){t=x;fade();if(EV.length){ei=EV.findIndex(e=>e[0]>=t);if(ei<0)ei=EV.length}}
+function done(){const n=new URLSearchParams(location.search).get('next');if(parent!==window)parent.postMessage({type:'film-done',film:1},'*');if(n)location.href=n;else if(parent===window)location.href='../index.html'}
+$('sk').onclick=()=>seek(CARD+.2);$('rp').onclick=()=>seek(0);$('ok').onclick=done;
+sd.onclick=()=>{on=!on;sd.classList.toggle('on',on);try{localStorage.setItem('dtSnd',on?'1':'0')}catch(e){}
+ if(on){if(!AC)aInit();AC.resume();TB.gain.value=.7;MB.gain.setTargetAtTime(.85,AC.currentTime,.05);FB=AC.createGain();FB.connect(MB);EV=build1();ei=EV.findIndex(e=>e[0]>=t);if(ei<0)ei=EV.length}else if(AC)MB.gain.setTargetAtTime(0,AC.currentTime,.05)};
+/* Ton-Vorgabe AN: startet sofort mit der Animation (in der Shell ist der Ton schon freigeschaltet).
+   Sperrt der Browser ihn noch, läuft er ab dem ersten Tipp. */
+(function(){const go=()=>{if(want&&!on)sd.click();want=0};
+ setTimeout(go,150);
+ addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#sd')){want=0;return}if(typeof AC!=='undefined'&&AC){try{AC.resume()}catch(_){}}},true);
+})();
+function frame(now){const dt=Math.min(.05,(now-last)/1e3||.016);last=now;const pt=t;t+=dt;for(const c of CUTS)if(pt<c&&t>=c)fade();
+ const W=640,Hh=360,fx=W/1.6;if(c.width!=W){c.width=W;c.height=Hh;tc.width=W;tc.height=Hh}
+ const pk=t<5?-9:5+7*Math.floor((t-5)/7),pu=t-pk,sh=pk>=5&&pu<.6?(1-pu/.6)*(pk>=19?1.3:.5):0,k7=lk(K,t),ddx=k7[3]-k7[0],ddz=k7[4]-k7[1];
+ cam.x=k7[0]+(hash(t*37)-.5)*sh*2;cam.z=k7[1]+(hash(t*41)-.5)*sh*2;cam.y=k7[2]+(hash(t*43)-.5)*sh*2;cam.yaw=Math.atan2(ddx,ddz);
+ const hor=Hh/2-(k7[2]-k7[5])/Math.hypot(ddx,ddz)*fx;cam.y=Math.max(cam.y,gh(cam.x,cam.z)+4);
+ for(let i=0;i<3;i++)SKY[i]=lc(lc(NI[i],PR[i],S(6,11,t)),DY[i],S(11,16,t));
+ SUN.e=mx(-.02,.11,S(10,16,t));SUN.a=SUN.e>0?1:0;STAR.b=1-S(8,13,t);TINT=`rgba(${lc([8,12,50],[70,30,60],S(6,12,t))},${.62*(1-S(7,14,t))})`;
+ const fc=SKY[2];sky(W,Hh,hor,fx,t,0,0,fc);terr(W,Hh,hor,fx,520,fc);
+ Q.length=0;setP(W,Hh,hor,fx);world(t,pk,pu);Q.sort((a,b)=>b[0]-a[0]);for(const q of Q)q[1]();
+ bc.width=W>>3;bc.height=Hh>>3;bg.drawImage(c,0,0,bc.width,bc.height);g.globalCompositeOperation='lighter';g.globalAlpha=.5;g.drawImage(bc,0,0,W,Hh);g.globalAlpha=1;g.globalCompositeOperation='source-over';
+ const i=CAP.findIndex(q=>t>=q[0]&&t<q[1]);if(i>=0&&i!=ci){ci=i;cp.lastChild.textContent=CAP[i][2]}cp.className=i>=0?'on':'';
+ $('tb').className=t>16.2&&t<20.6?'on':'';$('mi').className=t>=CARD?'on':'';
+ if(AC&&on&&FB)try{const n=AC.currentTime;while(ei<EV.length&&EV[ei][0]<t+1.2){const[te,fn]=EV[ei++];O=FB;fn(n+Math.max(0,te-t))}}catch(e){}
+ requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+</script></body></html>

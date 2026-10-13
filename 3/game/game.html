@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="color-scheme" content="dark"><title>Dünenturm</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script src="../js/dt-audio.js"></script>
+<script src="../js/dt-config.js"></script>
+<script src="../js/dt-core.js"></script>
+<link rel="stylesheet" href="game.css">
+</head><body>
+<canvas id="c"></canvas>
+<div id="hud"><div class="r" id="r1"></div><div class="p" id="bar"><i id="barf"></i><span id="bart"></span></div></div>
+<div id="hint"></div><div id="toast"><span></span></div>
+<div id="bn"><div><span id="bnt"></span><button class="pri" id="bnb">Jetzt!</button></div></div>
+<div id="tools"><button id="tmode"></button></div>
+<div id="dock"></div><div id="S"></div><div id="M"></div>
+<input type="file" id="mf" accept="audio/*,.mp3" hidden>
+<script>
+/* Level aus ?level=N · Level-Dateien laut js/dt-config.js laden */
+(function(){var n=Math.max(1,parseInt(new URLSearchParams(location.search).get('level'),10)||1);
+ if(!DTX.has(n)){DTX.toast('Level '+n+' folgt bald …');DTX.go('map');return}
+ window.DT_START=n-1;
+ (DT_CONFIG.levels||[]).forEach(function(l){if(l.level)document.write('<script src="../'+l.level+'"><\/script>')});
+ document.write('<script src="engine.js"><\/script>');})();
+</script>
+</body></html>

@@ -1,0 +1,97 @@
+<!doctype html><html lang="de"><head><script src="../js/dt-audio.js"></script><script src="../js/dt-config.js"></script><script src="../js/dt-core.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 2: Der Feind trägt dein Gesicht</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#170a1c;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.06)}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 45%,#000b 110%),linear-gradient(#000 0,#0000 7%,#0000 93%,#000 100%)}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#cap{position:fixed;left:6vw;right:6vw;bottom:calc(8vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .8s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:12vh}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0}
+#mi{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1ccc,#170a1cf2);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#ffb347" stroke-width="7" stroke-dasharray="4.2 3.1"/><circle cx="32" cy="32" r="19" fill="#1f5f84" stroke="#72dcff" stroke-width="2"/><ellipse cx="32" cy="32" rx="8" ry="19" fill="none" stroke="#72dcff" stroke-width="1.5"/><path d="M13 32h38M16 22h32M16 42h32" stroke="#72dcff" stroke-width="1.5"/></svg><h2>EXPEDITION ZWEI</h2><p>ERDE · 2189 · VERSCHOLLEN</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 2 · DER FEIND TRÄGT DEIN GESICHT</small><small style="color:#72dcff">AUFTRAG</small><h3>Halte das Gewürz.</h3><p>Im Nordfeld liegt das Gewürz. Baue eine Raffinerie und schlage die Scharlachhorde zurück.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="film-engine.js"></script>
+<script>
+const CARD=28.8,CUTS=[5,10,17,22],BX=212,BZ=212;
+const K=[[0,220,207,18,216,213,14.8],[5,218,209,17,216,213,15],[5.01,242,196,26,212,222,16],[10,236,204,22,212,222,17],[10.01,222,203,17,214,211,14.6],[17,226,196,24,214,211,15],[17.01,296,178,30,235,233,22],[22,300,172,36,235,236,24],[22.01,268,268,20,342,342,33],[27,276,276,22,340,340,31],[60,276,276,22,340,340,31]];
+const CAP=[[.6,4.6,'IDA','Turmwart, du musst etwas sehen.','#72dcff'],[5.2,9.9,'IDA','Letzte Nacht kamen sie wieder. Für das Gewürz, das goldene Pulver im Sand.','#72dcff'],[10.8,14,'STERBENDER PLÜNDERER','Ist die Erde… noch da?','#ff7a5a'],[14.6,21.4,'IDA','Die Scharlachhorde. Wir hielten sie für Wilde. Sie sind Menschen, von der Erde vergessen.','#72dcff'],[22.4,27.8,'KASSAR VEY, DER SCHARLACHKÖNIG','Das Gewürz gehört dem, der es hält. Haltet es, wenn ihr könnt, Brüder.','#ffb347']];
+const lk=(K,t)=>{let i=0;while(i<K.length-2&&K[i+1][0]<=t)i++;const a=K[i],b=K[i+1],u=S(a[0],b[0],t);return a.slice(1).map((v,j)=>v+(b[j+1]-v)*u)};
+function world(t,pk,pu){
+ const F=.7+.3*Math.sin(t*17)*Math.sin(t*11);
+ ship(t,[CX,CZ,PL,0],0,0);
+ for(let k=0;k<14;k++){const u=k/13;glow(CX+(BX+6-CX)*u,PL+.3,CZ+(BZ+6-CZ)*u,4+u*2,'20,6,24',.3)}
+ const hx=216,hz=213,hy=gh(hx,hz);
+ ball(hx,hy+1.2,hz,1.3,'#d65a6a','#a82c3c','#3a0f18');ball(hx+.9,hy+.6,hz-.4,.7,'#2a0a10','#1a0508','#000');glow(hx-.6,hy+1.9,hz-.9,.5,'255,200,90',.9,1);
+ [[204,222],[224,226],[214,236]].forEach(([x,z],i)=>{const y=gh(x,z);box(x,z,9,6,3.5,[58,26,32],y);box(x+1,z,4,3,2,[44,18,24],y+3.5);glow(x,y+3,z,5+2*Math.sin(t*9+i*3),'255,120,40',.8,1);glow(x,y+2,z,2.5*F,'255,220,120',.9,1);
+  for(let k=0;k<9;k++){const u=(t*.25+k/9+i*.31)%1;glow(x+u*14+Math.sin(k+t)*1.2,y+4+u*26,z+Math.cos(k*2)*1.5,3+u*7,'48,34,36',.4*(1-u))}});
+ [[208,214],[226,216]].forEach(([x,z])=>{const y=gh(x,z);box(x,z,.4,.4,7,[90,60,40],y);box(x+1.2,z,2.2,.2,2,[180,40,52],y+4.5)});
+ [[232,198],[238,207],[228,206]].forEach(([x,z],i)=>glow(x,gh(x,z)+.4,z,5+Math.sin(t*2+i*2),'255,185,70',.55+.25*Math.sin(t*3+i),1));
+ const fx_=214,fz_=210,fy=gh(fx_,fz_);
+ ball(fx_+1.6,fy+1,fz_,1.1,'#c0405a','#7a1f2e','#2a0810');ball(fx_,fy+1,fz_,1.2,'#d04a62','#8a2434','#2a0810');ball(fx_-1.7,fy+.9,fz_+.2,1,'#a0344a','#6a1a28','#220810');
+ ball(fx_-3.1,fy+1.2,fz_+.3,1.15,'#e07888','#a82c3c','#3a0f18');ball(fx_-2.5,fy+1.4,fz_-.55,.62,'#f3d2b0','#d9a77f','#7a4a30');
+ glow(fx_-2.4,fy+1.6,fz_-.95,.14,'30,10,10',.9);glow(fx_-2.75,fy+1.6,fz_-.95,.14,'30,10,10',.9);glow(fx_-.2,fy+2.1,fz_,.5,'255,200,90',.9,1);
+ const q=S(9,11,t);for(let i=0;i<6;i++){const a=i/6*TAU+.4,rx=212+Math.cos(t*.25+i*1.1)*14,rz=224+Math.sin(t*.3+i)*7,x=mx(rx,214+Math.cos(a)*6,q),z=mx(rz,210+Math.sin(a)*6,q);fig(x,gh(x,z),z,3.8,i%3?'#2fa7c9':'#e2a23f','#72dcff',t*2+i)}
+ if(t>20.5){for(let i=0;i<10;i++){if(i==5)continue;const x=328+i*3.2,z=352-i*3.2;fig(x,gh(x,z),z,4.4,'#a82c3c','#ff7a5a',t*.5+i)}
+  const kx=344,kz=336,ky=gh(kx,kz),px=348,pz=332,py=gh(px,pz);fig(kx,ky,kz,6.4,'#7a1626','#ffd24a',t*.4);ball(kx,ky+7,kz,.75,'#fff0b0','#ffb347','#7a4a10');
+  box(px,pz,.5,.5,13,[100,60,40],py);box(px+1.8,pz,3.6,.25,3,[190,40,56],py+8.5);if(t>24&&t<24.6)glow(kx,ky+6.5,kz,6,'255,230,160',1,1)}
+ const wsp=t<5?40:14;for(let i=0;i<26;i++){const m=((hash(i)*220+t*(wsp+i%5*3))%220)-110,sn=Math.sin(cam.yaw),cs=Math.cos(cam.yaw);glow(cam.x+m*cs+sn*(10+hash(i+2)*90),cam.y+(hash(i+5)-.5)*30,cam.z-m*sn+cs*(10+hash(i+2)*90),.35,'255,200,140',t<5?.8:.4,1)}}
+/* Ton */
+function build2(){const E=[],A=(t,f)=>E.push([t,f]),bell=(T,f,v)=>{V(O,T,f,{w:'sine',v,a:.003,r:2.8});V(O,T,f*2.76,{w:'sine',v:v*.3,a:.003,r:1.6})};
+ for(let p=2;p<200;p+=7)A(p,T=>{thump(T,.5,50);thump(T+.3,.3,44)});
+ A(0,T=>{choir(T,[38,50],5,.14);V(O,T,mt(38),{v:.25,a:1,h:4,r:1,lp:300,l2:200,vb:20})});A(1.2,T=>bell(T,mt(62),.12));A(3,T=>bell(T,mt(60),.1));
+ for(let b=0;b<3;b++)A(5+b*2.5,T=>choir(T,[[50,57,62],[46,53,58],[48,55,60]][b],3.2,.2));
+ for(let k=0;k<10;k++)A(5.5+k*.9,T=>pluck(T,[50,53,57][k%3],.07));
+ for(let k=0;k<50;k++)A(5+hash(k)*12,T=>N(O,T,.03,.07,'highpass',3000,6000,1,.001,.05));
+ A(10.2,T=>{V(O,T,mt(81),{w:'sine',v:.08,a:1.2,h:2.5,r:1.5,vb:18});choir(T,[50,57,62,65],5,.18)});A(11.2,T=>bell(T,mt(74),.14));
+ A(14.5,T=>{choir(T,[46,53,58,62],3.5,.22);whoosh(T,3,.1,1)});
+ [[17.6,69],[18.4,65],[19.2,62]].forEach(([t,m])=>A(t,T=>{brass(T,mt(m-12),1.2,.2);bell(T,mt(m),.1)}));
+ A(20.4,T=>{V(O,T,mt(36),{v:.4,a:1,h:1.5,r:1});N(O,T,2,.12,'bandpass',200,2500,1.2,1.5,.2)});A(22,T=>whoosh(T,.5,.2,0));
+ [22.4,23.6,24.8,26].forEach((t,i)=>A(t,T=>thump(T,.8+.05*i,70)));
+ A(24.1,T=>{braam(T,.6);choir(T,[38,50,57,62],4,.22)});A(26.4,T=>boom(T,.8));A(29,T=>choir(T,[50,57,62,65],7,.22));
+ return E.sort((a,b)=>a[0]-b[0])}
+/* Ablauf */
+let t=0,last=0,ci=-1,want=0;const cp=$('cap'),sd=$('sd');try{want=localStorage.getItem('dtSnd')!=='0'?1:0}catch(e){want=1}
+const fade=()=>{const f=$('fd');f.style.animation='none';f.offsetWidth;f.style.animation='fd 1s ease-out both'};
+function seek(x){t=x;fade();if(EV.length){ei=EV.findIndex(e=>e[0]>=t);if(ei<0)ei=EV.length}}
+function done(){const n=new URLSearchParams(location.search).get('next');if(parent!==window)parent.postMessage({type:'film-done',film:2},'*');if(n)location.href=n;else if(parent===window)location.href='../index.html'}
+$('sk').onclick=()=>seek(CARD+.2);$('rp').onclick=()=>seek(0);$('ok').onclick=done;
+sd.onclick=()=>{on=!on;sd.classList.toggle('on',on);try{localStorage.setItem('dtSnd',on?'1':'0')}catch(e){}
+ if(on){try{navigator.audioSession.type='playback'}catch(e){}if(!AC)aInit();AC.resume();TB.gain.value=.7;MB.gain.setTargetAtTime(.85,AC.currentTime,.05);FB=AC.createGain();FB.connect(MB);EV=build2();ei=EV.findIndex(e=>e[0]>=t);if(ei<0)ei=EV.length}else if(AC)MB.gain.setTargetAtTime(0,AC.currentTime,.05)};
+/* Ton-Vorgabe AN: startet sofort mit der Animation (in der Shell ist der Ton schon freigeschaltet).
+   Sperrt der Browser ihn noch, läuft er ab dem ersten Tipp. */
+(function(){const go=()=>{if(want&&!on)sd.click();want=0};
+ setTimeout(go,150);
+ addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('#sd')){want=0;return}if(typeof AC!=='undefined'&&AC){try{AC.resume()}catch(_){}}},true);
+})();
+function frame(now){const dt=Math.min(.05,(now-last)/1e3||.016);last=now;const pt=t;t+=dt;for(const c of CUTS)if(pt<c&&t>=c)fade();
+ const W=640,Hh=360,fx=W/1.6;if(c.width!=W){c.width=W;c.height=Hh;tc.width=W;tc.height=Hh}
+ const pk=t<2?-9:2+7*Math.floor((t-2)/7),pu=t-pk,sh=pk>=2&&pu<.5?(1-pu/.5)*.45:0,k7=lk(K,t),ddx=k7[3]-k7[0],ddz=k7[4]-k7[1];
+ cam.x=k7[0]+(hash(t*37)-.5)*sh*2;cam.z=k7[1]+(hash(t*41)-.5)*sh*2;cam.y=k7[2]+(hash(t*43)-.5)*sh*2;cam.yaw=Math.atan2(ddx,ddz);
+ const hor=Hh/2-(k7[2]-k7[5])/Math.hypot(ddx,ddz)*fx;cam.y=Math.max(cam.y,gh(cam.x,cam.z)+4);
+ const sto=.5*S(0,2,t)*(1-.5*S(22,24,t));TINT=`rgba(120,30,30,${.1*S(4,6,t)*(1-S(17,18,t))})`;
+ const fc=lc(SKY[2],STM[2],sto);sky(W,Hh,hor,fx,t,sto,0,fc);terr(W,Hh,hor,fx,520,fc);
+ Q.length=0;setP(W,Hh,hor,fx);world(t,pk,pu);Q.sort((a,b)=>b[0]-a[0]);for(const q of Q)q[1]();
+ bc.width=W>>3;bc.height=Hh>>3;bg.drawImage(c,0,0,bc.width,bc.height);g.globalCompositeOperation='lighter';g.globalAlpha=.5;g.drawImage(bc,0,0,W,Hh);g.globalAlpha=1;g.globalCompositeOperation='source-over';
+ const i=CAP.findIndex(q=>t>=q[0]&&t<q[1]);if(i>=0&&i!=ci){ci=i;cp.firstChild.textContent=CAP[i][2];cp.firstChild.style.color=CAP[i][4];cp.lastChild.textContent=CAP[i][3]}cp.className=i>=0?'on':'';
+ $('tb').className=t>1.8&&t<4.9?'on':'';$('mi').className=t>=CARD?'on':'';
+ if(AC&&on&&FB)try{const n=AC.currentTime;while(ei<EV.length&&EV[ei][0]<t+1.2){const[te,fn]=EV[ei++];O=FB;fn(n+Math.max(0,te-t))}}catch(e){console.error('Ton-Fehler',e)}
+ requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+</script></body></html>
