@@ -1,0 +1,38 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Dünenturm</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<link rel="stylesheet" href="dt-game.css" onerror="(window.__miss=window.__miss||[]).push('dt-game.css')">
+</head><body>
+<canvas id="c"></canvas>
+<div id="hud"><div class="r" id="r1"></div><div class="p" id="bar"><i id="barf"></i><span id="bart"></span></div></div>
+<div id="hint"></div><div id="toast"><span></span></div>
+<div id="bn"><div><span id="bnt"></span><button class="pri" id="bnb">Jetzt!</button></div></div>
+<div id="tools"><button id="tmode"></button></div>
+<div id="dock"></div><div id="S"></div><div id="M"></div>
+<input type="file" id="mf" accept="audio/*,.mp3" hidden>
+<script src="dt-config.js" onerror="(window.__miss=window.__miss||[]).push('dt-config.js')"></script>
+<script src="dt-settings.js" onerror="(window.__miss=window.__miss||[]).push('dt-settings.js')"></script>
+<script src="levels/level01.js" onerror="(window.__miss=window.__miss||[]).push('levels/level01.js')"></script>
+<script src="levels/level02.js" onerror="(window.__miss=window.__miss||[]).push('levels/level02.js')"></script>
+<script src="levels/level03.js" onerror="(window.__miss=window.__miss||[]).push('levels/level03.js')"></script>
+<script src="levels/level04.js" onerror="(window.__miss=window.__miss||[]).push('levels/level04.js')"></script>
+<script src="levels/level05.js" onerror="(window.__miss=window.__miss||[]).push('levels/level05.js')"></script>
+<script src="levels/level06.js" onerror="(window.__miss=window.__miss||[]).push('levels/level06.js')"></script>
+<script src="levels/level07.js" onerror="(window.__miss=window.__miss||[]).push('levels/level07.js')"></script>
+<script src="levels/level08.js" onerror="(window.__miss=window.__miss||[]).push('levels/level08.js')"></script>
+<script src="levels/level09.js" onerror="(window.__miss=window.__miss||[]).push('levels/level09.js')"></script>
+<script src="levels/level10.js" onerror="(window.__miss=window.__miss||[]).push('levels/level10.js')"></script>
+<script src="dt-game.js" onerror="(window.__miss=window.__miss||[]).push('dt-game.js')"></script>
+<script>
+/* Diagnose: zeigt, was fehlt, falls das Spiel nicht startet */
+window.addEventListener('error',e=>{(window.__err=window.__err||[]).push(e.message+(e.filename?' ('+e.filename.split('/').pop()+':'+e.lineno+')':''))});
+setTimeout(()=>{if(window.DUE&&DUE.started&&!(window.__miss||[]).length)return;
+ const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:99;background:#170a1c;color:#ffe9c9;font:15px/1.5 system-ui,sans-serif;padding:24px;overflow:auto';
+ d.innerHTML='<h2 style="color:#ffb347">Spiel konnte nicht starten</h2>'+
+  ((window.__miss||[]).length?'<p><b>Diese Dateien fehlen oder wurden nicht gefunden:</b><br>'+window.__miss.join('<br>')+'<br><br>Sie müssen im selben Ordner wie sand8.html liegen (die levels/…-Dateien im Unterordner „levels“).</p>':'')+
+  ((window.__err||[]).length?'<p><b>Fehler:</b><br>'+window.__err.join('<br>')+'</p>':'')+
+  '<p><a style="color:#72dcff" href="'+(window.DUE?DUE.MAP:'duenenturm_karte-3.html')+'">◂ Zurück zur Karte</a></p>';
+ document.body.appendChild(d)},1500);
+</script>
+</body></html>
