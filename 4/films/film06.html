@@ -1,0 +1,61 @@
+<!doctype html><html lang="de"><head><script src="../js/dt-audio.js"></script><script src="../js/dt-config.js"></script><script src="../js/dt-core.js"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 6 · NULL</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#000000">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.18) contrast(1.08)}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 45%,#000b 112%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.6s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#cb{position:fixed;left:0;right:0;bottom:0;height:38vh;background:linear-gradient(#0000,#000d 65%);opacity:0;transition:opacity .6s;pointer-events:none}#cb.on{opacity:1}
+#cap{position:fixed;left:5vw;right:5vw;bottom:calc(6vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .5s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:inline-block;margin-bottom:.9em;padding:.45em 1.1em;border:1px solid #72dcff;border-radius:99px;background:#07202ecc;font:800 clamp(11px,2.1vw,15px)/1 system-ui;letter-spacing:.3em;color:#9cecff;box-shadow:0 0 18px #72dcff66}
+#cap span{display:block;font:700 clamp(23px,5vw,50px)/1.28 Georgia,'Times New Roman',serif;text-shadow:0 3px 16px #000,0 0 4px #000}
+#cap i{display:inline-block;font-style:normal;opacity:0;animation:wd .45s var(--d) both}@keyframes wd{from{opacity:0;transform:translateY(.45em) scale(.88)}to{opacity:1;transform:none}}
+#cap i.k{color:#ffd27a;font-weight:900;font-size:1.14em;text-shadow:0 0 .6em #ffa43aaa,0 .06em 0 #7a3a10,0 3px 16px #000}
+#sl{position:fixed;left:0;right:0;top:36%;text-align:center;font:400 clamp(58px,18vw,210px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.03em;opacity:0;pointer-events:none;-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+#sl.on{animation:sl 1.7s cubic-bezier(.2,1,.3,1) both;filter:drop-shadow(0 .035em 0 #2a0a06) drop-shadow(0 .07em 0 #1a0604) drop-shadow(0 0 .22em var(--gl))}
+#sl.g{background-image:linear-gradient(#fff6dc,#ffc15a 45%,#c4501f);--gl:#ff9a3a}#sl.c{background-image:linear-gradient(#f2ffff,#72dcff 50%,#1f7fa8);--gl:#3ac8ff}#sl.r{background-image:linear-gradient(#ffd8c8,#ff5a4a 50%,#8a1420);--gl:#ff2a2a}
+@keyframes sl{0%{opacity:0;transform:translateY(-50%) scale(2.8);filter:blur(16px)}11%{opacity:1;transform:translateY(-50%) scale(.95)}17%{transform:translateY(-50%) scale(1.04)}24%{transform:translateY(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(1.08)}}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;opacity:0;transition:opacity 1s;pointer-events:none;padding-bottom:10vh;background:radial-gradient(#0008,#0000 70%)}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(80px,19vw,150px);filter:drop-shadow(0 0 22px #72dcffcc)}#tb.on svg{animation:pop .9s cubic-bezier(.2,1.4,.3,1) both}@keyframes pop{from{transform:scale(.2) rotate(-40deg);opacity:0}}
+#tb h2{margin:0;font:400 clamp(44px,12vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.05em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .05em 0 #461608) drop-shadow(0 0 .3em #ff7a2a99)}
+#tb p{margin:0;letter-spacing:.45em;font:700 clamp(13px,2.6vw,21px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1cd0,#170a1cf5);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(40px,10.5vw,96px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi .sg{font:700 clamp(19px,4vw,34px)/1.3 Georgia,serif;margin:0}#mi .sg em{font-style:normal;font-weight:900;color:#72dcff;text-shadow:0 0 .5em #3ac8ff88}#mi .sg em+em{color:#ffd27a;text-shadow:0 0 .5em #ffa43a88}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(15px,3vw,23px)/1.4 Georgia,serif;opacity:.9}
+#mi button{cursor:pointer;font:inherit}.btn{padding:15px 38px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+#sl.v{background-image:linear-gradient(#f0e0ff,#b080ff 50%,#40206a);--gl:#9a5aff}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div>
+<div id="sl"></div>
+<div id="cb"></div><div id="cap"><b></b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 6 · NULL</small><small style="color:#72dcff">AUFTRAG</small><h3>Singt zurück.</h3><p class="sg">Die Erde bat um nur eines: <em>Singt.</em></p><p>Errichte einen Resonanzturm und halte ihn, bis die Stille abzieht. Lass Ashkar laut klingen.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="film-engine.js"></script>
+<script src="film-core.js"></script>
+<script src="film-lib.js"></script>
+<script>
+function earth(W,Hh,t,u){let gr=g.createRadialGradient(W/2,Hh/2,0,W/2,Hh/2,W*.7);gr.addColorStop(0,'#08162a');gr.addColorStop(1,'#010308');g.fillStyle=gr;g.fillRect(0,0,W,Hh);for(let i=0;i<110;i++){g.fillStyle=`rgba(255,240,255,${.2+.5*hash(i)})`;g.fillRect(hash(i+1)*W,hash(i+2)*Hh,1.5,1.5)}
+ const cx=W/2,cy=Hh*.46,R=Hh*.32,dk=S(3,7.5,u),m=v=>v|0;gr=g.createRadialGradient(cx-R*.35,cy-R*.35,R*.1,cx,cy,R);gr.addColorStop(0,`rgb(${m(90-dk*70)},${m(170-dk*140)},${m(230-dk*190)})`);gr.addColorStop(.7,`rgb(20,${m(60-dk*40)},${m(130-dk*100)})`);gr.addColorStop(1,'#020610');g.fillStyle=gr;g.beginPath();g.arc(cx,cy,R,0,TAU);g.fill();
+ g.save();g.beginPath();g.arc(cx,cy,R,0,TAU);g.clip();g.fillStyle=`rgba(50,120,70,${.6*(1-dk)})`;[[-.3,-.2,.28],[.25,.1,.22],[-.1,.45,.18]].forEach(([x,y,r])=>{g.beginPath();g.ellipse(cx+x*R,cy+y*R,r*R,r*R*.7,.5,0,TAU);g.fill()});
+ g.globalCompositeOperation='lighter';for(let i=0;i<70;i++){if(hash(i)<dk)continue;g.fillStyle='rgba(255,220,130,.9)';g.fillRect(cx+(hash(i+1)-.5)*R*1.6,cy+(hash(i+2)-.5)*R*1.6,2,2)}g.restore();
+ g.globalCompositeOperation='lighter';for(let k=0;k<3;k++){const f=(u*.45+k/3)%1;g.strokeStyle=`rgba(114,220,255,${.7*(1-f)})`;g.lineWidth=3;g.beginPath();g.arc(cx,cy,R*(1.1+f*1.2),0,TAU);g.stroke()}g.globalCompositeOperation='source-over'}
+function world(t,pk,pu){const x=330,z=300,y=gh(x,z);box(x,z,10,10,8,[150,150,165],y);box(x-4,z+6,5,4,5,[120,110,130],y);ball(x+3,y+11,z,4,'#f0f4f8','#9aa8b8','#2a3040');box(x+3,z,.5,.5,10,[140,140,150],y+8);box(x-3,z-3,.5,.5,20,[160,160,170],y);
+ glow(x-3,y+20.5,z-3,2.4+1.6*Math.sin(t*5)**2,'255,60,60',.9,1);glow(x,y+4,z+5.2,4,'255,200,120',.7,1);crowd(x-12,z-14,8,t,t>26.5,1);if(pk>=0)rings(x,z,pu,'114,220,255',34);motes(t,.5)}
+function build(){const E=[],A=(t,f)=>E.push([t,f]);beat(A,.45,.1);
+ A(0,T=>{choir(T,[38,50],6,.14);N(O,T,6,.08,'bandpass',900,2500,3,1,1)});for(let k=0;k<10;k++)A(1+k*.5,T=>V(O,T,mt(86+(k%3)*3),{w:'sine',v:.03,a:.01,r:.5}));
+ A(6.5,T=>{choir(T,[50,57,62],6,.2);N(O,T,7,.07,'bandpass',600,1800,4,1,1)});A(12,T=>{bell(T,mt(86),.25);boom(T,.6);choir(T,[50,57,62,65,69],4,.32)});
+ A(14.2,T=>whoosh(T,1.5,.22,1));A(16,T=>{braam(T,.9);boom(T,.7)});A(16.5,T=>choir(T,[38,45,51],5,.28));
+ A(21,T=>{V(O,T,mt(36),{v:.4,a:1,h:3,r:1.5});choir(T,[46,53,58],5,.2)});A(23,T=>{boom(T,.8);braam(T,.6)});
+ A(26.2,T=>{choir(T,[50,57,62,65,69],5,.34);brass(T,mt(50),3,.2)});theme(A,26.5,1);A(30.5,T=>choir(T,[50,57,62,65],7,.25));return E.sort((a,b)=>a[0]-b[0])}
+runFilm({n:6,CARD:30.4,CUTS:[6,14,21,26],PUL0:.3,strong:p=>p>=20,far:500,ripv:.09,
+ K:[[0,300,268,18,330,300,12],[6,306,274,18,330,300,14],[6.01,306,274,18,330,300,14],[21,306,274,18,330,300,14],[21.01,350,282,18,330,302,14],[26,346,286,17,330,302,16],[26.01,305,270,15,330,300,34],[30.4,308,274,16,330,300,38],[60,308,274,16,330,300,38]],
+ SL:[[12.1,'SINGT.','g'],[16,'NULL.','v'],[23,'WER VERSTUMMT, STIRBT.','r']],
+ CAP:[[.8,5.6,'Die Station lebt. Und sie hat **empfangen**.'],[6.6,9.8,'Hier ist die **Erde**. Sie kommen.','ERDE · LETZTE ÜBERTRAGUNG','#ffc060'],[10,11.8,'Wir haben **aufgehört** zu singen.','ERDE · LETZTE ÜBERTRAGUNG','#ffc060'],[12,14,'**Singt.**','ERDE · LETZTE ÜBERTRAGUNG','#ffc060'],[14.6,20.4,'Eine Welt nach der anderen. Die **Stille**. Und ihre Herrin: **Null**.'],[21.4,25.6,'Die Erde sang nicht mehr. Deshalb **starb** sie.'],[26.4,30,'Diesmal **singen** wir zurück.']],
+ pal:t=>palD(t,0,.25*(1-S(24,27,t)),S(26,27.5,t)*.9,.1),draw2d:(t,W,Hh)=>{if(t>=6&&t<14){earth(W,Hh,t,t-6);return true}if(t>=14&&t<21){nullv(W,Hh,t,t-14,0);return true}return false},world,build});
+</script></body></html>
