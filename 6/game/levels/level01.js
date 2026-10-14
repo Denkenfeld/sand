@@ -1,0 +1,5 @@
+/* Level 1 · Erste Düne
+   Eigene Datei pro Level – wird von game.html anhand js/dt-config.js geladen. */
+(window.DTLV=window.DTLV||[])[0]={n:'Erste Düne',sub:'Die Grundlagen',h:8,rn:4,th:.38,r0:95,rg:52,rm:36,rc:3,sp0:90,wv:[[['pl',5]],[['pl',4]]],p:{sp:.17,rk:.10,rl:.03},u:['cv','raf','kas','wel','ene'],
+ t:'Die Sandkarawane naht! Grabe dich nach oben: Eine Reihe zählt zur Höhe, sobald du mindestens 4 ihrer Felder freigelegt hast. Erreichst du Höhe 8, wird gekämpft – baue vorher eine Basis und rüste Krieger aus. Strom ⚡ und Wasser 💧 sind wie ein Konto: Quartier ⚡ +4, Energiefeld ⚡ +6, Taufänger 💧 +4 – jedes andere Gebäude verbraucht davon etwas (steht im Baumenü). Reicht es nicht, warnt ein kleines Symbol am zuletzt gebauten Gebäude – nach ein paar Sekunden Engpass geht es aus und wird dunkel. Oben siehst du stets Verbrauch/Vorrat. Alles Gebaute muss mit dem Quartier verbunden sein – direkt nebeneinander oder über Fließbänder (die brauchen nichts).',
+ nw:['⛏ Graben','Fließbänder','Raffinerie + Sammler','Raffinerie-Radius','Adern wachsen nach','Taufänger','Energiefeld','Strom & Wasser','Durst']};
