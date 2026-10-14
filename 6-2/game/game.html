@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="color-scheme" content="dark"><title>Dünenturm</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script src="../js/dt-audio.js?v=ui-r4"></script>
+<script src="../js/dt-config.js?v=ui-r4"></script>
+<script src="../js/dt-core.js?v=ui-r4"></script>
+<link rel="stylesheet" href="game.css?v=ui-r4">
+<style>
+/* Spielfeld (Canvas) liegt IMMER unter Menü, Ressourcenleiste (Strom/Wasser/Munition…), Hinweisen und Baumenü – auch bei Nachtlevels */
+canvas#c{z-index:0}
+#hud{z-index:4}
+#hint,#toast{z-index:6}
+</style>
+</head><body>
+<canvas id="c"></canvas>
+<div id="hud"><div class="r" id="r1"></div><div class="p" id="bar"><i id="barf"></i><span id="bart"></span></div></div>
+<div id="hint"></div><div id="toast"><span></span></div>
+<div id="bn"><div><span id="bnt"></span><button class="pri" id="bnb">Jetzt!</button></div></div>
+<div id="tools"><button id="tmode"></button></div>
+<div id="dock"></div><div id="S"></div><div id="M"></div>
+<input type="file" id="mf" accept="audio/*,.mp3" hidden>
+<script>
+/* A) Level aus ?level=N bestimmen und alle fertigen Level-Dateien (ready:true) laden – mit ?v=VERSION gegen den Cache */
+var DT_V='?revision=ui-r4&v='+((function(){try{return parent.DT_VER}catch(e){}})()||'ui-r4');
+(function(){var n=Math.max(1,parseInt(new URLSearchParams(location.search).get('level'),10)||1);
+ window.DT_START=n-1;
+ if(!DTX.has(n)){DTX.toast('Level '+n+' folgt bald …');DTX.go('map');return}
+ ((DTX.cfg&&DTX.cfg.levels)||[]).forEach(function(l){if(l.ready&&l.level)document.write('<script src="../'+l.level+DT_V+'"><\/script>')});})();
+</script>
+<script>
+/* B) Prüfen, ob die Datei des gewählten Levels wirklich geladen wurde – sonst NICHT still ein anderes Level starten */
+(function(){var n=(window.DT_START||0)+1;
+ if(!DTX.has(n))return;
+ if(!(window.DTLV&&window.DTLV[n-1])){
+  var L=(DTX.cfg.levels||[])[n-1]||{};
+  DTX.toast('Level-Datei fehlt: '+(L.level||('level'+n+'.js'))+' – bitte hochladen');DTX.go('map');return}
+ document.write('<script src="engine.js'+DT_V+'"><\/script>');})();
+</script>
+</body></html>

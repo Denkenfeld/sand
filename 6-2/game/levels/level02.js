@@ -1,0 +1,5 @@
+/* Level 2 · Land der Würmer
+   Eigene Datei pro Level – wird von game.html anhand js/dt-config.js geladen. */
+(window.DTLV=window.DTLV||[])[1]={n:'Land der Würmer',sub:'Gefahr unter dem Sand',h:12,rn:4,th:.6,r0:50,rg:36,rm:24,rc:5,sp0:150,wv:[[['pl',6]],[['pz',3],['br',1]]],rd:{h:7,w:[[['pl',4]]]},p:{sp:.13,rk:.12,ne:.08,ts:.04,gb:.04,rl:.03},u:['cv','raf','kas','wel','tur','ene','fab'],
+ t:'Unter dem Sand lauern Würmer. Hast du ein Feld freigegraben, verrät eine Zahl mit Wurm-Gesicht, wie viele Würmer in den 8 Nachbarfeldern lauern. Auf Treibsand-Feldern kannst du nichts bauen. Tippe die Wurmflagge ⚑ und dann den Fels, unter dem du ein Nest vermutest: Ein Arbeiter geht hin und zähmt den Wurm. Er lauert auf Nachbarfeldern, schnappt sich Feinde und schwächt sie. Geschütztürme verbrauchen ⚡ Strom, 💧 Wasser und ▮ Munition (−2) – die Fabrik liefert Munition (+4). Baue mit jedem neuen Gebäude auch Energiefelder und Taufänger nach.',
+ nw:['Gefahren-Zahlen','⚑ Wurm zähmen','Geschützturm','Fabrik + Crawler','Raid bei Höhe 7']};

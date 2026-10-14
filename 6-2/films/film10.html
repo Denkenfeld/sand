@@ -1,0 +1,62 @@
+<!doctype html><html lang="de"><head><script src="../js/dt-audio.js?v=20261014b"></script><script src="../js/dt-config.js?v=20261014b"></script><script src="../js/dt-core.js?v=20261014b"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 10 · DIE NACHT DER TAUSEND STIMMEN</title>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#000000">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.18) contrast(1.08)}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 45%,#000b 112%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.6s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#cb{position:fixed;left:0;right:0;bottom:0;height:38vh;background:linear-gradient(#0000,#000d 65%);opacity:0;transition:opacity .6s;pointer-events:none}#cb.on{opacity:1}
+#cap{position:fixed;left:5vw;right:5vw;bottom:calc(6vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .5s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:inline-block;margin-bottom:.9em;padding:.45em 1.1em;border:1px solid #72dcff;border-radius:99px;background:#07202ecc;font:800 clamp(11px,2.1vw,15px)/1 system-ui;letter-spacing:.3em;color:#9cecff;box-shadow:0 0 18px #72dcff66}
+#cap span{display:block;font:700 clamp(23px,5vw,50px)/1.28 Georgia,'Times New Roman',serif;text-shadow:0 3px 16px #000,0 0 4px #000}
+#cap i{display:inline-block;font-style:normal;opacity:0;animation:wd .45s var(--d) both}@keyframes wd{from{opacity:0;transform:translateY(.45em) scale(.88)}to{opacity:1;transform:none}}
+#cap i.k{color:#ffd27a;font-weight:900;font-size:1.14em;text-shadow:0 0 .6em #ffa43aaa,0 .06em 0 #7a3a10,0 3px 16px #000}
+#sl{position:fixed;left:0;right:0;top:36%;text-align:center;font:400 clamp(58px,18vw,210px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.03em;opacity:0;pointer-events:none;-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+#sl.on{animation:sl 1.7s cubic-bezier(.2,1,.3,1) both;filter:drop-shadow(0 .035em 0 #2a0a06) drop-shadow(0 .07em 0 #1a0604) drop-shadow(0 0 .22em var(--gl))}
+#sl.g{background-image:linear-gradient(#fff6dc,#ffc15a 45%,#c4501f);--gl:#ff9a3a}#sl.c{background-image:linear-gradient(#f2ffff,#72dcff 50%,#1f7fa8);--gl:#3ac8ff}#sl.r{background-image:linear-gradient(#ffd8c8,#ff5a4a 50%,#8a1420);--gl:#ff2a2a}
+@keyframes sl{0%{opacity:0;transform:translateY(-50%) scale(2.8);filter:blur(16px)}11%{opacity:1;transform:translateY(-50%) scale(.95)}17%{transform:translateY(-50%) scale(1.04)}24%{transform:translateY(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(1.08)}}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;opacity:0;transition:opacity 1s;pointer-events:none;padding-bottom:10vh;background:radial-gradient(#0008,#0000 70%)}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(80px,19vw,150px);filter:drop-shadow(0 0 22px #72dcffcc)}#tb.on svg{animation:pop .9s cubic-bezier(.2,1.4,.3,1) both}@keyframes pop{from{transform:scale(.2) rotate(-40deg);opacity:0}}
+#tb h2{margin:0;font:400 clamp(44px,12vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.05em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .05em 0 #461608) drop-shadow(0 0 .3em #ff7a2a99)}
+#tb p{margin:0;letter-spacing:.45em;font:700 clamp(13px,2.6vw,21px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1cd0,#170a1cf5);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(40px,10.5vw,96px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi .sg{font:700 clamp(19px,4vw,34px)/1.3 Georgia,serif;margin:0}#mi .sg em{font-style:normal;font-weight:900;color:#72dcff;text-shadow:0 0 .5em #3ac8ff88}#mi .sg em+em{color:#ffd27a;text-shadow:0 0 .5em #ffa43a88}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(15px,3vw,23px)/1.4 Georgia,serif;opacity:.9}
+#mi button{cursor:pointer;font:inherit}.btn{padding:15px 38px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+#sl.v{background-image:linear-gradient(#f0e0ff,#b080ff 50%,#40206a);--gl:#9a5aff}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div>
+<div id="sl"></div>
+<div id="cb"></div><div id="cap"><b></b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 10 · DIE NACHT DER TAUSEND STIMMEN</small><small style="color:#72dcff">AUFTRAG</small><h3>Die Welt wartet.</h3><p class="sg"><em>Ashkar</em> gehört denen, die <em>singen</em>.</p><p>Sammle Gewürz für die Reise. Hinter den Dünen wartet eine ganze Welt.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="film-engine.js?v=20261014b"></script>
+<script src="film-core.js?v=20261014b"></script>
+<script src="film-lib.js?v=20261014b"></script>
+<script>
+function world(t,pk,pu){base(t,t<25?1:0);
+ if(t>=6.5)wormAt(268,330,S(6.5,9.5,t),t,0,22,280);
+ if(t>=12)for(let i=0;i<10;i++){const a=i/10*TAU,r=70+hash(i)*50,x=CX+Math.cos(a)*r,z=CZ+Math.sin(a)*r;wormAt(x,z,S(12+i*.22,14.5+i*.22,t)*(t<25?1:.95),t,i%3==0,11+hash(i+2)*3,90+hash(i)*30)}
+ wormAt(300,288,t<6?.85:1,t,1);
+ for(let k=0;k<18;k++){const a=S(0,3,t),x=CX+(k%6-2.5)*34+Math.sin(t*.2+k)*5,z=CZ+((k/6|0)-1)*40+Math.cos(k)*8,y=170-a*30+(k%3)*18;stille(x,y,z,8,t,a*(1-S(13+hash(k)*3,16+hash(k)*3,t)))}
+ if(t>=12&&t<22){const u=t-12;for(let k=0;k<2;k++){const r=((u+k*2.2)%5)*50;for(let j=0;j<40;j++){const a=j/40*TAU;glow(CX+Math.cos(a)*r,PL+2,CZ+Math.sin(a)*r,5,'255,200,100',.7*(1-r/250),1)}}}
+ if(t>=6.5&&t<12)rings(268,330,t-6.5,'255,200,100',40);
+ crowd(238,246,8,t,t>2,1);row(262,232,8,t,'#a82c3c','#ff7a5a',2.6,0,4.2,t>8);motes(t,.6)}
+function build(){const E=[],A=(t,f)=>E.push([t,f]);beat(A,.6,.1);
+ A(0,T=>{choir(T,[38,45,51],7,.16);V(O,T,mt(38),{v:.35,a:1,h:6,r:1.5,vb:25});N(O,T,6,.1,'lowpass',300,900,1,2,1)});for(let k=0;k<14;k++)A(1+k*.4,T=>V(O,T,mt(40+k%3),{v:.04,a:.05,r:.4,lp:600,l2:200}));
+ A(5.6,T=>whoosh(T,.8,.25,1));A(6.5,T=>{roar(T,.95);braam(T,.8)});A(8,T=>{boom(T,1);choir(T,[26,38,45,50,57],7,.4)});A(9,T=>brass(T,mt(38),4,.3));
+ A(12,T=>whoosh(T,1,.3,1));A(13.2,T=>{boom(T,1);choir(T,[50,57,62,65,69,74],7,.45);brass(T,mt(50),3,.3);brass(T,mt(62),3,.2)});theme(A,13.8,1.3);for(let k=0;k<12;k++)A(13+k*.6,T=>thump(T,.8,70));
+ for(let k=0;k<5;k++)A(14+k*1.2,T=>roar(T,.45));A(19,T=>{whoosh(T,1.5,.3,1)});A(21.2,T=>{boom(T,1);N(O,T,.4,.5,'highpass',2000,9000,.7,.01,2.5)});A(22,T=>braam(T,.8));
+ A(25.2,T=>{choir(T,[50,57,62,65,69],6,.3)});for(let k=0;k<10;k++)A(25.4+k*.4,T=>bell(T,mt([74,77,81,86][k%4]),.13));A(27,T=>{boom(T,.8);choir(T,[50,57,62,65,69],6,.4)});A(30.5,T=>choir(T,[50,57,62,65],7,.25));return E.sort((a,b)=>a[0]-b[0])}
+runFilm({n:10,CARD:30.4,CUTS:[6,12,19,25],PUL0:.3,strong:p=>p>=20,far:520,ripv:.09,
+ K:[[0,226,226,16,262,266,60],[6,230,230,18,262,266,70],[6.01,240,270,18,268,330,70],[12,246,276,20,268,330,90],[12.01,200,190,20,262,262,60],[19,214,204,28,262,262,50],[19.01,214,204,28,262,262,50],[25,214,204,28,262,262,50],[25.01,216,216,14,300,300,34],[30.4,220,220,16,300,300,40],[60,220,220,16,300,300,40]],
+ SL:[[8,'ORUUN.','g'],[13.2,'TAUSEND STIMMEN.','g'],[22,'NULL BLEIBT.','v'],[27,'ASHKAR.','g']],
+ CAP:[[.8,5.8,'Die Stille kam mit **allem**, was sie hatte.'],[6.6,11.6,'Und der **Erste Ton** sang. Zum ersten Mal seit **tausend Jahren**.'],[12.6,18.4,'Jeder **Sandsänger** sang. **Tausend** Stimmen. Ein Lied.'],[19.4,24.6,'Null wurde **geblendet**. Aber nicht **besiegt**.'],[25.6,30,'Die Nacht ist **vorbei**. Die **Welt** liegt vor uns.']],
+ pal:t=>{const o=palD(t,25,0,S(26,28,t)*.9,.08);o.ns=1-S(2,6,t);return o},draw2d:(t,W,Hh)=>{if(t>=19&&t<25){const u=t-19;nullv(W,Hh,t,u,S(1.5,3,u));const a=S(1.5,2.1,u)*(1-S(2.5,4,u));if(a>0){g.fillStyle=`rgba(255,255,255,${a})`;g.fillRect(0,0,W,Hh)}return true}return false},world,build});
+</script></body></html>
