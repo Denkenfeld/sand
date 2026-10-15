@@ -1,0 +1,51 @@
+Dünenplanet
+===========
+Starten: Ordner entpacken, index.html per Doppelklick im Browser öffnen
+(Chrome, Safari, Firefox, auch auf dem Handy). Kein Internet nötig.
+Für GitHub Pages: alle Dateien dieses Ordners ins Repository legen.
+
+Dateien (alle im selben Ordner lassen):
+  index.html    Hauptspiel: Planet, Explorer-Fahrzeug, Mission, Explosion, Funk, Ton
+  level11.js    Level 11: Notfallbasis, 3 Kisten holen, Sandwurm entkommen
+  rts.js        Basisbau: Kamera hebt ab, Hologramm-Raster, 8 Gebäude, Einheiten, Menü
+  three.min.js  three.js r128 (lokal, damit alles offline läuft)
+
+CHEAT zum Überspringen:
+  Gleich am Anfang zur Rakete fahren und dort ca. 3 Sekunden stehen bleiben.
+  Dann erscheinen zwei Knöpfe:
+    "Phase 2: Basisbau (Cheat)"  -> direkt in den Basisbau
+    "Level 11 (Cheat)"           -> direkt zu Level 11 (Kisten + Sandwurm)
+
+Pause & Einstellungen:
+  Runder Pause-Knopf oben links unter dem Ton-Symbol (oder Taste Esc / P). Das Spiel steht dann still,
+  auch wenn die App in den Hintergrund geht. Im Fenster: Lautstärke, Musik, Funk-Stimme an/aus,
+  Kamerawackeln, Grafikqualität (Niedrig/Mittel/Hoch), Weiterspielen und "Zur Karte" (zurück zum
+  Hauptmenü). Einstellungen werden im Browser gespeichert.
+
+Steuerung Fahrt:
+  Handy: links wischen = Lenken + Gas, rechts Boost und Sprung
+  Tastatur: WASD / Pfeile, Shift = Boost, Leertaste = Sprung
+Ton: beim ersten Antippen aktiv, Lautsprecher-Knopf = stumm.
+
+Steuerung Basisbau:
+  Handy: ein Finger ziehen = Karte verschieben, zwei Finger = Zoom, tippen = Feld wählen
+  PC: Maus ziehen / WASD = verschieben, Mausrad = Zoom, klicken = Feld wählen
+  Bauen: Feld antippen, dann Gebäude im Menü antippen = sofort gebaut (1 Tipp)
+  Graue Karten passen am gewählten Feld nicht (Antippen zeigt den Grund)
+  Raster wächst: Gebäude am Rand des Rasters bauen -> es kommen 2 Reihen dazu
+  Rechts: Fadenkreuz = zur Basis zentrieren, Auto-Symbol (oder Auto antippen) = einsteigen,
+          Mond/Sonne = sofort zwischen Tag und Nacht wechseln (zum Fackeln ausprobieren)
+  Beim Bauen hörst du Hämmern, Bohren und Zischen, zum Schluss einen dumpfen Schlag + Klang
+  Im Auto: Knopf "Aussteigen" (nur nahe der Basis) bringt dich zurück in die Draufsicht
+
+Gebäude (Kosten in Erz, Verbrauch/Erzeugung oben auf der Karte):
+  Fließband   3    liefert +1 Erz an angrenzende Raffinerien, mit "Drehen" ausrichten
+  Raffinerie  30   erzeugt Erz (braucht Strom + Wasser)
+  Kaserne     40   bildet Soldaten aus (Auswahl -> Soldat), Soldaten patrouillieren
+  Taufänger   35   erzeugt Wasser
+  Geschützturm 45  braucht Strom, Wasser und Munition
+  Energiefeld 25   erzeugt Strom
+  Fabrik      60   erzeugt Munitions-Kapazität
+  Fackelturm  28   große Feuerfackel: leuchtet bei Nacht einen Teil der Basis aus (Boden,
+                   Gebäude, Lichtkegel, Funken), braucht Strom, bis zu 4 Fackeln mit Licht
+  Rote Zahl oben = Verbrauch größer als Kapazität -> Gebäude stehen still.
