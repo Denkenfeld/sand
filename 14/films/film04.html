@@ -1,0 +1,123 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 4: Das Herz unter dem Krater</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 50%,#000a 115%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#dk{position:fixed;inset:0;background:#000;pointer-events:none}#fl{position:fixed;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#hk{position:fixed;inset:0;display:grid;place-content:end center;text-align:center;padding:0 7vw 15vh;opacity:0;pointer-events:none;z-index:2}
+#hk span{display:block;font:italic 600 clamp(13px,3vw,20px)/1 Georgia,serif;letter-spacing:.42em;color:#72dcff;text-shadow:0 0 14px #72dcff99;margin-bottom:.9em}
+#hk b{display:block;font:400 clamp(24px,7vw,64px)/1.1 Georgia,serif;font-weight:700;letter-spacing:.1em;color:#fff1d8;text-shadow:0 0 26px #ff9a4acc,0 3px 18px #000}
+#hk i{font-style:normal;color:#ffb347}
+#cap{position:fixed;z-index:2;left:6vw;right:6vw;bottom:calc(9vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .7s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#wd{position:fixed;z-index:2;left:0;right:0;top:27vh;text-align:center;pointer-events:none;opacity:0;font:400 clamp(46px,14vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#wd.pop{animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes pop{from{transform:scale(1.7);opacity:0}to{transform:none}}
+#hud{position:fixed;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 66px);padding:0 8px;pointer-events:none;transform:translateY(-140%);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1),opacity .6s}#hud.on{transform:none;opacity:1}
+#hud .r{display:flex;gap:4px;justify-content:center}
+#hud i{font:800 12px system-ui;font-style:normal;display:inline-flex;gap:5px;align-items:center;padding:7px 9px;border-radius:12px;background:#221028e8;border:1px solid #ffb34744;color:#ffb347}
+#hud .bar{position:relative;margin:6px auto 0;max-width:520px;height:26px;border-radius:13px;background:#2a1635;border:1px solid #ffb34744;overflow:hidden}
+#hud .bar u{position:absolute;inset:0 86% 0 0;background:linear-gradient(90deg,#e2822f,#a35a2a)}#hud .bar span{position:absolute;inset:0;display:grid;place-items:center;font:700 12px system-ui;color:#ffe9c9}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:22vh;background:radial-gradient(ellipse 80% 30% at 50% 45%,#170a1ccc,#170a1c00 80%);z-index:2}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1c99,#170a1cf0);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div><div id="dk"></div><div id="fl"></div>
+<div id="hk"><span>KAPITEL 4</span><b>ZWÖLF KRATER.<br>EIN <i>HERZSCHLAG.</i></b></div>
+<div id="hud"><div class="r"><i>◆ <em id="hg" style="font-style:normal">162</em></i><i>⛑ 0/6</i><i>⚡ 0/4</i><i>💧 <em id="hw" style="font-style:normal">0/0</em></i><i>⛏ <em id="hc" style="font-style:normal">0/4</em></i></div><div class="bar"><u></u><span>Höhe 1 / 7 · nächste Reihe 0/4</span></div></div>
+<div id="wd"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><ellipse cx="32" cy="34" rx="22" ry="11" fill="#1a0f26" stroke="#72dcff" stroke-width="2.5"/><ellipse cx="32" cy="35" rx="11" ry="5" fill="#72dcff"/><path d="M32 8v20" stroke="#72dcff" stroke-width="3" stroke-linecap="round"/></svg><h2>KRATERFELD</h2><p>GRABE IN DIE TIEFE</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 4 · DAS HERZ UNTER DEM KRATER</small><small style="color:#72dcff">AUFTRAG</small><h3>Finde das Herz.</h3><p>Zwölf Krater schlagen im selben Takt. Grabe in die Tiefe und finde heraus, was unter dem Kraterfeld pulsiert.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button><button class="lk" id="bk">◂ Zurück zur Übersicht</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="dt-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="film3d.js"></script>
+<script>
+'use strict';
+/* Kapitel 4 · „Das Herz unter dem Krater“  (Sektor 4 · Kraterfeld)
+   0–4.8 Zwölf Krater (Hook) · 4.9–9.9 Planet · 9.9–17.6 Anflug auf den Schacht · 17.6–22.6 Die Höhle · 22.6–28.8 Schnitt ins Spiel */
+const CARD=28.8,VSV='varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}';
+/* ===== Kraterfeld ===== */
+const CR=[{x:0,z:0,R:62,d:26,t:1}];for(let i=0;i<12;i++){const a=i/12*6.283+.3,r=185+(i%3)*14;CR.push({x:Math.cos(a)*r,z:Math.sin(a)*r,R:28+hash(i)*16,d:9+hash(i+3)*7})}
+function crh(x,z){let h=(fb(x*.01+4,z*.012+2)-.45)*12;for(const c of CR){const r=Math.hypot(x-c.x,z-c.z)/c.R;if(r<2){let dep=c.d*(1-r*r);if(c.t)dep=mx(dep,Math.round(dep/4.5)*4.5,.75);h+=(r<1?-dep:0)+c.d*.38*Math.exp(-Math.pow((r-1.04)/.14,2))+c.d*.1*Math.exp(-Math.pow((r-1.5)/.35,2))}}return h}
+const TR=makeTerrain({h:crh,n:300,size:900,col:(x,z,h)=>{let near=0;for(const c of CR){const r=Math.hypot(x-c.x,z-c.z)/c.R;near=Math.max(near,(1-sm(.1,.65,r)))}const k=sm(-14,10,h),n=fb(x*.05,z*.05);return[mx(.09,.3,k)*(.8+.4*n)+.0*near,mx(.08,.26,k)*(.8+.4*n)+.2*near,mx(.12,.3,k)*(.8+.4*n)+.32*near]}});
+const K=new T.Scene();K.add(new T.Mesh(TR.geo,new T.MeshLambertMaterial({vertexColors:true})));
+const sk=makeSky({zen:0x02040c,mid:0x0a1030,hor:0x1a2850,stars:1,sunK:0});K.add(sk.mesh);K.fog=new T.Fog(0x1a2850,260,1000);
+const moonL=new T.DirectionalLight(0x8aa4ff,1.1);moonL.position.set(-120,200,-80);K.add(moonL,new T.HemisphereLight(0x3a4a8a,0x1a1018,.8));
+const glowM=()=>new T.MeshBasicMaterial({map:TD,color:0x72dcff,transparent:true,blending:T.AdditiveBlending,depthWrite:false,opacity:0,fog:false});
+const GL=CR.map(c=>{const m=new T.Mesh(new T.CircleGeometry(c.R*.7,40),glowM());m.rotation.x=-Math.PI/2;m.position.set(c.x,TR.gh(c.x,c.z)+.6,c.z);K.add(m);return m});
+const fy=TR.gh(0,0),beam=new T.Group();{const a=new T.Mesh(new T.CylinderGeometry(3,6,700,24,1,true),bmat(0xd8f8ff,.7)),b=new T.Mesh(new T.CylinderGeometry(9,18,700,24,1,true),bmat(0x72dcff,.18));beam.add(a,b);beam.userData={a,b};beam.position.set(0,fy+350,0);K.add(beam)}
+// Bohrturm am Kraterrand
+const RIG=new T.Group();RIG.position.set(66,TR.gh(66,0),0);K.add(RIG);
+{const lm=0x6a5a50;for(const[x,z]of[[-3,-3],[3,-3],[-3,3],[3,3]]){const l=mk(new T.CylinderGeometry(.22,.4,28,6),lm);l.position.set(x*.6,14,z*.6);l.rotation.set(z*.02,0,-x*.02);RIG.add(l)}
+ for(const y of[6,12,18,24]){const r=mk(new T.BoxGeometry(5.4-y*.1,.25,5.4-y*.1),lm);r.position.y=y;RIG.add(r)}
+ const top=mk(new T.BoxGeometry(5,3,5),0x3a3236);top.position.y=29;const lp=bas(new T.SphereGeometry(.5,8,6),0xffd070);lp.position.set(0,31.2,0);const cab=mk(new T.CylinderGeometry(.09,.09,70,5),0x222);cab.position.set(-6,-8,0);RIG.add(top,lp,cab);
+ const g=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffc070,blending:T.AdditiveBlending,depthWrite:false,fog:false}));g.scale.set(18,18,1);g.position.set(0,30,0);RIG.add(g)}
+const PPK=[];for(let i=0;i<7;i++){const p=person(i%3?0x2fa7c9:0xe2a23f,1.4,false);K.add(p);PPK.push({p,a:i*.8,r:70+i*3})}
+const KDY=[[9.9,230,95,170,0,-10,0,50],[12.5,125,52,95,0,-8,0,46],[15.0,76,20,42,0,-14,0,44],[17.5,10,34,12,0,-30,0,54]];
+const cc=new T.Color(),cA=[new T.Color(0x02040c),new T.Color(0x2a3a70)],cB=[new T.Color(0x0a1030),new T.Color(0x7a4a78)],cC=[new T.Color(0x1a2850),new T.Color(0xf0905a)];
+function updK(t){let ex;
+ if(t<4.9){const u=sm(0,4.8,t);cam.position.set(0,mx(280,170,u),mx(40,130,u));cam.lookAt(0,0,0);fv(50)}else{const k=cat(KDY,t);cam.position.set(k[0],Math.max(k[1],TR.gh(k[0],k[2])+1.5),k[2]);cam.lookAt(k[3],k[4],k[5]);fv(k[6])}
+ cam.up.set(0,1,0);sk.mesh.position.copy(cam.position);const day=sm(10,16.5,t);sk.u.zen.value.lerpColors(cA[0],cA[1],day);sk.u.mid.value.lerpColors(cB[0],cB[1],day);sk.u.hor.value.lerpColors(cC[0],cC[1],day);sk.u.uStar.value=1-day*.8;K.fog.color.lerpColors(cC[0],cC[1],day);
+ moonL.color.setRGB(.55+.45*day,.64+.1*day,1-.4*day);moonL.intensity=1.1+.5*day;
+ for(let i=0;i<GL.length;i++){const lit=t<4.4?sm(.6+i*.26,.9+i*.26,t)*.4:.15,pulse=Math.exp(-Math.max(0,beatAge(t-i*.07))*3.2)*(t>4.4?1:0),base=t>4.4?.14:lit;GL[i].material.opacity=Math.min(1,base+pulse*.9)}
+ const bt=beatAge(t),on=t>4.4;beam.visible=on;beam.userData.a.material.opacity=.45+.5*Math.exp(-bt*2.5);beam.userData.b.material.opacity=.12+.3*Math.exp(-bt*2.5);
+ PPK.forEach((q,i)=>{const a=q.a+t*.03,x=66+Math.cos(a*3)*8+i*2,z=Math.sin(a*5+i)*10;q.p.position.set(x,TR.gh(x,z),z);q.p.visible=t>9}) }
+/* ===== Planet: Sektor 4 ===== */
+const PL=makePlanet(),P4=PL.P;PL.beamP.visible=PL.beamP2.visible=false;
+const b4=PL.beamP.clone();b4.visible=true;b4.material=PL.beamP.material.clone();b4.position.copy(PL.C[3]);b4.quaternion.setFromUnitVectors(Y,PL.C[3]);P4.add(b4);
+const rngs=[0,1,2].map(()=>{const m=new T.Mesh(new T.RingGeometry(.97,1,64),bmat(0x9ae8ff,.7));P4.add(m);return m});
+function updP4(t){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const u=sm(4.7,9.7,t);const dir=PL.C[3].clone().lerp(PL.cen,u).normalize().applyAxisAngle(Y,(u-.5)*.55),dist=mx(1.5,3.9,Math.pow(u,.8));cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,-.12*u,0);fv(40);
+ for(let i=0;i<3;i++){U.uR.value[i]=R[i];U.uS.value[i]=2}U.uR.value[3]=R[3]*sm(5.0,6.6,t);U.uS.value[3]=1;for(let i=4;i<10;i++){U.uR.value[i]=R[i]*sm(7.0+.14*i,8.5+.14*i,t)*.95;U.uS.value[i]=0}
+ const bp=beatAge(t)<.6?1+.8*Math.exp(-beatAge(t)*6):1;b4.material.opacity=.6*bp;
+ rngs.forEach((m,i)=>{const a=Math.max(0,t-4.4-i*.18),ag=a<2.4?a:99;m.visible=ag<2.4&&t<9.9;const s=.02+ag*.06;m.scale.set(s,s,s);m.position.copy(PL.C[3]).multiplyScalar(1.004);m.quaternion.setFromUnitVectors(V3(0,0,1),PL.C[3]);m.material.opacity=.8*(1-ag/2.4)});
+ PL.moons.forEach((m,i)=>{const a=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a)*m.userData.r,Math.sin(a*.7)*.8,Math.sin(a)*m.userData.r)})}
+/* ===== Die Höhle mit dem Herzen ===== */
+const Z=new T.Scene();Z.background=new T.Color(0x03020a);
+const wall=new T.Mesh(new T.SphereGeometry(160,40,30),new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{uP:{value:0}},vertexShader:VSV,fragmentShader:'uniform float uP;varying vec3 vP;'+NZG+`void main(){vec3 n=normalize(vP);float f=fbm(n*3.),v=abs(fbm(n*7.+4.)-.5);vec3 c=mix(vec3(.04,.03,.06),vec3(.16,.11,.17),f);c+=vec3(.1,.75,1.)*smoothstep(.035,0.,v)*(.5+1.5*uP)+vec3(1.,.6,.2)*smoothstep(.02,0.,abs(fbm(n*11.+9.)-.5))*.5*uP;float top=smoothstep(.85,1.,n.y);c+=vec3(.6,.85,1.)*top*.8;gl_FragColor=vec4(c,1.);}`}));Z.add(wall);
+const hv='varying vec3 vN,vV,vP;void main(){vP=position;vec4 mv=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}';
+const heartM=new T.ShaderMaterial({uniforms:{uP:{value:0},uT:{value:0}},vertexShader:hv,fragmentShader:'uniform float uP,uT;varying vec3 vN,vV,vP;'+NZG+`void main(){float nv=max(dot(normalize(vN),normalize(vV)),0.),f=fbm(vP*.14+uT*.12);vec3 c=mix(vec3(.02,.22,.45),vec3(.35,.95,1.),f);c+=vec3(1.,.55,.2)*smoothstep(.04,0.,abs(fbm(vP*.22+3.)-.5))*(.6+uP);c*=.55+.9*uP;c+=vec3(.3,.8,1.)*pow(1.-nv,2.5)*(.7+uP);gl_FragColor=vec4(c,1.);}`});
+const HEART=new T.Mesh(new T.IcosahedronGeometry(15,3),heartM);Z.add(HEART);
+const HR=[24,31,38].map((r,i)=>{const m=new T.Mesh(new T.TorusGeometry(r,.45,8,80),bmat(i==1?0xffb060:0x72dcff,.8));Z.add(m);return m});
+const SH=[];for(let i=0;i<26;i++){const m=new T.Mesh(new T.IcosahedronGeometry(1+hash(i)*1.6,0),new T.MeshBasicMaterial({color:i%3?0x72dcff:0xffb060}));Z.add(m);SH.push({m,r:44+hash(i+3)*30,a:hash(i)*6.28,y:(hash(i+7)-.5)*40,s:.12+hash(i+9)*.2})}
+const shaft=new T.Mesh(new T.CylinderGeometry(7,9,200,24,1,true),bmat(0xcff6ff,.22));shaft.position.y=100;Z.add(shaft);
+const hl=new T.PointLight(0x72dcff,3,160);Z.add(hl);const motes=pts(160,{size:.8});Z.add(motes);
+const KZ=[[17.5,6,100,8,0,0,0,56],[19.6,30,46,30,0,0,0,48],[21.3,40,10,34,0,2,0,42],[22.5,0,2,56,0,0,0,40]];
+function updZ(t){const k=cat(KZ,t);cam.position.set(k[0],k[1],k[2]);cam.lookAt(k[3],k[4],k[5]);cam.up.set(0,1,0);fv(k[6]);
+ const bt=beatAge(t),p=Math.exp(-bt*3)*(bt<2?1:0),idle=.25+.1*Math.sin(t*2);heartM.uniforms.uP.value=p+idle*.3;heartM.uniforms.uT.value=t;wall.material.uniforms.uP.value=p;HEART.scale.setScalar(1+.12*p);hl.intensity=2+7*p;
+ HR.forEach((m,i)=>{m.rotation.set(t*.3*(i+1)*.6+i,t*.25*(i%2?-1:1),i*1.1);m.scale.setScalar(1+.05*p)});SH.forEach(s=>{const a=s.a+t*s.s;s.m.position.set(Math.cos(a)*s.r,s.y+Math.sin(t+s.a)*2,Math.sin(a)*s.r);s.m.rotation.set(t,a,0)});
+ for(let i=0;i<160;i++){const q=((t*.04+hash(i))%1),a=hash(i+1)*6.28,r=10+hash(i+2)*90;setP(motes,i,Math.cos(a)*r,-50+q*120,Math.sin(a)*r,.5,.8,1)}updP(motes)}
+/* ===== Schnitt ins Spiel ===== */
+const TL=makeTiles({crystalCol:0x72dcff,crystals:[-1,1,2,-3,4]}),GG=TL.G;
+const pil=new T.Mesh(new T.PlaneGeometry(.7,9),new T.MeshBasicMaterial({map:TD,color:0x72dcff,transparent:true,blending:T.AdditiveBlending,depthWrite:false,opacity:0}));pil.position.set(-2.5,-4.6,.5);GG.add(pil);
+function updG4(t){TL.cam(t,23.0,25.2);TL.update(t,25.7);const bt=beatAge(t);pil.material.opacity=sm(23.5,25,t)*(.35+.6*Math.exp(-bt*3))}
+function draw(t){if(t<4.9||(t>=9.9&&t<17.6)){updK(t);return K}if(t<9.9){updP4(t);return P4}if(t<22.6){updZ(t);return Z}updG4(t);return GG}
+FILM.boot({n:4,CARD,BEATS:[4.4,11.4,18.4,25.4],hook:[.9,1.5,3.2,3.8],dk:[.3,2.2,.7],title:[14.2,17.4],hud:[25.3,t=>{$('hg').textContent=t>26.4?180:162;$('hw').textContent='0/0';$('hc').textContent=t>27.6?'1/4':'0/4'}],
+ CAP:[[5.2,9.4,'IDA','Turmwart, schau dir die Krater an. Zwölf. Im Kreis. Und jeder pulsiert.'],[10.0,14.0,'IDA','Sie sind uralt. Älter als die Würmer. Älter als wir.'],[17.8,21.2,'IDA','Hörst du das? Der Herzschlag ist zurück. Er kommt nicht von den Würmern.'],[21.4,25.2,'IDA','Er kommt von da unten.']],
+ WORDS:[[25.6,'GRABE.'],[26.5,'TIEFER.'],[27.4,'HÖRE ZU.']],
+ flash:(t,tri,dec)=>[['200,230,255',dec(4.4,.35,.7,t)],['200,230,255',tri(4.9,.22,1,t)],['255,200,140',tri(9.9,.3,.8,t)],['200,240,255',tri(17.6,.25,1,t)],['229,176,120',tri(22.6,.26,1,t)]],
+ shake:t=>t<5?.03:t<22.6?.5:.02,draw,
+ audio:(thump,choir,bell,pluck,brass,whoosh,boom)=>{const E=[],A=(t,f)=>E.push([t,f]),pent=[62,65,67,69,72,74,77,81];
+  A(0,T=>{Vo(T,mf(26),{v:.25,a:1.5,h:2,r:1.2,lp:240,vb:.3});Nz(T,4,.04,{type:'bandpass',f0:300,f1:600,q:.6,a:1.5,r:1})});
+  for(let i=0;i<13;i++)A(.6+i*.26,T=>{bell(T,mf(pent[i%8]+12+(i>7?12:0)),.07);Vo(T,mf(38),{v:.05,a:.01,r:.3})});
+  A(1.0,T=>choir(T,[38,45,50],3.4,.12));A(4.4,T=>{thump(T,1,46);boom(T,.7);Nz(T,1.3,.2,{type:'lowpass',f0:700,f1:90,a:.01,r:.9})});A(4.5,T=>whoosh(T,.5,.2,true));
+  A(5.0,T=>{choir(T,[38,45,50,53,57],6,.3);whoosh(T,2,.07,false)});[[5.9,98],[7.4,93],[8.6,100]].forEach(([t,m])=>A(t,T=>bell(T,mf(m-12),.08)));A(9.6,T=>{whoosh(T,.9,.16,true);boom(T+.5,.3)});
+  A(10,T=>choir(T,[50,57,62,65],7,.24));for(let k=0;k<24;k++)A(10.3+k*.3+hash(k+9)*.1,T=>pluck(T,mf(pent[(k*3)%8]+12),.04));A(11.4,T=>{thump(T,.7,52);thump(T+.3,.4,46)});
+  A(14.2,T=>{choir(T,[50,57,62,65,69],4,.32);boom(T,.4);bell(T,mf(74),.12)});A(16.8,T=>whoosh(T,.9,.25,true));A(17.6,T=>{boom(T,.9);Nz(T,1.2,.25,{type:'lowpass',f0:2500,f1:100,a:.003,r:1})});
+  A(18.4,T=>{thump(T,1,48);thump(T+.3,.6,42);boom(T,.7);choir(T,[38,45,50,57],5,.3)});A(20.5,T=>brass(T,mf(38),1.6,.14));A(22.0,T=>whoosh(T,.6,.3,true));A(22.6,T=>{boom(T,.95);Nz(T,.9,.28,{type:'lowpass',f0:3000,f1:140,a:.003,r:.8})});
+  A(23.0,T=>{choir(T,[50,57,62,65],6,.3);bell(T,mf(74),.1)});A(25.4,T=>thump(T,.9,48));A(25.6,T=>{thump(T,.8,60);bell(T,mf(86),.13)});A(26.5,T=>{thump(T,.7,64);pluck(T,mf(74),.12)});A(27.4,T=>{thump(T,.9,52);boom(T,.4);brass(T,mf(62),1.8,.14);bell(T,mf(93),.12)});A(28.7,T=>choir(T,[50,57,62,65,69],3,.2));return E}});
+
+</script></body></html>
