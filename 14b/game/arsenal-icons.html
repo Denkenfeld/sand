@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><title>Arsenal-Icons</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/dt-audio.js"></script>
+<script src="../js/dt-config.js"></script>
+<script src="../js/dt-core.js"></script>
+<style>
+html,body{margin:0;min-height:100%;background:#120818;color:#ffe9c9;font-family:Georgia,serif}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch}
+.wrap{max-width:900px;margin:0 auto;padding:18px 14px calc(30px + env(safe-area-inset-bottom,0px));position:relative;z-index:2}
+h2{font-size:13px;letter-spacing:.24em;color:#72dcff;margin:18px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.item{border:1px solid rgba(255,233,201,.14);border-radius:13px;padding:11px;background:rgba(10,5,15,.5)}
+img{width:72px;height:72px;display:block}
+h3{margin:6px 0 5px;font-size:15px;color:#ffe1a2}
+.tag{display:inline-block;margin:0 4px 6px 0;padding:3px 7px;border-radius:999px;font-size:10px;border:1px solid rgba(255,179,71,.3);color:#72dcff}
+p{margin:0;font-size:12.5px;line-height:1.45;opacity:.82}
+.err{border-color:#ff6a5a;color:#ffb4a8}
+</style></head><body>
+<canvas id="c" style="position:fixed;left:-9999px;top:-9999px;width:10px;height:10px"></canvas>
+<div id="hud" style="display:none"><div class="r" id="r1"></div><div class="p" id="bar"><i id="barf"></i><span id="bart"></span></div></div>
+<div id="hint" style="display:none"></div><div id="toast" style="display:none"><span></span></div>
+<div id="bn" style="display:none"><div><span id="bnt"></span><button id="bnb"></button></div></div>
+<div id="tools" style="display:none"><button id="tmode"></button></div>
+<div id="dock" style="display:none"></div><div id="S" style="display:none"></div><div id="M" style="display:none"></div>
+<input type="file" id="mf" hidden>
+<div class="wrap" id="root"></div>
+<script src="engine.js?v=icons6"></script>
+<script>
+const root=document.getElementById('root');
+function needEngine(msg){const d=document.createElement('div');d.className='item err';d.innerHTML='<h3>Icons konnten nicht geladen werden</h3><p>'+(msg||'engine.js ist nicht aktuell oder wurde aus dem Cache geladen.')+'</p>';root.appendChild(d)}
+if(!window.dtIcon){needEngine('window.dtIcon fehlt – engine.js ist nicht die aktualisierte Version.')}
+else{
+const cats=[
+['Basis & Wirtschaft',[['hub','Quartier','Basis','Zentrale der Kolonie. Stellt Arbeiter bereit, verbindet das Netz und entscheidet über Sieg oder Niederlage.'],['cv','Fließband','Netz','Verbindet Gebäude, transportiert Nachschub und ist Weg für Figuren.'],['raf','Raffinerie','Geld','Schickt Sammler zu Gewürzadern im Umkreis.'],['sam','Sammler','Einheit','Holt Gewürz von Adern und liefert es zum Quartier.'],['wel','Taufänger','Wasser','Liefert Wasser und ist Trinkstelle für Arbeiter.'],['ene','Energiefeld','Strom','Erzeugt Strom für das Netz.'],['battery','Energiespeicher','Level 10','Speichert Stromüberschuss und hilft bei Engpässen.'],['fab','Fabrik','Munition','Baut Crawler und produziert Munition.'],['bore','Sandbohrer','Industrie','Fördert Sand auf freigelegtem Treibsand.'],['smelt','Schmelzofen','Industrie','Verarbeitet Sand zu Energiekristallen.'],['crdep','Kristalldepot','Industrie','Lagert Kristalle und schickt sie zum Quartier.']]],
+['Verteidigung & Truppen',[['kas','Kaserne','Truppen','Bildet Krieger aus.'],['war','Krieger','Einheit','Mobiler Kämpfer gegen Plünderer.'],['cra','Crawler','Fahrzeug','Robustes Kampffahrzeug gegen Panzer.'],['tur','Geschützturm','Verteidigung','Schießt auf Feinde und braucht Munition.'],['shield','Schildgenerator','Level 10','Fängt Schaden im Umkreis ab.'],['wrm','Gezähmter Wurm','Verbündeter','Lauert im Sand und greift Feinde auf Nachbarfeldern an.'],['spaceport','Raumflughafen','Level 10','Raketenbasis für den Start.'],['relay','Steuerrelais','Level 10','Aktivierungspunkt der Startmission.'],['radar','Radarstation','Erkundung','Findet Signale und erkundet Felder.'],['lab','Forschungsstation','Erkundung','Untersucht Relikte.'],['fak','Fackelturm','Licht','Erhellt die Umgebung bei Nacht.']]],
+['Gegner & Kreaturen',[['pl','Plünderer','Gegner','Schnelle Angreifer auf Gewürzpfaden.'],['pz','Panzer','Gegner','Gepanzert und gefährlich; Crawler sind stark dagegen.'],['br','Brecher','Gegner','Sehr robuste Angreifer für große Gefechte.'],['wrm','Sandwurm','Kreatur','Lauert unter bestimmten Feldern und kann gezähmt werden.'],['ali','Nachtalien','Fluggegner','Geflügelte Schwärme, die nachts angreifen.'],['drn','Laserdrohne','Fluggegner','Fliegender Gegner mit Laserangriff.'],['hub','Gegnerfestung','Level 7/10','Eigenständige Stadt mit Versorgung und Verteidigung.']]]
+];
+for(const [title,items] of cats){
+ const h=document.createElement('h2');h.textContent=title.toUpperCase();root.appendChild(h);
+ const g=document.createElement('div');g.className='grid';
+ for(const [k,name,tag,text] of items){
+  const d=document.createElement('div');d.className='item';let img='';
+  try{const u=window.dtIcon(k,96);if(u)img='<img src="'+u+'" alt="'+name+'">'}catch(e){}
+  d.innerHTML=img+'<h3>'+name+'</h3><div><span class="tag">'+tag+'</span></div><p>'+text+'</p>';g.appendChild(d);
+ }
+ root.appendChild(g);
+}
+}
+</script></body></html>

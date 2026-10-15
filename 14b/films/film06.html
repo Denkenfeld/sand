@@ -1,0 +1,127 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 6: Die Landung</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 50%,#000a 115%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#dk{position:fixed;inset:0;background:#000;pointer-events:none}#fl{position:fixed;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#hk{position:fixed;inset:0;display:grid;place-content:end center;text-align:center;padding:0 7vw 15vh;opacity:0;pointer-events:none;z-index:2}
+#hk span{display:block;font:italic 600 clamp(13px,3vw,20px)/1 Georgia,serif;letter-spacing:.42em;color:#72dcff;text-shadow:0 0 14px #72dcff99;margin-bottom:.9em}
+#hk b{display:block;font:400 clamp(24px,7vw,64px)/1.1 Georgia,serif;font-weight:700;letter-spacing:.1em;color:#fff1d8;text-shadow:0 0 26px #ff9a4acc,0 3px 18px #000}
+#hk i{font-style:normal;color:#ffb347}
+#cap{position:fixed;z-index:2;left:6vw;right:6vw;bottom:calc(9vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .7s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#wd{position:fixed;z-index:2;left:0;right:0;top:27vh;text-align:center;pointer-events:none;opacity:0;font:400 clamp(46px,14vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#wd.pop{animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes pop{from{transform:scale(1.7);opacity:0}to{transform:none}}
+#hud{position:fixed;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 66px);padding:0 8px;pointer-events:none;transform:translateY(-140%);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1),opacity .6s}#hud.on{transform:none;opacity:1}
+#hud .r{display:flex;gap:4px;justify-content:center}
+#hud i{font:800 12px system-ui;font-style:normal;display:inline-flex;gap:5px;align-items:center;padding:7px 9px;border-radius:12px;background:#221028e8;border:1px solid #ffb34744;color:#ffb347}
+#hud .bar{position:relative;margin:6px auto 0;max-width:520px;height:26px;border-radius:13px;background:#2a1635;border:1px solid #ffb34744;overflow:hidden}
+#hud .bar u{position:absolute;inset:0 86% 0 0;background:linear-gradient(90deg,#e2822f,#a35a2a)}#hud .bar span{position:absolute;inset:0;display:grid;place-items:center;font:700 12px system-ui;color:#ffe9c9}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:22vh;background:radial-gradient(ellipse 80% 30% at 50% 45%,#170a1ccc,#170a1c00 80%);z-index:2}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1c99,#170a1cf0);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div><div id="dk"></div><div id="fl"></div>
+<div id="hk"><span>KAPITEL 6</span><b>SIE SIND<br><i>GELANDET.</i></b></div>
+<div id="hud"><div class="r"><i>◆ <em id="hg" style="font-style:normal">162</em></i><i>⛑ 0/6</i><i>⚡ 0/4</i><i>💧 <em id="hw" style="font-style:normal">0/0</em></i><i>⛏ <em id="hc" style="font-style:normal">0/4</em></i></div><div class="bar"><u></u><span>Höhe 1 / 7 · nächste Reihe 0/4</span></div></div>
+<div id="wd"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M14 46c0-20 8-32 18-32s18 12 18 32" fill="none" stroke="#e8dcc4" stroke-width="5" stroke-linecap="round"/><path d="M22 46c0-12 4-20 10-20s10 8 10 20" fill="none" stroke="#72dcff" stroke-width="3" stroke-linecap="round"/></svg><h2>KNOCHENWÜSTE</h2><p>HIER LANDEN DIE FREMDEN</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 6 · DIE LANDUNG</small><small style="color:#72dcff">AUFTRAG</small><h3>Treibsand wird zur Quelle</h3><p>Nutze den Sandbohrer und gewinne Silit aus Treibsand, mach es zu Glas in dem Schmelzofen und geniesse den Reichtum.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button><button class="lk" id="bk">◂ Zurück zur Übersicht</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="dt-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="film3d.js"></script>
+<script>
+'use strict';
+/* Kapitel 6 · „Die Landung“  (Sektor 6 · Knochenwüste)
+   0–4.8 Die Fähre setzt auf (Hook) · 4.9–9.9 Planet · 9.9–17.6 Die Fremden steigen aus · 17.6–22.6 Die Knochen leuchten · 22.6–28.8 Schnitt ins Spiel */
+const CARD=28.8;
+const ghB=(x,z)=>{const r=Math.hypot(x,z+60),n=fb(x*.011+11,z*.013+4),rg=1-Math.abs(2*fb(x*.007+2,z*.009+6)-1);return(rg*rg*30+n*10-9)*sm(40,120,r)+Math.sin(x*.5+n*9)*.08*sm(10,50,r)};
+const TR=makeTerrain({h:ghB,n:300,size:1000,col:(x,z,h)=>{const n=fb(x*.04,z*.04),k=sm(-6,24,h),f=.85+.3*n;return[mx(.55,.92,k)*f,mx(.44,.8,k)*f,mx(.34,.64,k)*f]}});
+const B=new T.Scene();B.add(new T.Mesh(TR.geo,new T.MeshLambertMaterial({vertexColors:true})));
+const sk=makeSky({zen:0x02040c,mid:0x0a1030,hor:0x1a2850,stars:1,sunK:0});sk.u.uSun.value.set(-.8,.1,-.5).normalize();B.add(sk.mesh);B.fog=new T.Fog(0x1a2850,200,900);
+const moon=new T.DirectionalLight(0x8aa4ff,.9);moon.position.set(-120,200,-60);const hemi=new T.HemisphereLight(0x3a4a8a,0x2a1a18,.8);B.add(moon,hemi);
+// Knochen-Kathedrale
+const BONES=[],bone=()=>new T.MeshLambertMaterial({color:0xd8cdb8,emissive:0x000000});
+for(let i=0;i<11;i++){const z=-6-i*15,R=26+hash(i)*5,m=bone(),rib=new T.Mesh(new T.TorusGeometry(R,1.8+hash(i+3)*.6,8,30,Math.PI),m);rib.position.set(hash(i+9)*3,-2,z);B.add(rib);BONES.push({m,x:rib.position.x,z})}
+for(let i=0;i<26;i++){const m=bone(),x=(hash(i)<.5?-1:1)*(34+hash(i+4)*50),z=-120*hash(i+7)+10,r=2+hash(i+2)*4,v=new T.Mesh(new T.SphereGeometry(r,12,9),m);v.scale.set(1.2,.8,1);v.position.set(x,TR.gh(x,z)+r*.2,z);B.add(v);BONES.push({m,x,z})}
+const KNB=bone(),vk=new T.Mesh(new T.SphereGeometry(3,14,10),KNB);vk.scale.set(1.2,.9,1);vk.position.set(9.5,2.6,-26);B.add(vk);BONES.push({m:KNB,x:9.5,z:-26});
+// Landefähre
+const LD=new T.Group();B.add(LD);const lm=new T.MeshLambertMaterial({color:0x2a2e3a,emissive:0x080a10});
+LD.add(mk(new T.BoxGeometry(18,5,28),0x2a2e3a,{emissive:0x080a10}));LD.children[0].position.y=7;const tp=new T.Mesh(new T.CylinderGeometry(5,9,5,6),lm);tp.position.y=11;LD.add(tp);
+const TH=[];for(const[x,z]of[[-8,-11],[8,-11],[-8,11],[8,11]]){const l=mk(new T.CylinderGeometry(.5,.8,7,6),0x3a3e4a);l.position.set(x,3.5,z);const f=mk(new T.CylinderGeometry(2.2,2.6,.6,8),0x3a3e4a);f.position.set(x,.3,z);LD.add(l,f);
+ const sp=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xaad8ff,blending:T.AdditiveBlending,depthWrite:false,fog:false}));sp.scale.set(18,18,1);sp.position.set(x,4,z);const co=new T.Mesh(new T.CylinderGeometry(.8,3.4,26,12,1,true),bmat(0xaad8ff,.5));co.position.set(x,-9,z);LD.add(sp,co);TH.push({sp,co})}
+for(let i=0;i<6;i++){const w=bas(new T.BoxGeometry(1.2,.6,.2),0x72dcff);w.position.set(-6.5+i*2.6,8.5,14.1);LD.add(w)}
+const RP=new T.Group();RP.position.set(0,4.6,14);LD.add(RP);const ramp=new T.Mesh(new T.BoxGeometry(6,.4,13),new T.MeshLambertMaterial({color:0x3a3e4a}));ramp.position.z=6.5;RP.add(ramp);
+const spill=new T.Mesh(new T.PlaneGeometry(10,9),new T.MeshBasicMaterial({map:TD,color:0xcff6ff,transparent:true,blending:T.AdditiveBlending,depthWrite:false,opacity:0,side:2,fog:false}));spill.position.set(0,7,14.4);LD.add(spill);
+const lL=new T.PointLight(0xaad8ff,0,170);B.add(lL);const dust=pts(160,{size:5,add:false,op:.3});B.add(dust);const dring=new T.Mesh(new T.RingGeometry(.94,1,64),bmat(0xe8d8c0,.7));dring.rotation.x=-Math.PI/2;dring.position.set(0,.8,-70);B.add(dring);
+// Fremde + Späher
+const AL=[0,1,2,3,4].map(i=>{const a=makeAlien(1.7);B.add(a);return a}),KN=makeAlien(1.8);KN.position.set(7,TR.gh(7,-26),-26);KN.rotation.set(.3,-1.1,0);KN.userData.armR.rotation.x=-1.25;KN.userData.armR.rotation.z=-.3;B.add(KN);
+const SC=[];for(let i=0;i<6;i++){const p=person(i%3?0x2fa7c9:0xe2a23f,1.5,false);p.position.set(-34+i*3.2,TR.gh(-34+i*3.2,4),4);p.rotation.y=Math.PI;B.add(p);SC.push(p)}
+const cA=[new T.Color(0x02040c),new T.Color(0x3a4a80)],cB=[new T.Color(0x0a1030),new T.Color(0x8a5a70)],cC=[new T.Color(0x1a2850),new T.Color(0xf0a060)];
+const KB=[[9.9,-70,50,120,0,6,-70,52],[12.5,-34,12,40,0,8,-60,42],[15.0,-14,5,10,2,9,-56,40],[17.5,16,3,-8,6,6,-38,40],[19.5,10,2.2,-14,8,3,-26,36],[21.0,2,3.4,-4,0,16,-70,50],[22.5,-2,6,10,0,14,-100,56]];
+function updB(t){const ly=t<1?260:260*Math.pow(1-lin(1,4.4,t),2);LD.position.set(0,ly,-70);
+ if(t<4.9){const ty=Math.min(70,Math.max(10,ly*.55+6));cam.position.set(0,3.2,46);cam.lookAt(0,ty,-70);fv(48)}else{const k=cat(KB,t);cam.position.set(k[0],Math.max(k[1],TR.gh(k[0],k[2])+1.4),k[2]);cam.lookAt(k[3],k[4],k[5]);fv(k[6])}
+ cam.up.set(0,1,0);sk.mesh.position.copy(cam.position);const day=sm(10,16,t);sk.u.zen.value.lerpColors(cA[0],cA[1],day);sk.u.mid.value.lerpColors(cB[0],cB[1],day);sk.u.hor.value.lerpColors(cC[0],cC[1],day);sk.u.uStar.value=1-day*.8;sk.u.uSunK.value=day;B.fog.color.copy(sk.u.hor.value);moon.color.setRGB(.55+.45*day,.64+.1*day,1-.4*day);moon.intensity=.9+.7*day;
+ const thr=t<4.4?sm(.8,1.6,t):0;TH.forEach((h,i)=>{h.sp.visible=h.co.visible=thr>0;h.co.material.opacity=.5*thr*(.8+.2*Math.sin(t*40+i));h.sp.scale.setScalar(18*thr*(.9+.1*Math.sin(t*33+i)))});
+ lL.position.set(0,ly+4,-70);lL.intensity=t<4.4?8*thr:(t<4.9?8*(1-lin(4.4,4.9,t)):0);
+ const ta=t-4.4;dring.visible=ta>0&&ta<2;if(dring.visible){const s=4+ta*60;dring.scale.set(s,s,s);dring.material.opacity=.7*(1-ta/2)}
+ for(let i=0;i<160;i++){const a=hash(i)*6.28,r=ta>0?(5+ta*50*hash(i+3)):(t>2.2?hash(i+3)*20*sm(2.2,4.4,t):0),k=t>2.2&&ta<4?(1-Math.max(0,ta)/4)*.5:0;setP(dust,i,Math.cos(a)*r,2+hash(i+9)*14*(1+Math.max(0,ta)*.4),-70+Math.sin(a)*r,.8*k,.7*k,.55*k)}updP(dust);
+ // Rampe, Licht, Fremde
+ const hop=sm(10.2,11.8,t);RP.rotation.x=mx(-1.5,0,hop);spill.material.opacity=sm(10.6,12,t)*(.6+.2*Math.sin(t*3));
+ AL.forEach((a,i)=>{const w=t-12.4-i*.8,z=Math.min(-34,-56+Math.max(0,w)*2.2),x=(i-2)*3.4+Math.sin(i*2)*1;a.visible=t>12.3&&t<22.6;a.position.set(x*(1+(z+56)*.03),TR.gh(x,z),z);a.rotation.y=0;const sw=Math.sin(t*2.4+i)*.35;a.userData.armL.rotation.x=sw;a.userData.armR.rotation.x=-sw;
+  const bp=beatAge(t);a.userData.eyes.forEach(e=>e.scale.setScalar(1+(bp<1?2*Math.exp(-bp*5):0)))});
+ KN.visible=t>17.4&&t<22.6;SC.forEach(p=>p.visible=t>9.9&&t<22.6);
+ // Lichtwelle über die Knochen
+ const front=Math.max(0,t-18.4)*58,bp=beatAge(t);for(const b of BONES){const d=Math.hypot(b.x-9.5,b.z+26),l=lin(0,18,front-d)*(.65+.35*Math.exp(-bp*3));b.m.emissive.setRGB(.2+(-.15)*l,.17+.58*l,.13+.82*l)}}
+/* ===== Planet: Sektor 6 ===== */
+const PL=makePlanet(),P6=PL.P;PL.beamP.visible=PL.beamP2.visible=false;
+const b6=PL.beamP.clone();b6.visible=true;b6.material=PL.beamP.material.clone();b6.position.copy(PL.C[5]);b6.quaternion.setFromUnitVectors(Y,PL.C[5]);P6.add(b6);
+const mini=new T.Group();{const h=new T.Mesh(new T.CylinderGeometry(.9,1.1,.18,6),new T.MeshLambertMaterial({color:0x1a1d26,emissive:0x07090e}));mini.add(h);for(let i=0;i<7;i++){const a=i/7*6.283,s=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffd070,blending:T.AdditiveBlending,depthWrite:false}));s.scale.set(.25,.25,1);s.position.set(Math.cos(a)*.7,-.12,Math.sin(a)*.7);mini.add(s)}}mini.position.set(-5.5,3,-5);P6.add(mini);
+const spk=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffffff,blending:T.AdditiveBlending,depthWrite:false}));P6.add(spk);const trl=pts(50,{size:.06});P6.add(trl);
+function updP6(t){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const u=sm(4.7,9.7,t);const dir=PL.C[5].clone().lerp(PL.cen,u).normalize().applyAxisAngle(Y,(u-.5)*.55),dist=mx(1.5,3.9,Math.pow(u,.8));cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,-.12*u,0);fv(40);
+ for(let i=0;i<5;i++){U.uR.value[i]=R[i];U.uS.value[i]=2}U.uR.value[5]=R[5]*sm(5.0,6.6,t);U.uS.value[5]=1;for(let i=6;i<10;i++){U.uR.value[i]=R[i]*sm(7.0+.14*i,8.5+.14*i,t)*.95;U.uS.value[i]=0}
+ const bp=beatAge(t)<.6?1+.8*Math.exp(-beatAge(t)*6):1;b6.material.opacity=.6*bp;mini.rotation.y=t*.3;mini.scale.setScalar(1.2);
+ const q=lin(5.6,9.2,t),e=q*q*(3-2*q),a=mini.position.clone(),b=PL.C[5].clone().multiplyScalar(1.03),pos=a.clone().lerp(b,e);spk.position.copy(pos);spk.scale.setScalar(.14);spk.visible=t>5.6;
+ for(let i=0;i<50;i++){const f=i/50,p=a.clone().lerp(b,Math.max(0,e-f*.1)),k=(1-f)*(1-f)*(q>0?1:0);setP(trl,i,p.x,p.y,p.z,k,k*.9,k*.8)}updP(trl);
+ PL.moons.forEach((m,i)=>{const a2=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a2)*m.userData.r,Math.sin(a2*.7)*.8,Math.sin(a2)*m.userData.r)})}
+/* ===== Schnitt ins Spiel ===== */
+const boneTile=(g,n)=>{g.fillStyle='#dccfb4';g.fillRect(0,0,n,n);g.strokeStyle='#a89878';g.lineWidth=3;for(let k=0;k<4;k++){g.beginPath();let x=rnd()*n,y=rnd()*n;g.moveTo(x,y);for(let j=0;j<4;j++){x+=(rnd()-.5)*50;y+=(rnd()-.5)*40;g.lineTo(x,y)}g.stroke()}g.fillStyle='#ece2cc';g.fillRect(8,8,n-16,14);g.strokeStyle='#b8a888';g.lineWidth=4;g.strokeRect(2,2,n-4,n-4)};
+const TL=makeTiles({sandTex:boneTile,crystalCol:0x72dcff,crystals:[-1,1,2,-3,4]}),GG=TL.G;
+const scan=new T.Mesh(new T.PlaneGeometry(.35,16),new T.MeshBasicMaterial({map:TD,color:0x72dcff,transparent:true,blending:T.AdditiveBlending,depthWrite:false,opacity:0}));scan.position.set(0,2,.7);GG.add(scan);
+const eye=new T.Sprite(new T.SpriteMaterial({map:TD,color:0x72dcff,blending:T.AdditiveBlending,depthWrite:false}));eye.scale.set(0,0,1);eye.position.set(0,9,.5);GG.add(eye);
+function updG6(t){TL.cam(t,23.0,25.2);TL.update(t,25.7);const s=lin(25.4,28.2,t);scan.position.x=mx(-8,8,s);scan.material.opacity=t>25.4&&t<28.4?.8:0;eye.scale.setScalar(sm(26.4,27.6,t)*3)}
+function draw(t){if(t<4.9||(t>=9.9&&t<22.6)){updB(t);return B}if(t<9.9){updP6(t);return P6}updG6(t);return GG}
+FILM.boot({n:6,CARD,BEATS:[4.4,11.4,18.4,25.4],hook:[.9,1.5,3.0,3.6],dk:[.3,2.2,.7],title:[14.2,17.4],hud:[25.3,t=>{$('hg').textContent=t>26.4?180:162;$('hw').textContent='0/0';$('hc').textContent=t>27.6?'1/4':'0/4'}],
+ CAP:[[5.2,9.4,'IDA','Turmwart, sie sind gelandet. Mitten zwischen den Knochen der alten Würmer.'],[10.0,14.0,'IDA','Sie sind groß. Sie sind leise. Und sie tragen kein Wasser bei sich.'],[17.8,21.2,'IDA','Sie suchen nicht uns. Sie lauschen den Knochen.'],[21.4,25.2,'IDA','Die Würmer sind tot. Aber sie erinnern sich.']],
+ WORDS:[[25.6,'SICHERE.'],[26.5,'BEOBACHTE.'],[27.4,'WARTE.']],
+ flash:(t,tri,dec)=>[['255,240,220',dec(4.4,.4,.8,t)],['220,235,255',tri(4.9,.22,1,t)],['255,200,140',tri(9.9,.3,.8,t)],['180,240,255',dec(18.4,.5,.5,t)],['229,176,120',tri(22.6,.26,1,t)]],
+ shake:t=>t<5?(t>1.2?.12:.04):t<22.6?.5:.02,draw,
+ audio:(thump,choir,bell,pluck,brass,whoosh,boom)=>{const E=[],A=(t,f)=>E.push([t,f]),pent=[62,65,67,69,72,74,77,81];
+  A(0,T=>{Vo(T,mf(26),{v:.24,a:1.5,h:2,r:1.2,lp:240,vb:.3});Nz(T,4.4,.04,{type:'bandpass',f0:400,f1:700,q:.6,a:1.5,r:1})});
+  A(1.0,T=>{Nz(T,3.5,.32,{type:'lowpass',f0:200,f1:1100,q:.8,a:2.2,r:.8});Vo(T,mf(31),{w:'sawtooth',v:.14,a:2.4,h:1,r:.4,lp:300,f2:mf(36),fd:3.4})});
+  A(4.4,T=>{boom(T,1);thump(T,1,46);Nz(T,1.6,.3,{type:'lowpass',f0:900,f1:90,a:.01,r:1.2})});A(5.0,T=>{choir(T,[38,45,50,53,57],6,.3);whoosh(T,2,.07,false)});
+  [[5.9,98],[7.4,93],[8.6,100]].forEach(([t,m])=>A(t,T=>bell(T,mf(m-12),.08)));A(9.6,T=>{whoosh(T,.9,.16,true);boom(T+.5,.3)});
+  A(10.3,T=>{Nz(T,1.4,.14,{type:'highpass',f0:2500,q:.5,a:.05,r:.9});Vo(T+.9,mf(43),{v:.12,a:.003,r:.8,f2:mf(40),fd:.2})});
+  A(10,T=>choir(T,[50,57,62,65],7,.22));A(11.4,T=>{thump(T,.7,52);thump(T+.3,.4,46)});
+  for(let k=0;k<14;k++)A(12.4+k*.55,T=>{Vo(T,mf(pent[k%8]+24),{v:.035,a:.4,h:.2,r:.9,vb:1.2})});
+  A(14.2,T=>{choir(T,[50,57,62,65,69],4,.32);boom(T,.4);bell(T,mf(74),.12)});
+  A(18.4,T=>{thump(T,1,48);boom(T,.6)});for(let k=0;k<16;k++)A(18.6+k*.2,T=>bell(T,mf(pent[k%8]+12+Math.floor(k/8)*12),.07));A(19,T=>choir(T,[38,45,50,57],4.4,.3));
+  A(22.0,T=>whoosh(T,.6,.3,true));A(22.6,T=>{boom(T,.95);Nz(T,.9,.28,{type:'lowpass',f0:3000,f1:140,a:.003,r:.8})});A(23.0,T=>{choir(T,[50,57,62,65],6,.3);bell(T,mf(74),.1)});
+  A(25.4,T=>thump(T,.9,48));A(25.6,T=>{thump(T,.8,60);bell(T,mf(86),.13)});A(26.5,T=>{thump(T,.7,64);pluck(T,mf(74),.12)});A(27.4,T=>{thump(T,.9,52);boom(T,.4);brass(T,mf(62),1.8,.14);bell(T,mf(93),.12)});A(28.7,T=>choir(T,[50,57,62,65,69],3,.2));return E}});
+
+</script></body></html>
