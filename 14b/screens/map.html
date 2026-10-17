@@ -228,7 +228,7 @@ busy=true;sel=i;Au.launch();tdir=i>9?WP:C[i];auto=true;dOv=1.05;toast(i>9?'WEITE
 // Zoom → Ausblenden → Zwischensequenz film01.html, film02.html, … laden
 const u=window.DuenenKarte&&DuenenKarte.filmUrl?DuenenKarte.filmUrl(i+1):`film${String(i+1).padStart(2,'0')}.html`,pf=document.createElement('link');pf.rel='prefetch';pf.href=u;document.head.appendChild(pf);
 setTimeout(()=>$('#fade').classList.add('s'),900);
-setTimeout(()=>{if(window.DuenenKarte&&DuenenKarte.onStart&&DuenenKarte.onStart(i+1,u)===false){Au.apply();$('#fade').classList.remove('s');dOv=0;busy=false;tdir=foc();sync();return}if(window.DTX&&DTX.inShell)DTX.go('film',{n:i+1});else location.href=u},1900)}
+setTimeout(()=>{if(i===10){if(window.DTX&&DTX.inShell)DTX.go('open');else location.href='../open/index.html';return}if(window.DuenenKarte&&DuenenKarte.onStart&&DuenenKarte.onStart(i+1,u)===false){Au.apply();$('#fade').classList.remove('s');dOv=0;busy=false;tdir=foc();sync();return}if(window.DTX&&DTX.inShell)DTX.go('film',{n:i+1});else location.href=u},1900)}
 addEventListener('pageshow',e=>{if(e.persisted){Au.apply();$('#fade').classList.remove('s');dOv=0;busy=false;tdir=foc();sync()}});
 let S={mus:1,sfx:1,vib:1,hq:1};try{Object.assign(S,JSON.parse(localStorage.dtSet))}catch(e){}
 const vib=m=>S.vib&&navigator.vibrate&&navigator.vibrate(m);
@@ -303,7 +303,7 @@ tdir=foc();dir.copy(tdir);sync();U.uLk.value=lvl>10&&!wu?1:0;applyS();snd();Au.i
 </script><script>
 /* Anbindung an die Shell: Karte → Film (→ Spiel). Noch nicht gebaute Level werden abgefangen (ready:false). */
 window.DuenenKarte={
-  filmUrl:function(n){var L=(DTX.cfg.levels||[])[n-1];return L&&L.film?'../'+L.film:'#'},
-  onStart:function(n){if(!DTX.has(n)){DTX.toast('Level '+n+' folgt bald …');return false}}
+  filmUrl:function(n){if(n===11)return '../open/index.html';var L=(DTX.cfg.levels||[])[n-1];return L&&L.film?'../'+L.film:'#'},
+  onStart:function(n){if(n===11)return true;if(!DTX.has(n)){DTX.toast('Level '+n+' folgt bald …');return false}}
 };
 </script></body></html>
