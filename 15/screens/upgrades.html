@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><title>Upgrades – Dünenturm</title><style>
+:root{--am:#ffb347;--cy:#72dcff;--tx:#ffe9c9;--bg:#120818;--pn:rgba(30,14,36,.9);--ln:rgba(255,179,71,.3);--gr:#8cffb7}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(120% 80% at 50% 0%,#2a1230,#120818 55%,#08040d);color:var(--tx);font-family:Georgia,serif}
+body{padding:calc(14px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px));position:relative;overflow-x:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;position:relative;z-index:9}
+.top b{letter-spacing:.28em;color:var(--am)}.top small{display:block;font-size:10px;letter-spacing:.2em;opacity:.65;margin-top:3px}
+.back{color:var(--tx);text-decoration:none;background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;font-size:12px;letter-spacing:.14em}
+h1{margin:6px 0 4px;font-size:clamp(21px,6vw,32px);letter-spacing:.18em;color:var(--am);position:relative;z-index:9}
+.sub{margin:0 0 18px;font-size:13px;line-height:1.5;opacity:.82;max-width:700px;position:relative;z-index:9}
+.card{background:var(--pn);border:1px solid var(--ln);border-radius:16px;padding:14px;margin-bottom:12px;position:relative;z-index:2}
+.card h2{margin:0 0 10px;font-size:13px;letter-spacing:.24em;color:var(--cy)}
+.hive{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;padding:6px;filter:blur(2.2px) saturate(.85);opacity:.75}
+.hex{position:relative;aspect-ratio:1/.9;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);background:linear-gradient(160deg,rgba(255,179,71,.16),rgba(114,220,255,.08));display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;animation:pulse 3.2s ease-in-out infinite}
+.hex:nth-child(odd){animation-delay:-1.6s}
+@keyframes pulse{0%,100%{filter:brightness(.85)}50%{filter:brightness(1.18)}}
+.hexin{display:flex;flex-direction:column;gap:4px;max-width:100%}
+.hexin b{font-size:14px;color:#ffe1a2}.hexin span{font-size:11px;opacity:.75;line-height:1.35}
+.hexin em{font-style:normal;font-size:9px;letter-spacing:.18em;color:var(--cy);margin-top:4px}
+.lock{position:fixed;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(80% 60% at 50% 45%,rgba(18,8,24,.25),rgba(8,4,13,.82));backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px)}
+.lockbox{text-align:center;max-width:520px}
+.lockbox h2{margin:0 0 10px;font-size:clamp(24px,7vw,44px);letter-spacing:.16em;color:var(--am);text-shadow:0 0 24px rgba(255,179,71,.55);animation:bigpulse 2.2s ease-in-out infinite}
+@keyframes bigpulse{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.06);opacity:1}}
+.lockbox p{margin:0;font-size:14px;line-height:1.5;opacity:.85}
+.dust{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(255,224,160,.85);box-shadow:0 0 8px rgba(255,200,120,.9);opacity:0;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(20px) scale(.6);opacity:0}20%{opacity:.9}100%{transform:translateY(-120px) scale(1.1);opacity:0}}
+</style></head><body>
+<div class="top"><div><b>DÜNENTURM</b><small>TECH-BAUM · VERSIEGELT</small></div><a class="back" href="map.html">← ZUR KARTE</a></div>
+<h1>Upgrades</h1><p class="sub">Ein verschlossener Waben-Skill-Baum für kommende Entwicklungen. Er wird nach Level 10 freigeschaltet. Aktuell kann hier noch nichts ausgewählt oder gebaut werden.</p>
+<div class="card"><h2>TECH-BAUM</h2><div class="hive" id="hive"></div></div>
+<div class="lock" id="lock"><div class="dust" id="dust"></div><div class="lockbox"><h2>FREISCHALTEN NACH LEVEL 10</h2><p>Der Tech-Baum bleibt versiegelt, bis du den Feldzug durch die zehn Sektoren abgeschlossen hast.</p></div></div>
+<script>
+const nodes=[['Turmkern','Herz des künftigen Ausbaus.'],['Überschussleitung','Speichert und leitet Energie.'],['Kondensnetz','Sammelt Feuchtigkeit aus der Nachtluft.'],['Präzisionskammer','Verbessert künftige Feuerleitung.'],['Flutlichtnetz','Erweitert die Nacht-Sichtbarkeit.'],['Sandpanzerung','Härtet künftige Bauwerke.'],['Dünenantrieb','Schnellere Truppenbewegung.'],['Tiefensensor','Erkennt Gefahren früher.'],['Kristallzyklus','Optimiert Sand und Kristalle.'],['Feldkommando','Koordiniert Truppen und Verteidigung.']];
+const hive=document.getElementById('hive');
+hive.innerHTML=nodes.map(([n,d])=>'<div class="hex"><div class="hexin"><b>'+n+'</b><span>'+d+'</span><em>GESPERRT</em></div></div>').join('');
+const dust=document.getElementById('dust');
+for(let i=0;i<36;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.top=(60+Math.random()*40)+'%';p.style.animationDuration=(5+Math.random()*7)+'s';p.style.animationDelay=(Math.random()*7)+'s';p.style.width=p.style.height=(2+Math.random()*3)+'px';dust.appendChild(p)}
+let D={};try{D=JSON.parse(localStorage.getItem('dt3')||'{}')}catch(e){}
+if((D.best||0)>=10){document.getElementById('lock').style.display='none';hive.style.filter='none';hive.style.opacity='1';document.querySelectorAll('.hexin em').forEach(e=>{e.textContent='VERFÜGBAR';e.style.color='#8cffb7'})}
+</script>
+</body></html>

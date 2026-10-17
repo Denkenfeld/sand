@@ -1,0 +1,105 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 10: Der Nabel</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 50%,#000a 115%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#dk{position:fixed;inset:0;background:#000;pointer-events:none}#fl{position:fixed;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#hk{position:fixed;inset:0;display:grid;place-content:end center;text-align:center;padding:0 7vw 15vh;opacity:0;pointer-events:none;z-index:2}
+#hk span{display:block;font:italic 600 clamp(13px,3vw,20px)/1 Georgia,serif;letter-spacing:.42em;color:#72dcff;text-shadow:0 0 14px #72dcff99;margin-bottom:.9em}
+#hk b{display:block;font:400 clamp(24px,7vw,64px)/1.1 Georgia,serif;font-weight:700;letter-spacing:.1em;color:#fff1d8;text-shadow:0 0 26px #ff9a4acc,0 3px 18px #000}
+#hk i{font-style:normal;color:#ffb347}
+#cap{position:fixed;z-index:2;left:6vw;right:6vw;bottom:calc(9vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .7s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#wd{position:fixed;z-index:2;left:0;right:0;top:27vh;text-align:center;pointer-events:none;opacity:0;font:400 clamp(46px,14vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#wd.pop{animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes pop{from{transform:scale(1.7);opacity:0}to{transform:none}}
+#hud{position:fixed;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 66px);padding:0 8px;pointer-events:none;transform:translateY(-140%);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1),opacity .6s}#hud.on{transform:none;opacity:1}
+#hud .r{display:flex;gap:4px;justify-content:center}
+#hud i{font:800 12px system-ui;font-style:normal;display:inline-flex;gap:5px;align-items:center;padding:7px 9px;border-radius:12px;background:#221028e8;border:1px solid #ffb34744;color:#ffb347}
+#hud .bar{position:relative;margin:6px auto 0;max-width:520px;height:26px;border-radius:13px;background:#2a1635;border:1px solid #ffb34744;overflow:hidden}
+#hud .bar u{position:absolute;inset:0 86% 0 0;background:linear-gradient(90deg,#e2822f,#a35a2a)}#hud .bar span{position:absolute;inset:0;display:grid;place-items:center;font:700 12px system-ui;color:#ffe9c9}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:22vh;background:radial-gradient(ellipse 80% 30% at 50% 45%,#170a1ccc,#170a1c00 80%);z-index:2}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1c99,#170a1cf0);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div><div id="dk"></div><div id="fl"></div>
+<div id="hk"><span>KAPITEL 10</span><b>WAS SCHLÄFT<br>UNTER DEM <i>NABEL?</i></b></div>
+<div id="hud"><div class="r"><i>◆ <em id="hg" style="font-style:normal">162</em></i><i>⛑ 0/6</i><i>⚡ 0/4</i><i>💧 <em id="hw" style="font-style:normal">0/0</em></i><i>⛏ <em id="hc" style="font-style:normal">0/4</em></i></div><div class="bar"><u></u><span>Höhe 1 / 7 · nächste Reihe 0/4</span></div></div>
+<div id="wd"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 32m0 0a3 3 0 106 0a8 8 0 10-16 0a13 13 0 1026 0a18 18 0 10-36 0" fill="none" stroke="#72dcff" stroke-width="2.5"/><circle cx="32" cy="32" r="3" fill="#ffb347"/></svg><h2>DER NABEL</h2><p>DAS HERZ DES PLANETEN</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 10 · DER NABEL</small><small style="color:#72dcff">AUFTRAG</small><h3>Halte den Turm.</h3><p>Der Nabel erwacht. Verteidige den Dünenturm gegen alles, was aus der Tiefe kommt, und bewahre das Herz des Planeten.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button><button class="lk" id="bk">◂ Zurück zur Übersicht</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="dt-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="film3d.js"></script>
+<script>
+'use strict';
+/* Kapitel 10 · „Der Nabel“  (Sektor 10 · Finale)
+   0–4.8 Der Schlag über den Planeten (Hook) · 4.9–9.9 Sturz zum Nabel · 9.9–17.6 Der Trichter · 17.6–22.6 Das Auge · 22.6–28.8 Schnitt ins Spiel */
+const CARD=28.8,VSV='varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}';
+/* ===== Planet + Schockwelle ===== */
+const PL=makePlanet(),P0=PL.P,b10=planetBeam(PL,9,0xffd070);
+const shock=new T.Mesh(new T.SphereGeometry(1.018,64,48),new T.ShaderMaterial({transparent:true,depthWrite:false,blending:T.AdditiveBlending,uniforms:{uF:{value:0},uC:{value:PL.C[9].clone()}},vertexShader:VSV,
+ fragmentShader:'uniform float uF;uniform vec3 uC;varying vec3 vP;void main(){vec3 n=normalize(vP);float a=acos(clamp(dot(n,uC),-1.,1.)),b=exp(-pow((a-uF)/.07,2.))*(1.-smoothstep(0.,3.,uF));gl_FragColor=vec4(vec3(.5,.95,1.)*b*1.6,b);}'}));P0.add(shock);
+function updPl(t){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const dive=sm(5.0,9.8,t),dir=PL.C[9].clone().lerp(PL.cen,1-dive*0).normalize().applyAxisAngle(Y,.55*(1-dive)),dist=t<4.9?3.5-.2*sm(0,4.8,t):mx(3.3,1.07,Math.pow(dive,1.3));
+ cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,0,0);fv(t<4.9?40:mx(40,52,dive));
+ for(let i=0;i<9;i++){U.uR.value[i]=R[i];U.uS.value[i]=2}U.uR.value[9]=R[9]*sm(.6,2,t);U.uS.value[9]=1;
+ const bp=beatAge(t),pu=t>4.4?Math.exp(-bp*2.5):0;b10.material.opacity=.5+.5*pu;shock.material.uniforms.uF.value=t>4.4?bp*.95:0;shock.visible=t>4.4;
+ PL.moons.forEach((m,i)=>{const a2=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a2)*m.userData.r,Math.sin(a2*.7)*.8,Math.sin(a2)*m.userData.r)})}
+/* ===== Der Trichter ===== */
+const ghF=(x,z)=>{const r=Math.hypot(x,z),a=Math.atan2(z,x),base=(fb(x*.01+2,z*.01+6)-.45)*18;if(r>=340)return base;const q=1-r/340;return mx(base,-300*Math.pow(q,1.5)+6*Math.sin(r*.1+a*3),sm(340,300,r))};
+const TR=makeTerrain({h:ghF,n:320,size:1000,col:(x,z,h)=>{const r=Math.hypot(x,z),g=sm(160,0,r),n=fb(x*.05,z*.05),f=.85+.3*n;return[mx(.42,.35,g)*f+.4*g*g,mx(.2,.8,g)*f*(.7+.3*g),mx(.14,1,g)*f*(.5+.5*g)]}});
+const F=new T.Scene();F.add(new T.Mesh(TR.geo,new T.MeshLambertMaterial({vertexColors:true})));
+const sk=makeSky({zen:0x1a0820,mid:0x5a1a30,hor:0xe0603a,stars:.5,sunK:.4});sk.u.uSun.value.set(-.7,.08,-.7).normalize();F.add(sk.mesh);F.fog=new T.Fog(0x8a3a30,200,1100);
+const sunF=new T.DirectionalLight(0xff8a50,1.2);sunF.position.set(-200,60,-150);F.add(sunF,new T.HemisphereLight(0x8a4060,0x4a2020,.8));
+const core=new T.PointLight(0x72dcff,3,700);core.position.set(0,-285,0);F.add(core);const cbeam=new T.Mesh(new T.CylinderGeometry(10,24,900,20,1,true),bmat(0x72dcff,.4));cbeam.position.set(0,150,0);F.add(cbeam);
+const KF=[[9.9,330,200,330,0,-180,0,56],[12.5,200,60,150,0,-200,0,52],[15.0,90,-60,80,0,-250,0,52],[17.4,30,-200,20,0,-300,0,56]];
+function updF(t){const k=cat(KF,t);cam.position.set(k[0],Math.max(k[1],TR.gh(k[0],k[2])+4),k[2]);cam.lookAt(k[3],k[4],k[5]);cam.up.set(0,1,0);fv(k[6]);sk.mesh.position.copy(cam.position);const bp=beatAge(t),pu=Math.exp(-bp*2.5);core.intensity=3+8*pu;cbeam.material.opacity=.3+.5*pu}
+/* ===== Das Auge ===== */
+const E=new T.Scene();E.background=new T.Color(0x03020a);
+const wall=new T.Mesh(new T.SphereGeometry(520,40,30),new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{uP:{value:0}},vertexShader:VSV,fragmentShader:'uniform float uP;varying vec3 vP;'+NZG+`void main(){vec3 n=normalize(vP);float f=fbm(n*3.),v=abs(fbm(n*7.+4.)-.5);vec3 c=mix(vec3(.05,.03,.07),vec3(.2,.1,.16),f);c+=vec3(.1,.75,1.)*smoothstep(.035,0.,v)*(.4+1.6*uP)+vec3(1.,.55,.2)*smoothstep(.02,0.,abs(fbm(n*11.+9.)-.5))*.5*uP;gl_FragColor=vec4(c,1.);}`}));E.add(wall);
+const eyeM=new T.ShaderMaterial({uniforms:{uPup:{value:.18},uT:{value:0},uP:{value:0}},vertexShader:VSV,fragmentShader:'uniform float uPup,uT,uP;varying vec3 vP;'+NZG+`void main(){vec3 n=normalize(vP);float r=length(n.xy),iris=smoothstep(.6,.52,r);float ring=.55+.45*sin(r*70.+fbm(n*6.)*6.);
+ vec3 sc=vec3(.86,.8,.72)-vec3(.2,.5,.5)*smoothstep(.55,.75,fbm(n*9.+2.))*.9;vec3 ir=mix(vec3(1.,.62,.2),vec3(.2,.9,1.),r/.55)*ring*(1.+uP*.8);vec3 c=mix(sc,ir,iris);
+ float slit=smoothstep(uPup,uPup*.45,abs(n.x))*smoothstep(.52,.3,abs(n.y));c=mix(c,vec3(0.),slit*iris);c*=n.z>0.?1.:.2;gl_FragColor=vec4(c,1.);}`});
+const EYE=new T.Mesh(new T.SphereGeometry(56,64,48),eyeM);E.add(EYE);
+const lidM=new T.MeshPhongMaterial({color:0x2a1424,specular:0x7a5a88,shininess:40,emissive:0x0a0410});const UL=new T.Mesh(new T.SphereGeometry(62,48,24,0,6.283,0,Math.PI/2),lidM),LL=new T.Mesh(new T.SphereGeometry(62,48,24,0,6.283,Math.PI/2,Math.PI/2),lidM);E.add(UL,LL);
+const seam=new T.Mesh(new T.TorusGeometry(62,1,8,90).rotateX(Math.PI/2),bmat(0x72dcff,.9));E.add(seam);
+const COIL=[];for(let k=0;k<2;k++)for(let i=0;i<26;i++){const a=i/26*6.283+k*.12,r=118+k*40,m=new T.Mesh(new T.SphereGeometry(15+k*4,14,10),new T.MeshPhongMaterial({color:i%2?0x2a1424:0x4a2234,emissive:i%2?0x10303a:0x1a0a0a,specular:0x6a4a70,shininess:30}));m.position.set(Math.cos(a)*r,Math.sin(a)*r,-30-k*36);E.add(m);COIL.push(m)}
+const eL=new T.PointLight(0x72dcff,3,500);eL.position.set(0,40,120);const eL2=new T.PointLight(0xffa050,2,500);eL2.position.set(60,-30,140);E.add(eL,eL2,new T.AmbientLight(0x3a2a4a,.6));
+const KE=[[17.6,0,10,380,0,0,0,56],[19.6,10,6,250,0,0,0,50],[21.2,0,0,190,0,0,0,44],[22.5,0,0,150,0,0,0,40]];
+function updE(t){const k=cat(KE,t);cam.position.set(k[0],k[1],k[2]);cam.lookAt(k[3],k[4],k[5]);cam.up.set(0,1,0);fv(k[6]);
+ const bp=beatAge(t),pu=Math.exp(-bp*2.8),open=sm(19.6,21.4,t)*.95+.05*pu;UL.rotation.x=-open;LL.rotation.x=open;EYE.scale.setScalar(1+.04*pu);
+ eyeM.uniforms.uPup.value=mx(.2,.07,sm(21,21.8,t))+.04*(1-sm(19.6,21,t));eyeM.uniforms.uP.value=pu;eyeM.uniforms.uT.value=t;wall.material.uniforms.uP.value=pu;seam.material.opacity=.5+.5*pu;eL.intensity=2+6*pu;
+ COIL.forEach((m,i)=>{const e=1+.04*Math.sin(t*2+i);m.scale.setScalar(e)})}
+/* ===== Schnitt ins Spiel – der Turm ===== */
+const TL=makeTiles({crystals:[-1,1,2,-3,4]}),GG=TL.G;const TWG=new T.Group();TWG.position.set(2,.49,.4);GG.add(TWG);
+{const b=mk(new T.CylinderGeometry(.22,.3,1.2,10),0x92705a);b.position.y=.6;const l=bas(new T.CylinderGeometry(.14,.14,.24,8),0xffcf80);l.position.y=1.32;const r=mk(new T.ConeGeometry(.2,.26,8),0x2e1e28);r.position.y=1.58;
+ const sw=new T.Mesh(new T.ConeGeometry(.9,5,16,1,true).translate(0,-2.5,0).rotateZ(-Math.PI/2),bmat(0x72dcff,.25));sw.position.y=1.32;TWG.add(b,l,r,sw);TWG.userData.sw=sw}
+function updGt(t){TL.cam(t,23.0,25.2);TL.update(t,25.7);const bu=t-26.6,sp=bu<0?0:1-Math.exp(-bu*7)*Math.cos(bu*14);TWG.scale.setScalar(Math.max(.001,sp));TWG.visible=bu>0;TWG.userData.sw.rotation.y=t*2}
+function draw(t){if(t<9.9){updPl(t);return P0}if(t<17.6){updF(t);return F}if(t<22.6){updE(t);return E}updGt(t);return GG}
+FILM.boot({n:10,CARD,BEATS:[4.4,11.4,18.4,25.4],hook:[.9,1.5,3.2,3.8],dk:[.3,2.4,.7],title:[14.2,17.4],hud:[25.3,t=>{$('hg').textContent=t>26.4?180:162;$('hw').textContent='0/0';$('hc').textContent=t>27.6?'1/4':'0/4'}],
+ CAP:[[5.2,9.4,'IDA','Turmwart, neun Sektoren sind unser. Und jetzt schlägt der Planet selbst.'],[10.0,14.0,'IDA','Der Nabel. Alle Karten enden hier. Alle Herzschläge beginnen hier.'],[17.8,21.2,'IDA','Es schläft nicht. Es hat nur gewartet. Auf uns.'],[21.4,25.2,'IDA','Halte den Turm. Was auch kommt. Wir sind die Taubringer.']],
+ WORDS:[[25.6,'HALTE.'],[26.5,'DEN.'],[27.4,'TURM.']],
+ flash:(t,tri,dec)=>[['190,240,255',dec(4.4,.4,.6,t)],['255,230,200',tri(9.9,.3,.9,t)],['200,240,255',tri(17.6,.25,.9,t)],['255,250,240',tri(21.8,.2,1,t)*(t<22.6?1:0)],['229,176,120',tri(22.6,.26,1,t)]],
+ shake:t=>t<5?.02:t<22.6?.6:.02,draw,
+ audio:(thump,choir,bell,pluck,brass,whoosh,boom)=>{const h={thump,choir,bell,pluck,brass,whoosh,boom},EV=[],A=(t,f)=>EV.push([t,f]),pent=[62,65,67,69,72,74,77,81];
+  A(0,T=>{Vo(T,mf(24),{v:.3,a:1.5,h:2,r:1.2,lp:220,vb:.3});Nz(T,4.4,.04,{type:'bandpass',f0:300,f1:600,q:.6,a:1.5,r:1})});A(1.0,T=>choir(T,[38,45,50],3.4,.14));
+  for(let k=0;k<9;k++)A(.8+k*.38,T=>bell(T,mf(pent[k%8]+12),.05));audioPlanet(A,h);
+  A(10,T=>choir(T,[50,57,62,65],7,.26));for(let k=0;k<22;k++)A(10.3+k*.33+hash(k+9)*.1,T=>pluck(T,mf(pent[(k*3)%8]+12),.04));A(12.5,T=>Vo(T,mf(26),{w:'sawtooth',v:.14,a:2,h:3.4,r:1,lp:280,vb:.5}));
+  A(17.4,T=>whoosh(T,.9,.28,true));A(17.6,T=>{boom(T,.9);Nz(T,3,.12,{type:'lowpass',f0:900,f1:200,a:.1,r:1.5})});A(18.6,T=>choir(T,[38,45,50,57],5,.3));A(19.6,T=>brass(T,mf(31),2.4,.16));A(20.4,T=>brass(T,mf(38),1.8,.14));
+  A(21.4,T=>{Vo(T,mf(98),{v:.06,a:.4,h:.8,r:.5,vb:2});choir(T,[38,45,50,53],1.8,.3)});audioTail(A,h);return EV}});
+
+</script></body></html>
