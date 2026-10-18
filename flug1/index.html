@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Objekt-Galerie</title>
+<style>
+:root{--g:#ffe9c9;--ac:#ffb347;--bg:#0b0710}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;touch-action:none;color:var(--g);font:14px/1.3 system-ui,-apple-system,sans-serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+#vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,#0007 100%)}
+#top{position:fixed;left:0;right:0;top:0;padding:max(10px,env(safe-area-inset-top)) 12px 0;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;pointer-events:none}
+#top h1{margin:0;font:400 26px Georgia,serif;letter-spacing:.03em;text-shadow:0 2px 12px #000a}
+#top small{display:block;font:600 11px system-ui;letter-spacing:.16em;opacity:.75;text-transform:uppercase}
+select{pointer-events:auto;background:#241828d9;color:var(--g);border:1px solid #ffb34780;border-radius:12px;padding:9px 10px;font:600 14px system-ui;max-width:52vw}
+#panel{position:fixed;left:0;right:0;bottom:0;padding:12px 12px max(12px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;background:linear-gradient(transparent,#0b0710e6 40%)}
+#info{font-size:12px;opacity:.8;text-align:center;min-height:16px}
+.row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+button{border:1px solid #ffb34773;background:#241828d9;color:var(--g);border-radius:20px;min-height:40px;padding:8px 14px;font:600 13px system-ui;cursor:pointer;touch-action:manipulation;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+button.on{background:linear-gradient(180deg,#ffb347,#e0801c);color:#2a1408;border-color:#ffd08a}
+button:active{transform:translateY(1px)}
+button.warn{border-color:#ff7a5a99}
+#panel.fold .more{display:none}
+#act:empty{display:none}
+#ctl{display:none}#ctl.show{display:block}
+#pad,#jmp{position:fixed;bottom:calc(var(--ph,200px) + 14px);touch-action:none;border-radius:50%;border:1.5px solid #ffb34773;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#pad{left:max(16px,env(safe-area-inset-left));width:124px;height:124px;background:radial-gradient(circle,#ffe9c914 0,#ffe9c908 62%,#ffe9c900 63%)}
+#knob{position:absolute;left:35px;top:35px;width:54px;height:54px;border-radius:50%;background:linear-gradient(180deg,#ffb347,#e0801c);border:1px solid #ffd08a;box-shadow:0 3px 12px #0009;pointer-events:none}
+#jmp{right:max(16px,env(safe-area-inset-right));width:92px;height:92px;background:#241828b3;color:var(--g);font:700 13px system-ui;letter-spacing:.04em;display:flex;align-items:center;justify-content:center}
+#jmp.on{background:linear-gradient(180deg,#ffb347,#e0801c);color:#2a1408;border-color:#ffd08a}
+#bb,#bst{position:fixed;display:none;touch-action:none;border-radius:50%;border:1.5px solid #ffb34773;background:#241828b3;color:var(--g);font:700 11px system-ui;letter-spacing:.04em;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#bb.on,#bst.on{background:linear-gradient(180deg,#ffb347,#e0801c);color:#2a1408;border-color:#ffd08a}
+#bb{right:calc(max(16px,env(safe-area-inset-right)) + 66px);bottom:calc(var(--ph,200px) + 112px);width:62px;height:62px}
+#bst{right:calc(max(16px,env(safe-area-inset-right)) + 170px);bottom:calc(var(--ph,200px) + 26px);width:66px;height:66px;border-color:#ff7a5a99}
+body.air #jmp{right:calc(max(16px,env(safe-area-inset-right)) + 66px)}
+#thrw{position:fixed;display:none;touch-action:none;right:max(14px,env(safe-area-inset-right));bottom:calc(var(--ph,200px) + 14px);width:46px;height:178px;border-radius:23px;border:1.5px solid #ffb34773;background:#241828b3;overflow:hidden;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+#thrf{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(0deg,#e0801c,#ffd08a);pointer-events:none}
+#thrw span{position:absolute;left:0;right:0;top:6px;text-align:center;font:700 9px system-ui;letter-spacing:.06em;color:#fff9;pointer-events:none;mix-blend-mode:difference}
+#hud{position:fixed;left:12px;top:max(64px,calc(env(safe-area-inset-top) + 54px));font:600 12px/1.45 ui-monospace,Menlo,Consolas,monospace;color:#ffe9c9;text-shadow:0 1px 6px #000c;white-space:pre;pointer-events:none;letter-spacing:.03em}
+@media (hover:hover) and (pointer:fine){#pad,#jmp,#bb,#bst,#thrw{opacity:.6}}
+</style></head><body>
+<canvas id="c"></canvas><div id="vig"></div>
+<div id="top"><div><small>Objekt-Galerie</small><h1>Dünenplanet</h1></div><select id="obj" aria-label="Objekt wählen"></select></div>
+<div id="ctl"><div id="pad" aria-label="Joystick"><div id="knob"></div></div><div id="jmp" role="button" aria-label="Springen">SPRUNG</div><div id="bb" role="button">RUNTER</div><div id="bst" role="button">BOOST</div><div id="thrw" aria-label="Schub"><div id="thrf"></div><span>SCHUB</span></div></div>
+<div id="hud"></div>
+<div id="panel">
+  <div id="info"></div>
+  <div class="row" id="act"></div>
+  <div class="row more"><button data-time="tag" class="on">☀️ Tag</button><button data-time="abend">🌇 Abend</button><button data-time="nacht">🌙 Nacht</button></div>
+  <div class="row more"><button id="eng" class="on">Triebwerke</button><button id="dmg" class="on">Schäden</button><button id="auto" class="on">Drehen</button><button id="boom" class="warn">Explodieren</button><button id="shot">Foto</button></div>
+  <div class="row more"><button data-view="front">Vorn</button><button data-view="side">Seite</button><button data-view="back">Heck</button><button data-view="top">Oben</button></div>
+</div>
+<script src="three.min.js"></script>
+<script src="common.js"></script>
+<script src="gallery.js"></script>
+<script src="objects/raumschiff.js"></script>
+<script src="objects/arbeiter.js"></script>
+<script src="objects/flug.js"></script>
+<script>Gallery.start();</script>
+</body></html>
