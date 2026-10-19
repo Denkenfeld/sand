@@ -187,3 +187,13 @@ function makeAlien(sc){sc=sc||1;const g=new T.Group(),m=new T.MeshLambertMateria
  const leg=x=>{const l=new T.Mesh(new T.CylinderGeometry(.09,.12,2.2,6),m);l.position.set(x,1.1,0);return l};
  const armL=new T.Group(),armR=new T.Group();for(const[a,s]of[[armL,-1],[armR,1]]){const c=new T.Mesh(new T.CylinderGeometry(.06,.08,2.2,6),m);c.position.y=-1.1;a.add(c);a.position.set(s*.38,3.0,0)}
  const head=new T.Group();head.add(hd,e1,e2);g.add(to,head,st,leg(-.16),leg(.16),armL,armR);g.scale.setScalar(sc);g.userData={eyes:[e1,e2],armL,armR,st,head,glow};return g}
+
+/* ---------- gemeinsame Bausteine für Planet-Akt und Ton ---------- */
+function planetBeam(PL,idx,color){PL.beamP.visible=PL.beamP2.visible=false;const b=PL.beamP.clone();b.visible=true;b.material=PL.beamP.material.clone();if(color!=null)b.material.color.set(color);b.position.copy(PL.C[idx]);b.quaternion.setFromUnitVectors(Y,PL.C[idx]);PL.P.add(b);return b}
+function planetShot(PL,idx,t,b){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const u=sm(4.7,9.7,t),dir=PL.C[idx].clone().lerp(PL.cen,u).normalize().applyAxisAngle(Y,(u-.5)*.55),dist=mx(1.5,3.9,Math.pow(u,.8));cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,-.12*u,0);fv(40);
+ for(let i=0;i<10;i++){if(i<idx){U.uR.value[i]=R[i];U.uS.value[i]=2}else if(i==idx){U.uR.value[i]=R[i]*sm(5,6.6,t);U.uS.value[i]=1}else{U.uR.value[i]=R[i]*sm(7+.14*i,8.5+.14*i,t)*.95;U.uS.value[i]=0}}
+ const bp=beatAge(t)<.6?1+.8*Math.exp(-beatAge(t)*6):1;if(b)b.material.opacity=.6*bp;PL.moons.forEach((m,i)=>{const a2=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a2)*m.userData.r,Math.sin(a2*.7)*.8,Math.sin(a2)*m.userData.r)})}
+function audioPlanet(A,h){A(4.4,T=>{h.thump(T,1,46);h.boom(T,.7);Nz(T,1.3,.2,{type:'lowpass',f0:700,f1:90,a:.01,r:.9})});A(4.5,T=>h.whoosh(T,.5,.2,true));A(5.0,T=>{h.choir(T,[38,45,50,53,57],6,.3);h.whoosh(T,2,.07,false)});[[5.9,98],[7.4,93],[8.6,100]].forEach(([t,m])=>A(t,T=>h.bell(T,mf(m-12),.08)));A(9.6,T=>{h.whoosh(T,.9,.16,true);h.boom(T+.5,.3)})}
+function audioTail(A,h){A(11.4,T=>{h.thump(T,.7,52);h.thump(T+.3,.4,46)});A(14.2,T=>{h.choir(T,[50,57,62,65,69],4,.32);h.boom(T,.4);h.bell(T,mf(74),.12)});A(18.4,T=>{h.thump(T,1,48);h.thump(T+.3,.6,42);h.boom(T,.7)});
+ A(22.0,T=>h.whoosh(T,.6,.3,true));A(22.6,T=>{h.boom(T,.95);Nz(T,.9,.28,{type:'lowpass',f0:3000,f1:140,a:.003,r:.8})});A(23.0,T=>{h.choir(T,[50,57,62,65],6,.3);h.bell(T,mf(74),.1)});
+ A(25.4,T=>h.thump(T,.9,48));A(25.6,T=>{h.thump(T,.8,60);h.bell(T,mf(86),.13)});A(26.5,T=>{h.thump(T,.7,64);h.pluck(T,mf(74),.12)});A(27.4,T=>{h.thump(T,.9,52);h.boom(T,.4);h.brass(T,mf(62),1.8,.14);h.bell(T,mf(93),.12)});A(28.7,T=>h.choir(T,[50,57,62,65,69],3,.2))}
