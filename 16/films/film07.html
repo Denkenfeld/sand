@@ -1,0 +1,122 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 7: Der Sturm sieht zurück</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 50%,#000a 115%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#dk{position:fixed;inset:0;background:#000;pointer-events:none}#fl{position:fixed;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#hk{position:fixed;inset:0;display:grid;place-content:end center;text-align:center;padding:0 7vw 15vh;opacity:0;pointer-events:none;z-index:2}
+#hk span{display:block;font:italic 600 clamp(13px,3vw,20px)/1 Georgia,serif;letter-spacing:.42em;color:#72dcff;text-shadow:0 0 14px #72dcff99;margin-bottom:.9em}
+#hk b{display:block;font:400 clamp(24px,7vw,64px)/1.1 Georgia,serif;font-weight:700;letter-spacing:.1em;color:#fff1d8;text-shadow:0 0 26px #ff9a4acc,0 3px 18px #000}
+#hk i{font-style:normal;color:#ffb347}
+#cap{position:fixed;z-index:2;left:6vw;right:6vw;bottom:calc(9vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .7s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#wd{position:fixed;z-index:2;left:0;right:0;top:27vh;text-align:center;pointer-events:none;opacity:0;font:400 clamp(46px,14vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#wd.pop{animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes pop{from{transform:scale(1.7);opacity:0}to{transform:none}}
+#hud{position:fixed;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 66px);padding:0 8px;pointer-events:none;transform:translateY(-140%);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1),opacity .6s}#hud.on{transform:none;opacity:1}
+#hud .r{display:flex;gap:4px;justify-content:center}
+#hud i{font:800 12px system-ui;font-style:normal;display:inline-flex;gap:5px;align-items:center;padding:7px 9px;border-radius:12px;background:#221028e8;border:1px solid #ffb34744;color:#ffb347}
+#hud .bar{position:relative;margin:6px auto 0;max-width:520px;height:26px;border-radius:13px;background:#2a1635;border:1px solid #ffb34744;overflow:hidden}
+#hud .bar u{position:absolute;inset:0 86% 0 0;background:linear-gradient(90deg,#e2822f,#a35a2a)}#hud .bar span{position:absolute;inset:0;display:grid;place-items:center;font:700 12px system-ui;color:#ffe9c9}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:22vh;background:radial-gradient(ellipse 80% 30% at 50% 45%,#170a1ccc,#170a1c00 80%);z-index:2}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1c99,#170a1cf0);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div><div id="dk"></div><div id="fl"></div>
+<div id="hk"><span>KAPITEL 7</span><b>DER STURM<br>SIEHT <i>ZURÜCK.</i></b></div>
+<div id="hud"><div class="r"><i>◆ <em id="hg" style="font-style:normal">162</em></i><i>⛑ 0/6</i><i>⚡ 0/4</i><i>💧 <em id="hw" style="font-style:normal">0/0</em></i><i>⛏ <em id="hc" style="font-style:normal">0/4</em></i></div><div class="bar"><u></u><span>Höhe 1 / 7 · nächste Reihe 0/4</span></div></div>
+<div id="wd"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M12 24h30a6 6 0 10-6-6M10 34h38a6 6 0 11-6 6M16 44h22" fill="none" stroke="#e8dcc4" stroke-width="4" stroke-linecap="round"/></svg><h2>STURMGRAT</h2><p>WO SICH DIE FREMDEN VERSTECKEN</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 7 · DER STURM SIEHT ZURÜCK</small><small style="color:#72dcff">AUFTRAG</small><h3>Finde den Gegner im Sturm</h3><p>In der Wüste haben Späher ein feindliches Lager entdeckt, grabe dich durch und zerstöre es.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button><button class="lk" id="bk">◂ Zurück zur Übersicht</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="dt-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="film3d.js"></script>
+<script>
+'use strict';
+/* Kapitel 7 · „Der Sturm sieht zurück“  (Sektor 7 · Sturmgrat)
+   0–4.8 Seilschaft im Sturm (Hook) · 4.9–9.9 Planet · 9.9–17.6 Der Grat · 17.6–22.6 Der Landeplatz · 22.6–28.8 Schnitt ins Spiel */
+const CARD=28.8;
+const ghW=(x,z)=>{const n=fb(x*.012+5,z*.012+3),ridge=82*Math.exp(-Math.pow((z+30)/24,2))*(.75+.5*fb(x*.01,7)),lee=(z>20?0:1);return ridge+(n-.45)*16*(1-.7*sm(40,0,Math.abs(z+30)))+Math.sin(x*.4+n*8)*.1};
+const TR=makeTerrain({h:ghW,n:300,size:1000,col:(x,z,h)=>{const n=fb(x*.04,z*.04),k=sm(-4,60,h),f=.85+.3*n;return[mx(.5,.95,k)*f,mx(.2,.55,k)*f,mx(.1,.3,k)*f]}});
+const W=new T.Scene();W.add(new T.Mesh(TR.geo,new T.MeshLambertMaterial({vertexColors:true})));
+const sk=makeSky({zen:0x3a1a30,mid:0x8a3a2a,hor:0xe08a48,stars:.1,sunK:.8});sk.u.uSun.value.set(-.3,.12,-.9).normalize();W.add(sk.mesh);W.fog=new T.Fog(0xc07a40,3,70);
+const sun=new T.DirectionalLight(0xffa860,1.5);sun.position.set(-80,60,-250);W.add(sun,new T.HemisphereLight(0xc08a70,0x5a3020,.9));
+const fire=new T.PointLight(0xffa050,2,50);W.add(fire);
+// Sturm-Partikel
+const STORM=pts(900,{size:.7});W.add(STORM);const WALL=pts(240,{size:90,add:false,op:.3});W.add(WALL);
+// Seilschaft (Hook) + Lager
+const ROPE=[];for(let i=0;i<6;i++){const p=person(i%3?0x2fa7c9:0xe2a23f,1.5,false);W.add(p);const l=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffb060,blending:T.AdditiveBlending,depthWrite:false,fog:false}));l.scale.set(2.2,2.2,1);l.position.set(.5,1.6,.4);p.add(l);ROPE.push(p)}
+const rope=new T.Line(new T.BufferGeometry().setFromPoints(Array.from({length:6},()=>V3(0,0,0))),new T.LineBasicMaterial({color:0xe0c8a0}));rope.frustumCulled=false;W.add(rope);
+const CRAFT=new T.Group();W.add(CRAFT);{const b=new T.Mesh(new T.ConeGeometry(34,70,3).rotateX(-Math.PI/2).scale(1,.2,1),new T.MeshBasicMaterial({color:0x1a1210,fog:true}));CRAFT.add(b);for(let i=0;i<9;i++){const s=new T.Sprite(new T.SpriteMaterial({map:TD,color:i%3?0xb8f0ff:0xffd070,blending:T.AdditiveBlending,depthWrite:false,fog:false}));s.scale.set(9,9,1);s.position.set((i%3-1)*18,-3,(Math.floor(i/3)-1)*20);CRAFT.add(s)}}
+const camp=new T.Group();camp.position.set(0,0,40);W.add(camp);for(const[x,z,r]of[[-16,0,8],[14,3,9],[0,-10,8]]){const t=mk(new T.ConeGeometry(r,r*1.5,8),0x8a6a50);t.position.set(x,r*.75,z);camp.add(t);const w=bas(new T.SphereGeometry(.5,8,6),0xffc070);w.position.set(x,r*.5,z+r*.7);camp.add(w)}
+const fg=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffa050,blending:T.AdditiveBlending,depthWrite:false,fog:false}));fg.scale.set(30,30,1);fg.position.set(0,4,46);W.add(fg);const PCP=[];for(let i=0;i<5;i++){const p=person(i%3?0x2fa7c9:0xe2a23f,1.5,false);p.position.set(-9+i*4.5,0,52+hash(i)*5);p.scale.setScalar(2.4);W.add(p);PCP.push(p)}
+// Landeplatz im Sturm
+const PAD=new T.Group();PAD.position.set(0,TR.gh(0,-190)+.2,-190);W.add(PAD);const PY=[];
+{for(let i=0;i<12;i++){const a=i/12*6.283,p=mk(new T.CylinderGeometry(.8,1.1,9,8),0x2a3040,{emissive:0x080c14});p.position.set(Math.cos(a)*46,4.5,Math.sin(a)*46);const bm=new T.Mesh(new T.CylinderGeometry(1,2.4,160,10,1,true),bmat(0x72dcff,.5));bm.position.set(Math.cos(a)*46,84,Math.sin(a)*46);PAD.add(p,bm);PY.push(bm)}
+ const lc=new T.Group();const body=new T.Mesh(new T.BoxGeometry(22,6,32),new T.MeshLambertMaterial({color:0x2a2e3a,emissive:0x080a10}));body.position.y=8;lc.add(body);const tp=new T.Mesh(new T.CylinderGeometry(6,11,6,6),body.material);tp.position.y=13;lc.add(tp);PAD.add(lc);
+ const gr=new T.Mesh(new T.CircleGeometry(40,48),new T.MeshBasicMaterial({map:ctex((g,n)=>{g.strokeStyle='rgba(114,220,255,.9)';g.lineWidth=2;for(let i=0;i<=10;i++){g.beginPath();g.moveTo(i*n/10,0);g.lineTo(i*n/10,n);g.stroke();g.beginPath();g.moveTo(0,i*n/10);g.lineTo(n,i*n/10);g.stroke()}g.beginPath();g.arc(n/2,n/2,n/2-3,0,7);g.stroke()},256),transparent:true,blending:T.AdditiveBlending,depthWrite:false,fog:false,opacity:.6}));gr.rotation.x=-Math.PI/2;gr.position.y=.4;PAD.add(gr);PAD.userData.gr=gr}
+const AL=[0,1,2,3,4].map(i=>{const a=makeAlien(2);const an=i/5*6.283+.3;a.position.set(Math.cos(an)*20,0,Math.sin(an)*20);a.userData.an=an;PAD.add(a);return a});
+const rock=mk(new T.DodecahedronGeometry(3,0),0x2a1a14);rock.scale.set(1.6,1,1);W.add(rock);const spot=new T.PointLight(0xdff8ff,0,90);W.add(spot);
+const KW=[[9.9,70,95,160,0,40,-30,54],[12.5,40,50,130,-10,36,-30,46],[15.0,22,16,100,-4,24,-20,42],[17.4,-6,6,78,0,26,-80,40],[17.6,6,4,78,0,26,-80,40]];
+const KP=[[17.6,-6,6,-130,0,8,-190,46],[19.6,-3,5,-142,0,9,-190,44],[21.0,-2,4.4,-150,0,10,-190,42],[22.5,-1,4,-156,0,10,-190,40]];
+function updW(t){const hook=t<4.9,lee=t>=9.9&&t<17.5,pad=t>=17.6;let k;
+ if(hook){cam.position.set(.4+Math.sin(t*1.3)*.1,2.4+Math.sin(t*5)*.05,-2+t*0);cam.lookAt(0,2.2,-40);fv(48)}else if(lee){k=cat(KW,t);cam.position.set(k[0],Math.max(k[1],TR.gh(k[0],k[2])+2),k[2]);cam.lookAt(k[3],k[4],k[5]);fv(k[6])}else{k=cat(KP,t);cam.position.set(k[0],k[1]+TR.gh(k[0],k[2])*0,k[2]);cam.lookAt(k[3],k[4],k[5]);fv(k[6])}
+ cam.up.set(0,1,0);sk.mesh.position.copy(cam.position);
+ W.fog.near=hook?2:lee?120:3;W.fog.far=hook?(t>4.2?mx(70,260,lin(4.2,4.8,t)):65):lee?1300:(t>20.4?mx(90,160,lin(20.4,21.6,t)):85);const fc=hook?0xc07a40:lee?0xe0a070:0xa86a40;W.fog.color.setHex(fc);
+ const sx=Math.sin(t*.3)*0;
+ // Seilschaft vor der Kamera
+ ROPE.forEach((p,i)=>{p.visible=hook;const z=-13-i*9,x=Math.sin(t*.7+i)*1.4+(i%2?.8:-.8);p.position.set(x,0,z);p.rotation.y=Math.PI;p.userData.bob=1;p.position.y=Math.abs(Math.sin(t*4+i))*.1});
+ {const pos=rope.geometry.attributes.position;ROPE.forEach((p,i)=>pos.setXYZ(i,p.position.x+.2,1.1,p.position.z));pos.needsUpdate=true;rope.visible=hook}
+ CRAFT.visible=hook;CRAFT.position.set(mx(-140,140,lin(1.8,4.6,t)),42,-70);CRAFT.rotation.y=0;
+ fire.position.set(0,2,hook?-8:46);fire.intensity=hook?2:1.6+.4*Math.sin(t*13);
+ fg.visible=camp.visible=!hook&&!pad;PCP.forEach(p=>p.visible=!hook&&!pad);
+ // Sand-Partikel (Sturm)
+ const dens=hook?1:lee?.25:1,fx=hook?46:lee?22:50;for(let i=0;i<900;i++){const m=((hash(i)*140+t*(fx+hash(i+3)*20))%140)-70,y=(hash(i+5)-.2)*(hook?14:40),z=(hash(i+7)-.5)*(hook?70:140),k=(hash(i+9)<dens?.55:0);
+  setP(STORM,i,cam.position.x+m,cam.position.y+y-3,cam.position.z+z-20*(hook?1:0),.9*k,.6*k,.35*k)}updP(STORM);
+ for(let i=0;i<240;i++){const x=((hash(i)*700+t*30)%700)-350,z=-90-hash(i+3)*40,y=hash(i+5)*150;setP(WALL,i,x,y,z,.78,.45,.25)}updP(WALL);WALL.visible=lee;
+ // Landeplatz
+ PAD.visible=!hook;const bp=beatAge(t);PY.forEach((b,i)=>{b.material.opacity=.3+.5*Math.exp(-bp*3)});PAD.userData.gr.material.opacity=.45+.3*Math.sin(t*2);
+ AL.forEach((a,i)=>{const turn=sm(20.6,21.3,t),face=Math.atan2(-a.position.x,(66+190)-a.position.z*0)*0;a.rotation.y=mx(a.userData.an+Math.PI/2,Math.atan2(cam.position.x-(PAD.position.x+a.position.x),cam.position.z-(PAD.position.z+a.position.z)),turn);a.userData.eyes.forEach(e=>e.scale.setScalar(1+turn*3))});
+ rock.position.set(-1.2,TR.gh(-1.2,-143)+.4,-143);rock.visible=pad;spot.position.set(0,12,-190);spot.intensity=sm(21.2,22,t)*8;
+ PY.forEach(b=>{b.visible=true})}
+/* ===== Planet: Sektor 7 mit Sturmwirbel ===== */
+const PL=makePlanet(),P7=PL.P;PL.beamP.visible=PL.beamP2.visible=false;
+const sw=pts(520,{size:.035});P7.add(sw);
+function updP7(t){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const u=sm(4.7,9.7,t);const dir=PL.C[6].clone().lerp(PL.cen,u).normalize().applyAxisAngle(Y,(u-.5)*.55),dist=mx(1.5,3.9,Math.pow(u,.8));cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,-.12*u,0);fv(40);
+ for(let i=0;i<6;i++){U.uR.value[i]=R[i];U.uS.value[i]=2}U.uR.value[6]=R[6]*sm(5.0,6.6,t);U.uS.value[6]=1;for(let i=7;i<10;i++){U.uR.value[i]=R[i]*sm(7.0+.14*i,8.5+.14*i,t)*.95;U.uS.value[i]=0}
+ const c=PL.C[6],e=new T.Vector3().crossVectors(Y,c).normalize(),n2=new T.Vector3().crossVectors(c,e);for(let i=0;i<520;i++){const f=i/520,ang=f*18+t*(1.2+f),rad=.02+f*.2*sm(5,7,t),p=c.clone().multiplyScalar(Math.cos(rad)).addScaledVector(e,Math.sin(rad)*Math.cos(ang)).addScaledVector(n2,Math.sin(rad)*Math.sin(ang)).multiplyScalar(1.02),k=(1-f*.6)*.9*sm(5,6.5,t);setP(sw,i,p.x,p.y,p.z,1*k,.7*k,.4*k)}updP(sw);
+ PL.moons.forEach((m,i)=>{const a2=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a2)*m.userData.r,Math.sin(a2*.7)*.8,Math.sin(a2)*m.userData.r)})}
+/* ===== Schnitt ins Spiel (mit Sturm) ===== */
+const TL=makeTiles({crystals:[-1,1,2,-3,4]}),GG=TL.G;const gs=pts(260,{size:.09});GG.add(gs);
+function updG7(t){TL.cam(t,23.0,25.2);TL.update(t,25.7);const a=sm(23.4,24.6,t)*.55;for(let i=0;i<260;i++){const x=((hash(i)*30+t*(8+hash(i+3)*5))%30)-15,y=-3+hash(i+5)*10,z=hash(i+7)*3;setP(gs,i,x,y,z,.95*a,.6*a,.3*a)}updP(gs)}
+function draw(t){if(t<4.9||t>=9.9&&t<22.6){updW(t);return W}if(t<9.9){updP7(t);return P7}updG7(t);return GG}
+FILM.boot({n:7,CARD,BEATS:[4.4,11.4,18.4,25.4],hook:[.9,1.5,3.0,3.6],dk:[.3,2.2,.6],title:[14.2,17.4],hud:[25.3,t=>{$('hg').textContent=t>26.4?180:162;$('hw').textContent='0/0';$('hc').textContent=t>27.6?'1/4':'0/4'}],
+ CAP:[[5.2,9.4,'IDA','Turmwart, im Sturmgrat sieht man keine drei Schritte weit. Das ist ihr Versteck.'],[10.0,14.0,'IDA','Hinter dieser Wand aus Sand liegen ihre Landeplätze.'],[17.8,21.2,'IDA','Da. Mitten im Sturm. Ein ganzer Landeplatz.'],[21.4,25.2,'IDA','Sie haben uns bemerkt. Der Sturm sieht zurück.']],
+ WORDS:[[25.6,'BAUE.'],[26.5,'HALTE.'],[27.4,'ÜBERLEBE.']],
+ flash:(t,tri,dec)=>[['255,220,170',dec(4.4,.4,.7,t)],['255,230,200',tri(4.9,.22,1,t)],['255,200,140',tri(9.9,.3,.8,t)],['255,255,255',tri(17.6,.2,.8,t)],['240,250,255',dec(21.6,.9,1,t)*(t<22.6?1:0)],['229,176,120',tri(22.6,.26,1,t)]],
+ shake:t=>t<5?.15:t<22.6?.45:.02,draw,
+ audio:(thump,choir,bell,pluck,brass,whoosh,boom)=>{const E=[],A=(t,f)=>E.push([t,f]);
+  A(0,T=>{Nz(T,4.8,.28,{type:'bandpass',f0:300,f1:900,q:.5,a:.5,r:1});Nz(T,4.8,.12,{type:'highpass',f0:2500,q:.4,a:.5,r:1});Vo(T,mf(26),{v:.22,a:1.2,h:2.4,r:1.2,lp:240,vb:.3})});
+  A(1.8,T=>Vo(T,mf(31),{w:'sawtooth',v:.2,a:1.4,h:.6,r:1.2,lp:340,f2:mf(26),fd:2.8,vb:.8}));A(4.4,T=>{thump(T,1,46);boom(T,.7)});A(4.5,T=>whoosh(T,.5,.2,true));
+  A(5.0,T=>{choir(T,[38,45,50,53,57],6,.3);Nz(T,5,.05,{f0:500,f1:1500,q:.6,a:2,r:2})});[[5.9,98],[7.4,93],[8.6,100]].forEach(([t,m])=>A(t,T=>bell(T,mf(m-12),.08)));A(9.6,T=>{whoosh(T,.9,.16,true);boom(T+.5,.3)});
+  A(10,T=>{choir(T,[50,57,62,65],7,.24);Nz(T,7,.1,{f0:400,f1:700,q:.5,a:2,r:2})});A(11.4,T=>{thump(T,.7,52);thump(T+.3,.4,46)});A(14.2,T=>{choir(T,[50,57,62,65,69],4,.32);boom(T,.4);bell(T,mf(74),.12)});
+  A(17.4,T=>{Nz(T,5,.3,{type:'bandpass',f0:300,f1:1100,q:.5,a:.4,r:1});Vo(T,mf(24),{w:'sawtooth',v:.2,a:1.5,h:3,r:1,lp:260,vb:.6})});A(18.4,T=>{thump(T,1,48);thump(T+.3,.6,42);boom(T,.7)});
+  for(let k=0;k<6;k++)A(19+k*.5,T=>bell(T,mf(79+k*2),.06));A(20.4,T=>{brass(T,mf(31),2.2,.16);brass(T,mf(38),2.2,.1)});A(21.4,T=>{Vo(T,mf(98),{v:.06,a:.5,h:1,r:.5,vb:2});choir(T,[38,45,50,53],2.6,.28)});
+  A(22.0,T=>whoosh(T,.6,.3,true));A(22.6,T=>{boom(T,.95);Nz(T,.9,.28,{type:'lowpass',f0:3000,f1:140,a:.003,r:.8})});A(23.0,T=>{choir(T,[50,57,62,65],6,.3);bell(T,mf(74),.1)});
+  A(25.4,T=>thump(T,.9,48));A(25.6,T=>{thump(T,.8,60);bell(T,mf(86),.13)});A(26.5,T=>{thump(T,.7,64);pluck(T,mf(74),.12)});A(27.4,T=>{thump(T,.9,52);boom(T,.4);brass(T,mf(62),1.8,.14);bell(T,mf(93),.12)});A(28.7,T=>choir(T,[50,57,62,65,69],3,.2));return E}});
+
+</script></body></html>

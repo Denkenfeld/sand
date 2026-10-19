@@ -1,0 +1,5 @@
+/* Level 1 · Erste Düne
+   Eigene Datei pro Level – wird von game.html anhand js/dt-config.js geladen. */
+(window.DTLV=window.DTLV||[])[0]={n:'Erste Düne',sub:'Die Grundlagen',fixedHeight:true,h:8,rn:4,th:.38,r0:95,rg:52,rm:36,rc:3,sp0:90,wv:[[['pl',5]],[['pl',4]]],p:{sp:.17,rk:.10,rl:.03},u:['cv','raf','kas','wel','ene'],
+ t:'Baue ein versorgtes Lager auf, grabe dich bis Reihe 8 vor und wehre die Karawane ab. Dein Quartier muss überleben. Hole zuerst einen Arbeiter aus dem Quartier und tippe leuchtende Felder zum Graben an. Eine Raffinerie mit Sammler bringt Spice ins Quartier und damit Geld. Verbinde deine Gebäude direkt oder mit Fließbändern. Taufänger liefern Wasser, Energiefelder Strom. Baue eine Kaserne und bilde Krieger aus, bevor du die Zielhöhe erreichst. Wie viele freie Felder eine Reihe benötigt, zeigt die Anzeige oben. Wasser ist ein Lernschritt und keine zusätzliche Siegbedingung; es gibt kein Dämmerungs-Zeitlimit.',
+ nw:['⛏ Graben','Fließbänder','Raffinerie + Sammler','Raffinerie-Radius','Adern wachsen nach','Taufänger','Energiefeld','Strom & Wasser','Durst']};

@@ -1,0 +1,8 @@
+System,Entfernung_Felder,Basis_Ertrag_je_Zyklus,Basis_Zyklus_Sekunden,Theoretisch_Geld_pro_Minute,Annahmen
+1 Sammler,1,12,3.167,227.37,ohne Synergie/Ausbau/Wegumwege/Erholung und mit Adervorrat
+1 Sammler,2,12,4.833,148.97,ohne Synergie/Ausbau/Wegumwege/Erholung und mit Adervorrat
+1 Sammler,2.5,12,5.667,127.06,ohne Synergie/Ausbau/Wegumwege/Erholung und mit Adervorrat
+1 Sammler,3.5,12,7.333,98.18,ohne Synergie/Ausbau/Wegumwege/Erholung und mit Adervorrat
+1 Industriekette Stufe 1,,20,8.0,150.0,"alle drei Gebäude ausgebaut, nach Anlauf, ausreichend Netzversorgung"
+1 Industriekette Stufe 2,,20,6.957,172.5,"alle drei Gebäude ausgebaut, nach Anlauf, ausreichend Netzversorgung"
+1 Industriekette Stufe 3,,20,6.154,195.0,"alle drei Gebäude ausgebaut, nach Anlauf, ausreichend Netzversorgung"

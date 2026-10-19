@@ -1,0 +1,142 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Dünenturm · Kapitel 5: Der Ruf</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#170a1c">
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Georgia,'Times New Roman',serif;color:#ffe9c9;-webkit-user-select:none;user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#V{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,#0000 50%,#000a 115%),linear-gradient(#000 0,#0000 6%,#0000 94%,#000 100%)}
+#dk{position:fixed;inset:0;background:#000;pointer-events:none}#fl{position:fixed;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen}
+#fd{position:fixed;inset:0;background:#000;pointer-events:none;animation:fd 1.4s ease-out both}@keyframes fd{to{opacity:0}}
+#sd{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:12px;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffb34788;background:#24112ad9;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 14px #ff8a3a44;transition:transform .15s}
+#sd:active{transform:scale(.92)}#sd:not(.on) .wv{display:none}#sd.on .sl{display:none}#sd.on{border-color:#ffd28a;box-shadow:0 0 18px #ffb347aa}
+#sk{position:fixed;z-index:3;top:calc(env(safe-area-inset-top) + 12px);left:12px;height:48px;padding:0 18px;border-radius:24px;border:1px solid #ffb34788;background:#24112ad9;color:#ffe9c9;font:700 14px system-ui;letter-spacing:.08em;cursor:pointer}
+#hk{position:fixed;inset:0;display:grid;place-content:end center;text-align:center;padding:0 7vw 15vh;opacity:0;pointer-events:none;z-index:2}
+#hk span{display:block;font:italic 600 clamp(13px,3vw,20px)/1 Georgia,serif;letter-spacing:.42em;color:#72dcff;text-shadow:0 0 14px #72dcff99;margin-bottom:.9em}
+#hk b{display:block;font:400 clamp(24px,7vw,64px)/1.1 Georgia,serif;font-weight:700;letter-spacing:.1em;color:#fff1d8;text-shadow:0 0 26px #ff9a4acc,0 3px 18px #000}
+#hk i{font-style:normal;color:#ffb347}
+#cap{position:fixed;z-index:2;left:6vw;right:6vw;bottom:calc(9vh + env(safe-area-inset-bottom));text-align:center;opacity:0;transition:opacity .7s;pointer-events:none}#cap.on{opacity:1}
+#cap b{display:block;margin-bottom:.7em;font:800 clamp(11px,2vw,14px)/1 system-ui;letter-spacing:.35em;color:#72dcff;text-shadow:0 0 10px #72dcff88}
+#cap span{font:italic 600 clamp(18px,3.8vw,34px)/1.35 Georgia,'Times New Roman',serif;text-shadow:0 2px 14px #000,0 0 3px #000}
+#wd{position:fixed;z-index:2;left:0;right:0;top:27vh;text-align:center;pointer-events:none;opacity:0;font:400 clamp(46px,14vw,120px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#wd.pop{animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes pop{from{transform:scale(1.7);opacity:0}to{transform:none}}
+#hud{position:fixed;z-index:2;left:0;right:0;top:calc(env(safe-area-inset-top) + 66px);padding:0 8px;pointer-events:none;transform:translateY(-140%);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.3,1),opacity .6s}#hud.on{transform:none;opacity:1}
+#hud .r{display:flex;gap:4px;justify-content:center}
+#hud i{font:800 12px system-ui;font-style:normal;display:inline-flex;gap:5px;align-items:center;padding:7px 9px;border-radius:12px;background:#221028e8;border:1px solid #ffb34744;color:#ffb347}
+#hud .bar{position:relative;margin:6px auto 0;max-width:520px;height:26px;border-radius:13px;background:#2a1635;border:1px solid #ffb34744;overflow:hidden}
+#hud .bar u{position:absolute;inset:0 86% 0 0;background:linear-gradient(90deg,#e2822f,#a35a2a)}#hud .bar span{position:absolute;inset:0;display:grid;place-items:center;font:700 12px system-ui;color:#ffe9c9}
+#tb{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.6vh;opacity:0;transition:opacity 1.2s;pointer-events:none;padding-bottom:22vh;background:radial-gradient(ellipse 80% 30% at 50% 45%,#170a1ccc,#170a1c00 80%);z-index:2}#tb.on{opacity:1}
+#tb svg,#mi svg{width:clamp(64px,15vw,120px);filter:drop-shadow(0 0 18px #72dcffaa)}
+#tb h2{margin:0;font:400 clamp(38px,10vw,92px)/1 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.06em;background:linear-gradient(#fff6dc,#ffb347 55%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #461608) drop-shadow(0 0 30px #ff7a2a88)}
+#tb p{margin:0;letter-spacing:.4em;font:700 clamp(12px,2.4vw,18px) Georgia,serif;color:#ffe3b0;text-shadow:0 2px 10px #000}
+#mi{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:1.8vh;text-align:center;padding:6vw;background:radial-gradient(#170a1c99,#170a1cf0);opacity:0;pointer-events:none;transition:opacity 1.2s}#mi.on{opacity:1;pointer-events:auto}
+#mi small{letter-spacing:.35em;color:#ffb347;font:700 clamp(11px,2vw,14px) system-ui}
+#mi h3{margin:0;font:400 clamp(34px,9vw,80px)/1.05 Impact,Haettenschweiler,'Arial Black',sans-serif;letter-spacing:.04em;background:linear-gradient(#fff6dc,#ffb347 60%,#c4501f);-webkit-background-clip:text;background-clip:text;color:transparent}
+#mi p{margin:0;max-width:30em;font:italic 600 clamp(16px,3.2vw,26px)/1.4 Georgia,serif}
+#mi button{cursor:pointer;font:inherit}.btn{padding:14px 36px;border:1px solid #ffd28a;border-radius:14px;background:linear-gradient(#e2822f,#8a3a1a);color:#fff3dc;font:800 clamp(16px,3vw,21px) system-ui!important;letter-spacing:.06em;box-shadow:0 0 22px #ff8a3a66,0 5px 0 #4a1c0c}.btn:active{transform:translateY(4px)}
+.lk{background:none;border:0;color:#ffe3b0;opacity:.75;font:600 14px system-ui!important;letter-spacing:.1em}
+</style></head><body>
+<canvas id="c"></canvas><div id="V"></div><div id="dk"></div><div id="fl"></div>
+<div id="hk"><span>KAPITEL 5</span><b>EIN RUF AUS<br>DEM <i>NICHTS.</i></b></div>
+<div id="hud"><div class="r"><i>◆ <em id="hg" style="font-style:normal">162</em></i><i>⛑ 0/6</i><i>⚡ 0/4</i><i>💧 <em id="hw" style="font-style:normal">0/0</em></i><i>⛏ <em id="hc" style="font-style:normal">0/4</em></i></div><div class="bar"><u></u><span>Höhe 1 / 7 · nächste Reihe 0/4</span></div></div>
+<div id="wd"></div>
+<div id="tb"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M18 46c0-10 6-16 14-16s14 6 14 16z" fill="#1f5f84" stroke="#72dcff" stroke-width="2"/><path d="M32 30V16M24 12a12 12 0 0116 0M18 7a20 20 0 0128 0" fill="none" stroke="#72dcff" stroke-width="2.5" stroke-linecap="round"/></svg><h2>SALZMEER</h2><p>JENSEITS DES HIMMELS</p></div>
+<div id="cap"><b>IDA</b><span></span></div>
+<div id="mi"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="none" stroke="#ffb347" stroke-width="3"/><path d="M32 9c8 12 14 19 14 27a14 14 0 01-28 0c0-8 6-15 14-27z" fill="#72dcff"/><path d="M29 53V31l3-9 3 9v22z" fill="#170a1c"/></svg><small>KAPITEL 5 · DER RUF</small><small style="color:#72dcff">AUFTRAG</small><h3>Hüte dich vor der Nacht</h3><p>Die Dunkelheit ruft unbekannte Wesen, Türme und Fahrzeuge mit upgrades sind deine besten Freunde.</p><button class="btn" id="ok">Auftrag annehmen ▸</button><button class="lk" id="rp">↻ Film wiederholen</button><button class="lk" id="bk">◂ Zurück zur Übersicht</button></div>
+<div id="fd"></div><button id="sk">Überspringen ▸</button><button id="sd" aria-label="Ton an oder aus" title="Ton"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 9v6h4l5 4V5L8 9z" fill="#ffe9c9"/><path class="wv" d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#ffe9c9" stroke-width="2" fill="none" stroke-linecap="round"/><path class="sl" d="M3 3l18 18" stroke="#ff6a5a" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+<script src="dt-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="film3d.js"></script>
+<script>
+'use strict';
+/* Kapitel 5 · „Der Ruf“  (Sektor 5 · Salzmeer)
+   0–4.8 Zwei Lichtsäulen (Hook) · 4.9–9.9 Planet & Signal · 9.9–17.6 Das Salzmeer · 17.6–22.6 Der Schatten · 22.6–28.8 Schnitt ins Spiel */
+const CARD=28.8;
+const SU=()=>({uHor:{value:new T.Color(0x14204a)},uMid:{value:new T.Color(0x0a1030)},uL:{value:.14},uDim:{value:0},uT:{value:0}});
+const saltMat=u=>new T.ShaderMaterial({uniforms:u,vertexShader:'varying vec3 vW;void main(){vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}',
+ fragmentShader:`precision highp float;varying vec3 vW;uniform vec3 uHor,uMid;uniform float uL,uDim,uT;
+ float h21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+ float vor(vec2 p){vec2 i=floor(p),f=fract(p);float m=8.,m2=8.;for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){vec2 g=vec2(float(x),float(y)),o=vec2(h21(i+g),h21(i+g+7.3));vec2 r=g+o-f;float d=dot(r,r);if(d<m){m2=m;m=d;}else if(d<m2)m2=d;}return sqrt(m2)-sqrt(m);}
+ void main(){vec3 V=normalize(cameraPosition-vW);float F=pow(1.-clamp(V.y,0.,1.),3.);float v1=vor(vW.xz*.05),v2=vor(vW.xz*.4);float e1=1.-smoothstep(0.,.09,v1),e2=1.-smoothstep(0.,.07,v2);
+  vec3 salt=mix(vec3(.82,.86,.92),vec3(.97,.98,1.),h21(floor(vW.xz*.05)))*(.92+.08*h21(floor(vW.xz*3.)));salt=mix(salt,vec3(.55,.6,.72),e1*.5+e2*.15);
+  float sg=h21(floor(vW.xz*18.)),sp=step(.985,sg)*(.5+.5*sin(uT*3.+sg*20.));
+  vec3 c=salt*uL*(1.-uDim*.75)+vec3(1.)*sp*.6*uL+uMid*F*.35+uHor*F*.3;c=mix(c,uHor*(.5+.5*uL)*(1.-uDim*.5),smoothstep(250.,1500.,length(vW-cameraPosition)));gl_FragColor=vec4(c,1.);}`});
+const S=new T.Scene(),su=SU();const gnd=new T.Mesh(new T.PlaneGeometry(4000,4000,1,1).rotateX(-Math.PI/2),saltMat(su));S.add(gnd);
+const sk=makeSky({zen:0x02030a,mid:0x0a1030,hor:0x14204a,stars:1,sunK:0});sk.u.uSun.value.set(-.5,.3,-.8).normalize();S.add(sk.mesh);S.fog=new T.Fog(0x14204a,400,1700);
+const amb=new T.AmbientLight(0x8a9ac8,.5),sun=new T.DirectionalLight(0x8aa4ff,.8);sun.position.set(-150,200,-200);S.add(amb,sun);
+for(let i=0;i<26;i++){const a=i/26*6.283+hash(i),r=1000+hash(i+2)*250,h=40+hash(i+5)*90,m=mk(new T.CylinderGeometry(30+hash(i)*40,40+hash(i+3)*50,h,7),0xb49a80);m.position.set(Math.cos(a)*r,h/2,Math.sin(a)*r);S.add(m)}
+function dish(s,col){const g=new T.Group(),m=new T.MeshPhongMaterial({color:col||0xc8ccd4,shininess:60,side:2,specular:0x888899}),R=5*s;
+ const cap=new T.Mesh(new T.SphereGeometry(R,28,10,0,6.283,Math.PI-.9,.9),m);cap.position.y=10*s;g.add(cap);
+ for(let i=0;i<3;i++){const a=i*2.094,l=mk(new T.CylinderGeometry(.18*s,.26*s,5.6*s,5),0x4a4650);l.position.set(Math.cos(a)*1.4*s,2.6*s,Math.sin(a)*1.4*s);l.rotation.set(Math.sin(a)*.25,0,-Math.cos(a)*.25);g.add(l)}
+ const arm=mk(new T.CylinderGeometry(.08*s,.08*s,5.4*s,5),0x4a4650);arm.position.y=8*s;const fd=mk(new T.BoxGeometry(.8*s,.5*s,.8*s),0x2a2a30);fd.position.y=10.8*s;g.add(arm,fd);
+ const led=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xff3a2a,blending:T.AdditiveBlending,depthWrite:false,fog:false}));led.scale.set(1.4*s,1.4*s,1);led.position.y=11.3*s;g.add(led);g.userData.led=led;return g}
+function wreck(sc){const g=new T.Group(),m=new T.MeshLambertMaterial({color:0xcfc6b8}),m2=new T.MeshLambertMaterial({color:0x7a5a48});
+ const hull=new T.Mesh(new T.CylinderGeometry(7,4.5,46,10,1).rotateZ(Math.PI/2),m);hull.scale.set(1,.65,1);hull.position.y=3;const prow=new T.Mesh(new T.ConeGeometry(7,12,10).rotateZ(-Math.PI/2),m);prow.scale.set(1,.65,1);prow.position.set(29,3,0);g.add(hull,prow);
+ for(let i=0;i<8;i++){const r=new T.Mesh(new T.TorusGeometry(6.4,.35,6,14,Math.PI).rotateY(Math.PI/2),m2);r.position.set(-20+i*5,3.6,0);r.scale.set(1,.7,1);g.add(r)}
+ const ms=mk(new T.CylinderGeometry(.4,.55,24,6),0x5a4638);ms.position.set(4,14,0);ms.rotation.z=.18;g.add(ms);g.scale.setScalar(sc);g.rotation.set(.05,hash(sc*7)*6.28,.1);return g}
+// Hook: Antenne + Lichtsäulen
+const HD=dish(1.25,0x3a3e4a);HD.position.set(5,0,-11);HD.rotation.x=-.3;S.add(HD);
+const colMat=(c,o)=>new T.MeshBasicMaterial({color:c,transparent:true,opacity:o,blending:T.AdditiveBlending,depthWrite:false,side:2,fog:false});
+const dn=new T.Mesh(new T.CylinderGeometry(.22,.22,900,10,1,true),colMat(0xd8f8ff,0));dn.position.set(5,455,-11.9);S.add(dn);const dn2=new T.Mesh(new T.CylinderGeometry(1,1.4,900,12,1,true),colMat(0x72dcff,0));dn2.position.copy(dn.position);S.add(dn2);
+const up=new T.Mesh(new T.CylinderGeometry(3,5,1500,16,1,true),colMat(0x72dcff,0));up.position.set(-22,750,-320);S.add(up);const up2=new T.Mesh(new T.CylinderGeometry(9,14,1500,16,1,true),colMat(0x72dcff,0));up2.position.copy(up.position);S.add(up2);
+const MORSE=[[.7,.12],[.95,.12],[1.2,.12],[1.6,.4],[2.2,.4],[2.8,.4],[3.4,.12],[3.65,.12],[3.9,.12]];
+// Lager
+const CAMP=new T.Group();S.add(CAMP);const DS=[];[[-26,24],[-13,30],[0,33],[13,30],[26,24]].forEach(([x,z],i)=>{const d=dish(1.5);d.position.set(x,0,z);d.rotation.set(-.5,(i-2)*.25,0);CAMP.add(d);DS.push(d)});
+{const q=new T.Group();q.add(mk(new T.SphereGeometry(6,28,14,0,6.283,0,1.5708),0x4b6a82,{emissive:0x0e1a26}));const b=mk(new T.BoxGeometry(14,1.8,9),0x2e3a46);b.position.y=.9;q.add(b);const st=mk(new T.BoxGeometry(14.04,.5,.1),0xe8b830,{emissive:0x5a4408});st.position.set(0,.8,4.55);q.add(st);q.position.set(0,0,2);CAMP.add(q)}
+const PP=[];for(let i=0;i<9;i++){const p=person(i%3?0x2fa7c9:0xe2a23f,1.5,false);CAMP.add(p);PP.push({p,x:-18+i*4.5,z:14+hash(i)*8})}
+[[-70,-40,1.3],[62,-70,1.6],[-130,-130,1.2],[125,-30,1.4],[30,-170,1.8],[-40,-240,1.5]].forEach(([x,z,s],i)=>{const w=wreck(s);w.position.set(x,0,z);S.add(w)});
+// Mutterschiff
+const MS=new T.Group();S.add(MS);
+{const hm=new T.MeshLambertMaterial({color:0x1a1d26,emissive:0x07090e});MS.add(new T.Mesh(new T.CylinderGeometry(170,200,22,6),hm));const u=new T.Mesh(new T.CylinderGeometry(110,170,34,6),hm);u.position.y=-26;MS.add(u);
+ for(let i=0;i<7;i++){const a=i/7*6.283,s=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffd070,blending:T.AdditiveBlending,depthWrite:false,fog:false}));s.scale.set(70,70,1);s.position.set(Math.cos(a)*115,-46,Math.sin(a)*115);MS.add(s);MS.userData['l'+i]=s}
+ const eye=new T.Sprite(new T.SpriteMaterial({map:TD,color:0x72dcff,blending:T.AdditiveBlending,depthWrite:false,fog:false}));eye.scale.set(170,170,1);eye.position.y=-48;MS.add(eye);MS.userData.eye=eye;
+ const sm2=new T.Mesh(new T.TorusGeometry(192,2.4,4,6).rotateX(Math.PI/2),colMat(0x72dcff,.9));sm2.position.y=-2;MS.add(sm2);MS.userData.seam=sm2;MS.visible=false}
+const ND=[new T.Color(0x02030a),new T.Color(0x0a1030),new T.Color(0x14204a)],DY=[new T.Color(0x2a5aa8),new T.Color(0x8aa8d0),new T.Color(0xf2e4d0)],DU=[new T.Color(0x0a1020),new T.Color(0x30284a),new T.Color(0xb06a5c)];
+const KS=[[9.9,-80,30,160,0,6,0,52],[12.5,-30,5,90,10,6,30,42],[15.0,-12,3,70,4,10,20,40],[17.5,10,3,60,0,70,-60,50],[19.5,6,2.6,52,0,170,-160,52],[21.3,2,2.4,46,0,300,-230,56],[22.5,0,2.2,40,0,380,-250,60]];
+function updS(t){const hook=t<4.9;let k;
+ if(hook){const u=sm(0,4.8,t);cam.position.set(mx(-3,-1.5,u),1.6,mx(6,4,u));cam.lookAt(mx(0,2,u),mx(16,26,u),-40);fv(46)}else{k=cat(KS,t);cam.position.set(k[0],Math.max(1.4,k[1]),k[2]);cam.lookAt(k[3],k[4],k[5]);fv(k[6])}
+ cam.up.set(0,1,0);sk.mesh.position.copy(cam.position);
+ const day=hook?0:1,dusk=sm(17.5,21.5,t);let L=hook?.14:mx(.72,.3,dusk);
+ for(const[key,i]of[['zen',0],['mid',1],['hor',2]]){const c=sk.u[key].value;c.copy(day?DY[i]:ND[i]);if(dusk>0)c.lerp(DU[i],dusk)}
+ su.uMid.value.copy(sk.u.mid.value);su.uHor.value.copy(sk.u.hor.value);su.uL.value=L;su.uDim.value=sm(18,21.5,t);su.uT.value=t;S.fog.color.copy(sk.u.hor.value);
+ sk.u.uStar.value=hook?1:dusk*.6;sk.u.uSunK.value=day?1-dusk:0;amb.intensity=hook?.5:.8;amb.color.setHex(hook?0x8a9ac8:0xdde4f0);sun.color.setHex(hook?0x8aa4ff:0xfff0e0);sun.intensity=hook?.8:mx(1.5,.5,dusk);
+ // Hook-Objekte
+ HD.visible=hook;let on=0;for(const[a,d]of MORSE)if(t>=a&&t<a+d)on=1;const bt=beatAge(t),big=t>4.4?1:0;
+ dn.material.opacity=Math.min(1,on*.9+big*(.6+.4*Math.exp(-bt*2)));dn2.material.opacity=Math.min(1,on*.3+big*.3);up.material.opacity=big*(.45+.5*Math.exp(-bt*2));up2.material.opacity=big*(.12+.25*Math.exp(-bt*2));dn.visible=dn2.visible=up.visible=up2.visible=hook;
+ HD.userData.led.visible=Math.sin(t*5)>-.3;
+ // Lager
+ CAMP.visible=!hook;DS.forEach((d,i)=>{d.userData.led.visible=Math.sin(t*4+i)>-.2;d.rotation.y=(i-2)*.25+Math.sin(t*.4+i)*.05;if(t>19)d.rotation.x=-.5-.55*sm(19,20.5,t)});
+ PP.forEach((q,i)=>{q.p.position.set(q.x+Math.sin(t*.5+i)*.8,Math.abs(Math.sin(t*4+i))*.08,q.z);q.p.rotation.y=t>18.5?Math.PI:.3});
+ // Mutterschiff
+ MS.visible=t>17.5&&!hook;const d=lin(17.5,22.6,t);MS.scale.setScalar(1.5);MS.position.set(0,mx(560,400,d),-260);MS.rotation.y=t*.05;for(let i=0;i<7;i++)MS.userData['l'+i].material.opacity=.5+.5*Math.sin(t*3+i*.9);MS.userData.eye.material.opacity=.5+.5*Math.exp(-bt*3);MS.userData.seam.material.opacity=.6+.4*Math.exp(-bt*3)}
+/* ===== Planet & Signal ===== */
+const PL=makePlanet(),P5=PL.P;PL.beamP.visible=PL.beamP2.visible=false;
+const b5=PL.beamP.clone();b5.visible=true;b5.material=PL.beamP.material.clone();b5.position.copy(PL.C[4]);b5.quaternion.setFromUnitVectors(Y,PL.C[4]);P5.add(b5);
+const cmt=new T.Sprite(new T.SpriteMaterial({map:TD,color:0xffffff,blending:T.AdditiveBlending,depthWrite:false}));P5.add(cmt);const trl=pts(50,{size:.06});P5.add(trl);
+function updP5(t){const U=PL.U,R=PL.R;U.uT.value=t*1.2+20;const u=sm(4.7,9.7,t);const dir=PL.C[4].clone().lerp(PL.cen,u).normalize().applyAxisAngle(Y,(u-.5)*.55),dist=mx(1.5,3.9,Math.pow(u,.8));cam.position.copy(dir).multiplyScalar(dist);cam.up.set(0,1,0);cam.lookAt(0,-.12*u,0);fv(40);
+ for(let i=0;i<4;i++){U.uR.value[i]=R[i];U.uS.value[i]=2}U.uR.value[4]=R[4]*sm(5.0,6.6,t);U.uS.value[4]=1;for(let i=5;i<10;i++){U.uR.value[i]=R[i]*sm(7.0+.14*i,8.5+.14*i,t)*.95;U.uS.value[i]=0}
+ const bp=beatAge(t)<.6?1+.8*Math.exp(-beatAge(t)*6):1;b5.material.opacity=.6*bp;
+ const q=lin(5.2,9.6,t),a=V3(-9,5,-7),b=PL.C[4].clone().multiplyScalar(1.03),pos=a.clone().lerp(b,q*q*(3-2*q)*.98);cmt.position.copy(pos);cmt.scale.setScalar(.16+.05*Math.sin(t*20));cmt.visible=t>5.2;
+ for(let i=0;i<50;i++){const f=i/50,p=a.clone().lerp(b,Math.max(0,q*q*(3-2*q)*.98-f*.12)),k=(1-f)*(1-f)*(q>0?1:0);setP(trl,i,p.x,p.y,p.z,k,k*.9,k*.8)}updP(trl);
+ PL.moons.forEach((m,i)=>{const a2=m.userData.a+t*(.05+.03*i);m.position.set(Math.cos(a2)*m.userData.r,Math.sin(a2*.7)*.8,Math.sin(a2)*m.userData.r)})}
+/* ===== Schnitt ins Spiel ===== */
+const saltTile=(g,n)=>{g.fillStyle='#e6ecf2';g.fillRect(0,0,n,n);g.strokeStyle='#9aa8bc';g.lineWidth=3;for(let k=0;k<5;k++){g.beginPath();const x=rnd()*n,y=rnd()*n;g.moveTo(x,y);g.lineTo(x+(rnd()-.5)*60,y+(rnd()-.5)*60);g.stroke()}g.fillStyle='rgba(255,255,255,.8)';for(let i=0;i<26;i++)g.fillRect(rnd()*n,rnd()*n,3,3);g.strokeStyle='#b8c4d4';g.lineWidth=4;g.strokeRect(2,2,n-4,n-4)};
+const TL=makeTiles({sandTex:saltTile,crystalCol:0xf4fbff,crystals:[-1,1,2,-3,4]}),GG=TL.G;
+const AN=new T.Group();AN.position.set(2,.49,.4);GG.add(AN);{const d=dish(.09,0xc8ccd4);d.position.y=-.02;AN.add(d);const rg=new T.Mesh(new T.TorusGeometry(.5,.012,6,40),bmat(0xffc27a,.8));rg.position.y=.9;rg.rotation.x=Math.PI/2;AN.add(rg);AN.userData.rg=rg}
+function updG5(t){TL.cam(t,23.0,25.2);TL.update(t,25.7);const bu=t-26.6,sp=bu<0?0:1-Math.exp(-bu*7)*Math.cos(bu*14);AN.scale.setScalar(Math.max(.001,sp));AN.visible=bu>0;const r=(t*.9)%1;AN.userData.rg.scale.setScalar(1+r*2);AN.userData.rg.material.opacity=.8*(1-r)}
+function draw(t){if(t<4.9||(t>=9.9&&t<22.6)){updS(t);return S}if(t<9.9){updP5(t);return P5}updG5(t);return GG}
+FILM.boot({n:5,CARD,BEATS:[4.4,11.4,18.4,25.4],hook:[.9,1.5,3.2,3.8],dk:[.3,2.2,.7],title:[14.2,17.4],hud:[25.3,t=>{$('hg').textContent=t>26.4?180:162;$('hw').textContent='0/0';$('hc').textContent=t>27.6?'1/4':'0/4'}],
+ CAP:[[5.2,9.4,'IDA','Turmwart, hör zu. Das Signal ist nicht von hier. Es kommt von jenseits des Himmels.'],[10.0,14.0,'IDA','Ein ganzes Meer, verdunstet. Und doch ruft jemand über das Salz.'],[17.8,21.2,'IDA','Das Herz hat gerufen. Und jemand hat geantwortet.'],[21.4,25.2,'IDA','Es ist sehr groß. Und es kommt näher.']],
+ WORDS:[[25.6,'BAUE.'],[26.5,'HORCHE.'],[27.4,'ANTWORTE.']],
+ flash:(t,tri,dec)=>[['220,245,255',dec(4.4,.35,.7,t)],['255,255,255',tri(4.9,.22,1,t)],['255,230,190',tri(9.9,.3,.9,t)],['229,176,120',tri(22.6,.26,1,t)]],
+ shake:t=>t<5?.03:t<22.6?.5:.02,draw,
+ audio:(thump,choir,bell,pluck,brass,whoosh,boom)=>{const E=[],A=(t,f)=>E.push([t,f]),pent=[62,65,67,69,72,74,77,81];
+  A(0,T=>{Vo(T,mf(26),{v:.24,a:1.5,h:2,r:1.2,lp:240,vb:.3});Nz(T,4.6,.05,{type:'bandpass',f0:500,f1:900,q:.5,a:1.5,r:1.2})});
+  for(const[a,d]of MORSE)A(a,T=>Vo(T,1180,{v:.06,a:.002,h:d,r:.06}));A(1.0,T=>choir(T,[38,45],3.4,.12));
+  A(4.4,T=>{thump(T,1,46);boom(T,.7);Nz(T,1.3,.2,{type:'lowpass',f0:700,f1:90,a:.01,r:.9})});A(4.5,T=>whoosh(T,.5,.2,true));
+  A(5.0,T=>{choir(T,[38,45,50,53,57],6,.3);whoosh(T,2,.07,false)});A(5.3,T=>Vo(T,900,{v:.04,a:2,h:2,r:.5,f2:3200,fd:4.3,vb:1}));[[5.9,98],[7.4,93],[8.6,100]].forEach(([t,m])=>A(t,T=>bell(T,mf(m-12),.08)));A(9.6,T=>{whoosh(T,.9,.16,true);boom(T+.5,.3)});
+  A(10,T=>{choir(T,[50,57,62,65],7,.24);Nz(T,6,.05,{type:'bandpass',f0:600,f1:1000,q:.5,a:2,r:2})});for(let k=0;k<26;k++)A(10.3+k*.28+hash(k+9)*.1,T=>pluck(T,mf(pent[(k*3)%8]+12),.04));A(11.4,T=>{thump(T,.7,52);thump(T+.3,.4,46)});
+  A(14.2,T=>{choir(T,[50,57,62,65,69],4,.32);boom(T,.4);bell(T,mf(74),.12)});
+  A(17.4,T=>{Vo(T,mf(24),{w:'sawtooth',v:.22,a:2,h:4,r:1,lp:260,f2:mf(26),fd:5,vb:.6});Vo(T,mf(31),{w:'sawtooth',v:.12,a:2.4,h:3.4,r:1,lp:300,vb:.6})});
+  A(18.4,T=>{thump(T,1,48);thump(T+.3,.6,42);boom(T,.7)});A(19.6,T=>{brass(T,mf(31),2.4,.16);brass(T,mf(38),2.4,.1)});A(21.2,T=>choir(T,[38,45,50,53],2.4,.26));A(22.0,T=>whoosh(T,.6,.3,true));A(22.6,T=>{boom(T,.95);Nz(T,.9,.28,{type:'lowpass',f0:3000,f1:140,a:.003,r:.8})});
+  A(23.0,T=>{choir(T,[50,57,62,65],6,.3);bell(T,mf(74),.1)});A(25.4,T=>thump(T,.9,48));A(25.6,T=>{thump(T,.8,60);bell(T,mf(86),.13)});A(26.5,T=>{thump(T,.7,64);pluck(T,mf(74),.12)});A(27.4,T=>{thump(T,.9,52);boom(T,.4);brass(T,mf(62),1.8,.14);bell(T,mf(93),.12)});A(28.7,T=>choir(T,[50,57,62,65,69],3,.2));return E}});
+
+</script></body></html>
