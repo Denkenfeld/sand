@@ -1,0 +1,4328 @@
+{
+ "apiVersion": "0.4.0",
+ "apiLevel": 4,
+ "capabilities": {
+  "ui": 2,
+  "ui.widgets": 1,
+  "ui.interactive": 1,
+  "ui.presets": [
+   "radar",
+   "bar",
+   "compass",
+   "button",
+   "menu"
+  ],
+  "pause": 1,
+  "cursor": 1,
+  "prefab": 2,
+  "prefab.aim": 1,
+  "prefab.solid": 1,
+  "prefab.build": 1,
+  "prefab.hits": 1,
+  "prefab.model": 1,
+  "assets.defaults": 1,
+  "kinds.custom": 1,
+  "units.height": 1,
+  "units.size": 1,
+  "tween": 1,
+  "nav": 1,
+  "world.queries": 1,
+  "world.canBuild": 1,
+  "shoot": 1,
+  "fx": 1,
+  "save": 2,
+  "save.ids": 1,
+  "save.owner": 1,
+  "prefab.save": 1,
+  "math": 1,
+  "modules": 1,
+  "time": 1,
+  "diag": 1,
+  "ext": 1,
+  "input": 1,
+  "input.contexts": 1,
+  "input.virtual": 1,
+  "camera": 1,
+  "camera.ortho": 1,
+  "camera.pick": 1,
+  "controller": 1,
+  "controllers": [
+   "ego",
+   "topdown",
+   "free"
+  ]
+ },
+ "events": [
+  {
+   "name": "start",
+   "payload": "{} – Spiel beginnt (nach Skript und Modul-Start)."
+  },
+  {
+   "name": "update",
+   "payload": "{ dt, t } – jedes Simulationsbild (nur im Spiel, nicht in der Pause)."
+  },
+  {
+   "name": "kill",
+   "payload": "{ unit, killer, headshot } – Einheit getötet (killer = \"player\" oder die Quelle)."
+  },
+  {
+   "name": "spawn",
+   "payload": "{ unit } – Einheit erschienen."
+  },
+  {
+   "name": "pickup",
+   "payload": "{ type, x, z, weapon, stat } – Aufsammelbares genommen."
+  },
+  {
+   "name": "use",
+   "payload": "{ x, z } – E gedrückt (Ich-Ansicht)."
+  },
+  {
+   "name": "playerDeath",
+   "payload": "{} – Spieler gestorben."
+  },
+  {
+   "name": "key",
+   "payload": "{ code, key, shift, ctrl } – Taste gedrückt (auch bei offenem Menü)."
+  },
+  {
+   "name": "click",
+   "payload": "{ button, screen, ground, hit } – Maustaste; ground = Punkt auf dem Boden unter dem Zeiger (oder null)."
+  },
+  {
+   "name": "cancel",
+   "payload": "{} – Esc bei offenem Menü."
+  },
+  {
+   "name": "pause",
+   "payload": "{}"
+  },
+  {
+   "name": "resume",
+   "payload": "{}"
+  },
+  {
+   "name": "arrive",
+   "payload": "{ unit, x, z } – Einheit am Ziel."
+  },
+  {
+   "name": "unreachable",
+   "payload": "{ unit, x, z, reason } – Kein Weg."
+  },
+  {
+   "name": "thingDestroyed",
+   "payload": "{ thing, by } – Objekt zerstört."
+  },
+  {
+   "name": "thingHit",
+   "payload": "{ thing, amount, by, zone } – Objekt getroffen."
+  },
+  {
+   "name": "load",
+   "payload": "{ extra } – Spielstand geladen."
+  },
+  {
+   "name": "module",
+   "payload": "{ name, state } – Modul aktiv bzw. bereit (ausgeschaltet)."
+  },
+  {
+   "name": "controller",
+   "payload": "{ name, prev } – Steuerung gewechselt."
+  }
+ ],
+ "planned": [
+  "Touch-Geräteprofil (Eingabe-Aktionen sind dafür vorbereitet: game.input.virtual)",
+  "Gamepad-Geräteprofil",
+  "Fahrzeug-Controller als Modul (der Buggy der Stadt ist noch nicht im Spiel steuerbar)",
+  "Third-Person-Controller",
+  "Physik-Bibliothek (nur Adapter-Konzept, keine Integration)",
+  "WebRTC-Mehrspieler"
+ ],
+ "entries": [
+  {
+   "path": "game.version",
+   "kind": "readonly",
+   "type": "string",
+   "doc": "Version der Schnittstelle (z. B. \"0.4.0\")."
+  },
+  {
+   "path": "game.apiLevel",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Ganzzahl-Stufe der Schnittstelle; steigt bei neuen Fähigkeiten."
+  },
+  {
+   "path": "game.capabilities",
+   "kind": "readonly",
+   "type": "Record<string, number | string[]>",
+   "doc": "Fähigkeiten und ihre Stufen (siehe has)."
+  },
+  {
+   "path": "game.planned",
+   "kind": "readonly",
+   "type": "string[]",
+   "doc": "Ausdrücklich noch NICHT umgesetzte Dinge."
+  },
+  {
+   "path": "game.has",
+   "kind": "method",
+   "type": "(capability: string) => boolean",
+   "doc": "Gibt es diese Fähigkeit? z. B. game.has(\"camera.ortho\")."
+  },
+  {
+   "path": "game.ext",
+   "kind": "readonly",
+   "type": "Ext",
+   "doc": "Expertenzugang (three.js, Szene, Renderer) – siehe Expertenreferenz."
+  },
+  {
+   "path": "game.player",
+   "kind": "readonly",
+   "type": "Player",
+   "doc": "Der Spieler."
+  },
+  {
+   "path": "game.math",
+   "kind": "readonly",
+   "type": "MathHelpers",
+   "doc": "Mathe-Helfer (Kompasswinkel, Abstand, …)."
+  },
+  {
+   "path": "game.ui",
+   "kind": "readonly",
+   "type": "UI",
+   "doc": "Oberfläche: Widgets und Vorlagen (radar, bar, compass, button, menu)."
+  },
+  {
+   "path": "game.world",
+   "kind": "readonly",
+   "type": "World",
+   "doc": "Abfragen an die Welt: Strahlen, Sichtlinie, Boden, Bauplatz."
+  },
+  {
+   "path": "game.nav",
+   "kind": "readonly",
+   "type": "Nav",
+   "doc": "Wegsuche."
+  },
+  {
+   "path": "game.fx",
+   "kind": "readonly",
+   "type": "Fx",
+   "doc": "Sichtbare Effekte."
+  },
+  {
+   "path": "game.input",
+   "kind": "readonly",
+   "type": "InputApi",
+   "doc": "Eingabe-Aktionen und -Achsen."
+  },
+  {
+   "path": "game.camera",
+   "kind": "readonly",
+   "type": "CameraApi",
+   "doc": "Kameras (perspektivisch/orthografisch), Projektion, Bildpunkt → Welt."
+  },
+  {
+   "path": "game.controller",
+   "kind": "readonly",
+   "type": "ControllerApi",
+   "doc": "Steuerungen (ego, topdown, free, eigene)."
+  },
+  {
+   "path": "game.assets",
+   "kind": "readonly",
+   "type": "AssetsApi",
+   "doc": "Modelle (GLB) laden und als Instanz nutzen."
+  },
+  {
+   "path": "game.instanced",
+   "kind": "method",
+   "type": "(o: InstancedOptions) => Instanced",
+   "doc": "Viele gleiche Objekte mit einem Zeichenaufruf."
+  },
+  {
+   "path": "game.pause",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Spiel anhalten (Simulation steht, Oberfläche läuft)."
+  },
+  {
+   "path": "game.resume",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Spiel fortsetzen."
+  },
+  {
+   "path": "game.paused",
+   "kind": "readonly",
+   "type": "boolean",
+   "doc": "Ist das Spiel angehalten?"
+  },
+  {
+   "path": "game.tween",
+   "kind": "method",
+   "type": "(target: object, props: Record<string, number>, sec: number, o?: TweenOptions) => Tween",
+   "doc": "Zahlen eines Objekts weich verändern."
+  },
+  {
+   "path": "game.prefab",
+   "kind": "method",
+   "type": "(name: string, def: PrefabDef) => string",
+   "doc": "Eigenen Objekttyp definieren (Teile, build, model, Trefferzonen, Hooks)."
+  },
+  {
+   "path": "game.place",
+   "kind": "method",
+   "type": "(name: string, o?: PlaceOptions) => Thing | null",
+   "doc": "Objekt aus einem Prefab in die Welt setzen."
+  },
+  {
+   "path": "game.things",
+   "kind": "method",
+   "type": "(prefab?: string) => Thing[]",
+   "doc": "Alle (oder nur die eines Prefabs) lebenden Objekte."
+  },
+  {
+   "path": "game.defineKind",
+   "kind": "method",
+   "type": "(id: string, spec: KindSpec) => boolean",
+   "doc": "Eigenen Einheitentyp (Gegner/Verbündete) definieren."
+  },
+  {
+   "path": "game.shoot",
+   "kind": "method",
+   "type": "(o: ShootOptions) => Shot | null",
+   "doc": "Sichtbares Projektil abfeuern."
+  },
+  {
+   "path": "game.explode",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number, o?: ExplodeOptions) => void",
+   "doc": "Flächenschaden mit Explosion."
+  },
+  {
+   "path": "game.save",
+   "kind": "method",
+   "type": "(slot?: string | null, extra?: object | null) => SaveState",
+   "doc": "Spielstand als einfaches Objekt (mit slot zusätzlich im Browser)."
+  },
+  {
+   "path": "game.load",
+   "kind": "method",
+   "type": "(src: SaveState | string) => boolean",
+   "doc": "Spielstand laden (Objekt oder Platzname)."
+  },
+  {
+   "path": "game.byId",
+   "kind": "method",
+   "type": "(id: number) => Thing | Unit | null",
+   "doc": "Objekt oder Einheit über die stabile Nummer finden."
+  },
+  {
+   "path": "game.hasSave",
+   "kind": "method",
+   "type": "(slot: string) => boolean",
+   "doc": "Gibt es einen Spielstand in diesem Platz?"
+  },
+  {
+   "path": "game.deleteSave",
+   "kind": "method",
+   "type": "(slot: string) => void",
+   "doc": "Spielstand im Platz löschen."
+  },
+  {
+   "path": "game.city",
+   "kind": "readonly",
+   "type": "CityApi",
+   "doc": "Die Stadt als Inhalt (Orte, freie Punkte)."
+  },
+  {
+   "path": "game.score",
+   "kind": "property",
+   "type": "number",
+   "doc": "Punkte."
+  },
+  {
+   "path": "game.kills",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Abschüsse des Spielers (zählt nur Spieler-Treffer)."
+  },
+  {
+   "path": "game.addScore",
+   "kind": "method",
+   "type": "(n: number) => void",
+   "doc": "Punkte addieren."
+  },
+  {
+   "path": "game.spawn",
+   "kind": "method",
+   "type": "(kind: string, o?: SpawnOptions) => Unit | null",
+   "doc": "Einheit erzeugen."
+  },
+  {
+   "path": "game.spawnWave",
+   "kind": "method",
+   "type": "(kind: string, n: number, o?: SpawnOptions) => Unit[]",
+   "doc": "Mehrere Einheiten erzeugen."
+  },
+  {
+   "path": "game.units",
+   "kind": "method",
+   "type": "(team?: string) => Unit[]",
+   "doc": "Lebende Einheiten (eines Teams)."
+  },
+  {
+   "path": "game.count",
+   "kind": "method",
+   "type": "(team?: string) => number",
+   "doc": "Anzahl lebender Einheiten (eines Teams)."
+  },
+  {
+   "path": "game.kinds",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Einheitentypen."
+  },
+  {
+   "path": "game.pickup",
+   "kind": "method",
+   "type": "(type: string, x: number | string | Vec2, z?: number | PickupOptions, o?: PickupOptions) => Pickup",
+   "doc": "Aufsammelbares Ding (health, ammo, weapon, upgrade …)."
+  },
+  {
+   "path": "game.zone",
+   "kind": "method",
+   "type": "(o: ZoneOptions) => Zone",
+   "doc": "Kreisförmiger Bereich mit Betreten/Verlassen-Hooks."
+  },
+  {
+   "path": "game.weapons",
+   "kind": "readonly",
+   "type": "WeaponsApi",
+   "doc": "Eigene Waffen definieren."
+  },
+  {
+   "path": "game.on",
+   "kind": "method",
+   "type": "(event: string, fn: (e: any) => void) => void",
+   "doc": "Auf ein Ereignis hören (siehe EVENTS)."
+  },
+  {
+   "path": "game.off",
+   "kind": "method",
+   "type": "(event: string, fn: (e: any) => void) => void",
+   "doc": "Ereignis-Handler entfernen."
+  },
+  {
+   "path": "game.emit",
+   "kind": "method",
+   "type": "(event: string, e?: object) => void",
+   "doc": "Eigenes Ereignis auslösen."
+  },
+  {
+   "path": "game.fixed",
+   "kind": "method",
+   "type": "(hz: number, fn: (step: number) => void) => Timer",
+   "doc": "Feste Schrittweite (höchstens 5 Schritte pro Bild)."
+  },
+  {
+   "path": "game.module",
+   "kind": "method",
+   "type": "(name: string, def: ModuleDef | ((ctx: ModuleCtx) => void)) => void",
+   "doc": "Modul registrieren (Lebenszyklus, Eigentum, Zustand)."
+  },
+  {
+   "path": "game.modules",
+   "kind": "readonly",
+   "type": "ModulesApi",
+   "doc": "Module abfragen und schalten."
+  },
+  {
+   "path": "game.time",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Simulationszeit in Sekunden (steht in der Pause)."
+  },
+  {
+   "path": "game.clock",
+   "kind": "readonly",
+   "type": "Clock",
+   "doc": "Alle Zeiten: sim, real, dt, rdt, scale, frame, paused."
+  },
+  {
+   "path": "game.timeScale",
+   "kind": "property",
+   "type": "number",
+   "doc": "Zeitfaktor der Simulation (0 … 4)."
+  },
+  {
+   "path": "game.stats",
+   "kind": "method",
+   "type": "(o?: { scene?: boolean }) => Stats",
+   "doc": "Messwerte (Bildzeiten, Objekte, Systeme, Zeichenaufrufe …)."
+  },
+  {
+   "path": "game.diag",
+   "kind": "method",
+   "type": "(on?: boolean) => void",
+   "doc": "Diagnose-Anzeige ein/aus."
+  },
+  {
+   "path": "game.every",
+   "kind": "method",
+   "type": "(sec: number, fn: () => void) => Timer",
+   "doc": "Wiederholter Zeitgeber (Simulationszeit)."
+  },
+  {
+   "path": "game.after",
+   "kind": "method",
+   "type": "(sec: number, fn: () => void) => Timer",
+   "doc": "Einmaliger Zeitgeber (Simulationszeit)."
+  },
+  {
+   "path": "game.hud",
+   "kind": "readonly",
+   "type": "Hud",
+   "doc": "Einfache Textanzeige."
+  },
+  {
+   "path": "game.win",
+   "kind": "method",
+   "type": "(text?: string) => void",
+   "doc": "Spiel gewonnen."
+  },
+  {
+   "path": "game.lose",
+   "kind": "method",
+   "type": "(text?: string) => void",
+   "doc": "Spiel verloren."
+  },
+  {
+   "path": "game.restart",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Spiel neu starten."
+  },
+  {
+   "path": "game.setHostile",
+   "kind": "method",
+   "type": "(a: string, b: string, v?: boolean) => void",
+   "doc": "Feindschaft zwischen Teams festlegen."
+  },
+  {
+   "path": "game.teamColor",
+   "kind": "method",
+   "type": "(team: string, color?: string | number) => number | void",
+   "doc": "Teamfarbe lesen oder setzen."
+  },
+  {
+   "path": "game.isHostile",
+   "kind": "method",
+   "type": "(a: string, b?: string) => boolean",
+   "doc": "Sind die Teams verfeindet?"
+  },
+  {
+   "path": "game.hour",
+   "kind": "method",
+   "type": "(h: number) => void",
+   "doc": "Tageszeit setzen (0–24)."
+  },
+  {
+   "path": "game.sound",
+   "kind": "method",
+   "type": "(name: string, vol?: number) => void",
+   "doc": "Klang abspielen."
+  },
+  {
+   "path": "game.random",
+   "kind": "method",
+   "type": "(a?: number, b?: number) => number",
+   "doc": "Zufallszahl von a bis b."
+  },
+  {
+   "path": "game.log",
+   "kind": "method",
+   "type": "(...args: any[]) => void",
+   "doc": "Text ins Protokollfeld des Studios schreiben."
+  },
+  {
+   "path": "game.player.x",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Position Ost (+x)."
+  },
+  {
+   "path": "game.player.z",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Position Süd (+z); Norden ist −z."
+  },
+  {
+   "path": "game.player.y",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Höhe."
+  },
+  {
+   "path": "game.player.yaw",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Blickwinkel (Bogenmaß; Kompasswinkel = −yaw)."
+  },
+  {
+   "path": "game.player.alive",
+   "kind": "readonly",
+   "type": "boolean",
+   "doc": "Lebt der Spieler?"
+  },
+  {
+   "path": "game.player.team",
+   "kind": "readonly",
+   "type": "string",
+   "doc": "Team des Spielers."
+  },
+  {
+   "path": "game.player.heading",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Blickrichtung als Kompasswinkel (0 = Norden, Uhrzeigersinn)."
+  },
+  {
+   "path": "game.player.forward",
+   "kind": "readonly",
+   "type": "Vec2",
+   "doc": "Einheitsvektor nach vorn."
+  },
+  {
+   "path": "game.player.hp",
+   "kind": "property",
+   "type": "number",
+   "doc": "Leben."
+  },
+  {
+   "path": "game.player.maxHp",
+   "kind": "property",
+   "type": "number",
+   "doc": "Maximales Leben."
+  },
+  {
+   "path": "game.player.weapon",
+   "kind": "readonly",
+   "type": "string | null",
+   "doc": "Aktuelle Waffe."
+  },
+  {
+   "path": "game.player.weapons",
+   "kind": "readonly",
+   "type": "string[]",
+   "doc": "Alle Waffen."
+  },
+  {
+   "path": "game.player.kills",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Abschüsse."
+  },
+  {
+   "path": "game.player.eye",
+   "kind": "readonly",
+   "type": "Vec3",
+   "doc": "Augenposition."
+  },
+  {
+   "path": "game.player.aim",
+   "kind": "method",
+   "type": "(maxDist?: number, o?: CastOptions) => Hit",
+   "doc": "Treffer-Abfrage durchs Fadenkreuz."
+  },
+  {
+   "path": "game.player.heal",
+   "kind": "method",
+   "type": "(n?: number) => void",
+   "doc": "Leben auffüllen."
+  },
+  {
+   "path": "game.player.damage",
+   "kind": "method",
+   "type": "(n?: number) => void",
+   "doc": "Spieler verletzen."
+  },
+  {
+   "path": "game.player.teleport",
+   "kind": "method",
+   "type": "(x: number | string | Vec2, z?: number, yaw?: number) => void",
+   "doc": "An einen (freien) Punkt setzen."
+  },
+  {
+   "path": "game.player.loadout",
+   "kind": "method",
+   "type": "(ids: string[]) => void",
+   "doc": "Waffen festlegen."
+  },
+  {
+   "path": "game.player.give",
+   "kind": "method",
+   "type": "(id: string) => void",
+   "doc": "Waffe geben."
+  },
+  {
+   "path": "game.player.giveAmmo",
+   "kind": "method",
+   "type": "(frac?: number) => void",
+   "doc": "Munition auffüllen."
+  },
+  {
+   "path": "game.player.upgrade",
+   "kind": "method",
+   "type": "(stat: string, factor?: number) => void",
+   "doc": "Wert verbessern."
+  },
+  {
+   "path": "game.player.respawn",
+   "kind": "method",
+   "type": "(at?: string | Vec2) => void",
+   "doc": "Wiederbeleben."
+  },
+  {
+   "path": "game.player.ammo",
+   "kind": "method",
+   "type": "(id?: string) => { mag: number; reserve: number } | null",
+   "doc": "Munition einer Waffe."
+  },
+  {
+   "path": "game.math.TAU",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "2π."
+  },
+  {
+   "path": "game.math.PI",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "π."
+  },
+  {
+   "path": "game.math.clamp",
+   "kind": "method",
+   "type": "(x: number, a: number, b: number) => number",
+   "doc": "Begrenzen."
+  },
+  {
+   "path": "game.math.wrap",
+   "kind": "method",
+   "type": "(a: number) => number",
+   "doc": "Winkel auf −π … π bringen."
+  },
+  {
+   "path": "game.math.lerp",
+   "kind": "method",
+   "type": "(a: number, b: number, t: number) => number",
+   "doc": "Mischen."
+  },
+  {
+   "path": "game.math.dist",
+   "kind": "method",
+   "type": "(a: Vec2, b: Vec2) => number",
+   "doc": "Abstand in der Ebene."
+  },
+  {
+   "path": "game.math.bearing",
+   "kind": "method",
+   "type": "(a: Vec2, b: Vec2) => number",
+   "doc": "Kompasswinkel von a nach b."
+  },
+  {
+   "path": "game.math.forward",
+   "kind": "method",
+   "type": "(heading: number) => Vec2",
+   "doc": "Einheitsvektor zu einem Kompasswinkel."
+  },
+  {
+   "path": "game.math.rad",
+   "kind": "method",
+   "type": "(deg: number) => number",
+   "doc": "Grad → Bogenmaß."
+  },
+  {
+   "path": "game.math.deg",
+   "kind": "method",
+   "type": "(rad: number) => number",
+   "doc": "Bogenmaß → Grad."
+  },
+  {
+   "path": "game.math.toLocal",
+   "kind": "method",
+   "type": "(target: Vec2, from?: Vec2 & { heading?: number }) => { forward: number; right: number; dist: number; angle: number }",
+   "doc": "Ziel aus Sicht von from (Standard: Spieler)."
+  },
+  {
+   "path": "game.ui.widget",
+   "kind": "method",
+   "type": "(o: WidgetOptions) => Widget",
+   "doc": "Eigenes Widget (gezeichnet mit draw(g))."
+  },
+  {
+   "path": "game.ui.get",
+   "kind": "method",
+   "type": "(id: string) => Widget | null",
+   "doc": "Widget über ID."
+  },
+  {
+   "path": "game.ui.remove",
+   "kind": "method",
+   "type": "(id: string) => void",
+   "doc": "Widget entfernen."
+  },
+  {
+   "path": "game.ui.clear",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Alle Widgets entfernen."
+  },
+  {
+   "path": "game.ui.screen",
+   "kind": "readonly",
+   "type": "{ w: number; h: number }",
+   "doc": "Größe des Spielbilds."
+  },
+  {
+   "path": "game.ui.project",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number) => { x: number; y: number; visible: boolean } | null",
+   "doc": "Weltpunkt → Bildpunkt."
+  },
+  {
+   "path": "game.ui.cursor",
+   "kind": "method",
+   "type": "(on?: boolean) => void",
+   "doc": "Maus für Widgets freigeben bzw. fangen."
+  },
+  {
+   "path": "game.ui.focus",
+   "kind": "method",
+   "type": "(w: Widget) => void",
+   "doc": "Tastaturfokus."
+  },
+  {
+   "path": "game.ui.blur",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Fokus lösen."
+  },
+  {
+   "path": "game.ui.focused",
+   "kind": "readonly",
+   "type": "Widget | null",
+   "doc": "Widget mit Fokus."
+  },
+  {
+   "path": "game.ui.radar",
+   "kind": "method",
+   "type": "(o?: object) => Widget",
+   "doc": "Vorlage Radar."
+  },
+  {
+   "path": "game.ui.bar",
+   "kind": "method",
+   "type": "(o?: object) => Widget",
+   "doc": "Vorlage Balken."
+  },
+  {
+   "path": "game.ui.compass",
+   "kind": "method",
+   "type": "(o?: object) => Widget",
+   "doc": "Vorlage Kompass."
+  },
+  {
+   "path": "game.ui.button",
+   "kind": "method",
+   "type": "(o?: object) => Widget",
+   "doc": "Vorlage Schaltfläche."
+  },
+  {
+   "path": "game.ui.menu",
+   "kind": "method",
+   "type": "(o?: MenuOptions) => Menu",
+   "doc": "Vorlage Menü / Dialog (mit Titel, Fließtext und Einträgen)."
+  },
+  {
+   "path": "game.world.cast",
+   "kind": "method",
+   "type": "(from: Vec3, dir: Vec3, max?: number, o?: CastOptions) => Hit",
+   "doc": "Strahl gegen Gebäude, Boden, Einheiten, Objekte (mit Zone)."
+  },
+  {
+   "path": "game.world.raycast",
+   "kind": "method",
+   "type": "(a: Vec3, b: Vec3, o?: CastOptions) => Hit",
+   "doc": "Strahl von a nach b."
+  },
+  {
+   "path": "game.world.los",
+   "kind": "method",
+   "type": "(a: Vec3, b: Vec3) => boolean",
+   "doc": "Freie Sicht?"
+  },
+  {
+   "path": "game.world.groundY",
+   "kind": "method",
+   "type": "(x: number, z: number) => number",
+   "doc": "Bodenhöhe."
+  },
+  {
+   "path": "game.world.canBuild",
+   "kind": "method",
+   "type": "(x: number, z: number, r: number, o?: object) => { ok: boolean; reason?: string }",
+   "doc": "Darf hier gebaut werden?"
+  },
+  {
+   "path": "game.world.snap",
+   "kind": "method",
+   "type": "(x: number, z: number, grid?: number) => Vec2",
+   "doc": "Auf ein Raster einrasten."
+  },
+  {
+   "path": "game.world.aim",
+   "kind": "method",
+   "type": "(max?: number, o?: CastOptions) => Hit",
+   "doc": "Strahl durchs Fadenkreuz."
+  },
+  {
+   "path": "game.nav.path",
+   "kind": "method",
+   "type": "(a: Vec2, b: Vec2, o?: object) => Vec2[] | null",
+   "doc": "Weg zwischen zwei Punkten."
+  },
+  {
+   "path": "game.nav.reachable",
+   "kind": "method",
+   "type": "(a: Vec2, b: Vec2, o?: object) => boolean",
+   "doc": "Erreichbar?"
+  },
+  {
+   "path": "game.nav.free",
+   "kind": "method",
+   "type": "(x: number, z: number, r?: number) => boolean",
+   "doc": "Ist die Stelle frei?"
+  },
+  {
+   "path": "game.nav.stats",
+   "kind": "readonly",
+   "type": "object",
+   "doc": "Zähler der Wegsuche."
+  },
+  {
+   "path": "game.fx.explosion",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number, o?: object) => void",
+   "doc": "Explosionseffekt (ohne Schaden)."
+  },
+  {
+   "path": "game.fx.burst",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number, o?: object) => void",
+   "doc": "Partikelstoß."
+  },
+  {
+   "path": "game.fx.muzzle",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number, o?: object) => void",
+   "doc": "Mündungsfeuer."
+  },
+  {
+   "path": "game.fx.beam",
+   "kind": "method",
+   "type": "(a: Vec3, b: Vec3, o?: object) => object",
+   "doc": "Strahl."
+  },
+  {
+   "path": "game.fx.ring",
+   "kind": "method",
+   "type": "(x: number, z: number, r: number, o?: RingOptions) => Ring",
+   "doc": "Ring am Boden."
+  },
+  {
+   "path": "game.input.action",
+   "kind": "method",
+   "type": "(name: string, o?: InputDef) => object | null",
+   "doc": "Aktion (gedrückt/losgelassen) anlegen."
+  },
+  {
+   "path": "game.input.axis",
+   "kind": "method",
+   "type": "(name: string, o?: InputDef) => object | null",
+   "doc": "Achse (−1 … 1) anlegen."
+  },
+  {
+   "path": "game.input.bind",
+   "kind": "method",
+   "type": "(name: string, source: string | string[] | { pos?: string[]; neg?: string[] }, o?: { add?: boolean }) => boolean",
+   "doc": "Quellen einer Aktion ersetzen (add: true = ergänzen); Achsen mit { pos, neg }."
+  },
+  {
+   "path": "game.input.bindings",
+   "kind": "method",
+   "type": "(name: string) => string[]",
+   "doc": "Bindungen einer Aktion."
+  },
+  {
+   "path": "game.input.list",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Aktionen und Achsen."
+  },
+  {
+   "path": "game.input.down",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Gedrückt gehalten?"
+  },
+  {
+   "path": "game.input.pressed",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "In diesem Bild gedrückt?"
+  },
+  {
+   "path": "game.input.released",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "In diesem Bild losgelassen?"
+  },
+  {
+   "path": "game.input.value",
+   "kind": "method",
+   "type": "(name: string) => number",
+   "doc": "Wert einer Achse / Aktion."
+  },
+  {
+   "path": "game.input.push",
+   "kind": "method",
+   "type": "(context: string) => void",
+   "doc": "Eingabe-Kontext auf den Stapel."
+  },
+  {
+   "path": "game.input.pop",
+   "kind": "method",
+   "type": "(context?: string) => void",
+   "doc": "Kontext vom Stapel."
+  },
+  {
+   "path": "game.input.context",
+   "kind": "readonly",
+   "type": "string",
+   "doc": "Aktiver Kontext."
+  },
+  {
+   "path": "game.input.set",
+   "kind": "method",
+   "type": "(name: string, v: number | boolean) => void",
+   "doc": "Wert von außen setzen."
+  },
+  {
+   "path": "game.input.virtual",
+   "kind": "method",
+   "type": "(name: string, v: number | boolean) => void",
+   "doc": "Wert einer virtuellen Quelle setzen (für spätere Touch-/Gamepad-Profile)."
+  },
+  {
+   "path": "game.input.reset",
+   "kind": "method",
+   "type": "() => void",
+   "doc": "Alle gehaltenen Eingaben zurücksetzen."
+  },
+  {
+   "path": "game.input.mouse",
+   "kind": "readonly",
+   "type": "{ x: number; y: number; dx: number; dy: number; inside: boolean }",
+   "doc": "Mausposition im Spielbild."
+  },
+  {
+   "path": "game.camera.create",
+   "kind": "method",
+   "type": "(name: string, o?: RigOptions) => Rig",
+   "doc": "Kamera anlegen."
+  },
+  {
+   "path": "game.camera.get",
+   "kind": "method",
+   "type": "(name: string) => Rig | null",
+   "doc": "Kamera über Namen (\"ego\" = Standard)."
+  },
+  {
+   "path": "game.camera.list",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Kameras."
+  },
+  {
+   "path": "game.camera.use",
+   "kind": "method",
+   "type": "(cam: string | Rig | null) => boolean",
+   "doc": "Kamera erzwingen (null = Controller bestimmt)."
+  },
+  {
+   "path": "game.camera.active",
+   "kind": "readonly",
+   "type": "Rig",
+   "doc": "Aktive Kamera."
+  },
+  {
+   "path": "game.camera.project",
+   "kind": "method",
+   "type": "(x: number, y: number, z: number) => { x: number; y: number; visible: boolean } | null",
+   "doc": "Weltpunkt → Bildpunkt."
+  },
+  {
+   "path": "game.camera.ray",
+   "kind": "method",
+   "type": "(sx?: number, sy?: number) => { origin: Vec3; dir: Vec3 }",
+   "doc": "Strahl durch einen Bildpunkt (Standard: Mauszeiger)."
+  },
+  {
+   "path": "game.camera.pick",
+   "kind": "method",
+   "type": "(sx?: number, sy?: number, o?: CastOptions) => PickResult",
+   "doc": "Was liegt unter dem Zeiger (Treffer + Bodenpunkt)."
+  },
+  {
+   "path": "game.controller.define",
+   "kind": "method",
+   "type": "(name: string, def: ControllerDef) => void",
+   "doc": "Eigene Steuerung definieren."
+  },
+  {
+   "path": "game.controller.use",
+   "kind": "method",
+   "type": "(name: string, o?: object) => boolean",
+   "doc": "Steuerung wechseln (ego, topdown, free, …)."
+  },
+  {
+   "path": "game.controller.has",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Gibt es die Steuerung?"
+  },
+  {
+   "path": "game.controller.list",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Steuerungen."
+  },
+  {
+   "path": "game.controller.active",
+   "kind": "readonly",
+   "type": "string",
+   "doc": "Name der aktiven Steuerung."
+  },
+  {
+   "path": "game.controller.toggle",
+   "kind": "method",
+   "type": "(a: string, b: string, o?: object) => boolean",
+   "doc": "Zwischen zwei Steuerungen umschalten."
+  },
+  {
+   "path": "game.assets.load",
+   "kind": "method",
+   "type": "(id: string, src: string | ArrayBuffer | ArrayBufferView | Blob | { base64: string }, o?: { replace?: boolean; persist?: boolean; name?: string; defaults?: ModelDefaults }) => Promise<ModelInfo>",
+   "doc": "GLB laden (gleiche ID = vorhandenes Modell)."
+  },
+  {
+   "path": "game.assets.setDefaults",
+   "kind": "method",
+   "type": "(id: string, def: ModelDefaults) => boolean",
+   "doc": "Standard-Einstellungen (height, scale, forward, origin) eines Modells; gelten, wenn ein Aufruf sie nicht selbst nennt. Das Studio setzt sie aus der Vorschau."
+  },
+  {
+   "path": "game.assets.has",
+   "kind": "method",
+   "type": "(id: string) => boolean",
+   "doc": "Geladen?"
+  },
+  {
+   "path": "game.assets.get",
+   "kind": "method",
+   "type": "(id: string) => ModelInfo | null",
+   "doc": "Infos zu einem Modell."
+  },
+  {
+   "path": "game.assets.list",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Modell-IDs."
+  },
+  {
+   "path": "game.assets.model",
+   "kind": "method",
+   "type": "(id: string, o?: ModelOptions) => ModelInstance | null",
+   "doc": "Instanz eines geladenen Modells (synchron)."
+  },
+  {
+   "path": "game.assets.release",
+   "kind": "method",
+   "type": "(id: string, o?: { force?: boolean }) => boolean",
+   "doc": "Modell aus dem Speicher nehmen."
+  },
+  {
+   "path": "game.city.center",
+   "kind": "readonly",
+   "type": "Vec2",
+   "doc": "Mitte der Stadt."
+  },
+  {
+   "path": "game.city.pois",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Namen der Orte."
+  },
+  {
+   "path": "game.city.poi",
+   "kind": "method",
+   "type": "(name: string) => { x: number; z: number; name: string } | null",
+   "doc": "Ort über Namen."
+  },
+  {
+   "path": "game.city.randomOpenPoint",
+   "kind": "method",
+   "type": "(o?: { near?: string | Vec2; min?: number; max?: number }) => Vec2 | null",
+   "doc": "Zufälliger freier Punkt."
+  },
+  {
+   "path": "game.city.districtAt",
+   "kind": "method",
+   "type": "(x: number, z: number) => string | null",
+   "doc": "Stadtteil an einer Stelle."
+  },
+  {
+   "path": "game.weapons.define",
+   "kind": "method",
+   "type": "(id: string, spec: object) => void",
+   "doc": "Waffe definieren (base: \"rifle\" …)."
+  },
+  {
+   "path": "game.weapons.list",
+   "kind": "method",
+   "type": "() => string[]",
+   "doc": "Alle Waffen."
+  },
+  {
+   "path": "game.modules.get",
+   "kind": "method",
+   "type": "(name: string) => ModuleHandle | null",
+   "doc": "Modul-Griff."
+  },
+  {
+   "path": "game.modules.has",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Registriert?"
+  },
+  {
+   "path": "game.modules.list",
+   "kind": "method",
+   "type": "() => { name: string; state: string; deps: string[] }[]",
+   "doc": "Alle Module."
+  },
+  {
+   "path": "game.modules.enable",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Modul einschalten."
+  },
+  {
+   "path": "game.modules.disable",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Modul ausschalten (räumt auf)."
+  },
+  {
+   "path": "game.modules.remove",
+   "kind": "method",
+   "type": "(name: string) => boolean",
+   "doc": "Modul ganz entfernen."
+  },
+  {
+   "path": "game.hud.set",
+   "kind": "method",
+   "type": "(key: string, text: string) => void",
+   "doc": "Textzeile setzen."
+  },
+  {
+   "path": "game.hud.clear",
+   "kind": "method",
+   "type": "(key: string) => void",
+   "doc": "Textzeile entfernen."
+  },
+  {
+   "path": "game.hud.message",
+   "kind": "method",
+   "type": "(text: string, sec?: number) => void",
+   "doc": "Einblendung."
+  },
+  {
+   "path": "game.ext.contract",
+   "kind": "readonly",
+   "type": "number",
+   "doc": "Vertragsstufe des Expertenzugangs."
+  },
+  {
+   "path": "game.ext.versions",
+   "kind": "readonly",
+   "type": "{ engine: string; three: string; renderer: string }",
+   "doc": "Versionen."
+  },
+  {
+   "path": "game.ext.THREE",
+   "kind": "readonly",
+   "type": "any",
+   "doc": "Der three.js-Namensraum."
+  },
+  {
+   "path": "game.ext.scene",
+   "kind": "readonly",
+   "type": "any",
+   "doc": "Die Szene (gehört der Engine)."
+  },
+  {
+   "path": "game.ext.renderer",
+   "kind": "readonly",
+   "type": "any",
+   "doc": "Der WebGLRenderer (gehört der Engine)."
+  },
+  {
+   "path": "game.ext.camera",
+   "kind": "readonly",
+   "type": "any",
+   "doc": "Die Hauptkamera (gehört dem aktiven Controller)."
+  },
+  {
+   "path": "game.ext.collide",
+   "kind": "method",
+   "type": "(x: number, z: number, r: number) => { x: number; z: number; hit: boolean }",
+   "doc": "Kreis gegen Gebäude schieben."
+  },
+  {
+   "path": "game.ext.obstacleAt",
+   "kind": "method",
+   "type": "(x: number, z: number, margin?: number) => boolean",
+   "doc": "Steht hier ein Gebäude?"
+  }
+ ],
+ "types": {
+  "Vec2": {
+   "extends": null,
+   "doc": "Punkt in der Ebene (Norden = −z, Osten = +x).",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "Vec3": {
+   "extends": null,
+   "doc": "Punkt im Raum.",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "Thing": {
+   "extends": null,
+   "doc": "Ein Objekt aus einem Prefab (Turm, Wurm, NPC …).",
+   "tested": true,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "number",
+     "doc": "Stabile Nummer; bleibt beim Speichern/Laden gleich (game.byId)."
+    },
+    {
+     "name": "prefab",
+     "kind": "readonly",
+     "type": "string",
+     "doc": "Name des Prefabs."
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "yaw",
+     "kind": "property",
+     "type": "number",
+     "doc": "Drehung um die Hochachse (Bogenmaß)."
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number",
+     "doc": "Maßstab."
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string | null",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number | null",
+     "doc": "null = unverwundbar."
+    },
+    {
+     "name": "maxHp",
+     "kind": "property",
+     "type": "number | null",
+     "doc": ""
+    },
+    {
+     "name": "dead",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "ghost",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "Geist (Vorschau, kein Spielobjekt)."
+    },
+    {
+     "name": "data",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": "Eigene Daten; werden mit gespeichert (nur Zahlen, Text, Listen, Objekte)."
+    },
+    {
+     "name": "solid",
+     "kind": "property",
+     "type": "number",
+     "doc": "Blockier-Radius (0 = begehbar)."
+    },
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "radius",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "parts",
+     "kind": "property",
+     "type": "Record<string, Part>",
+     "doc": "Benannte Teile."
+    },
+    {
+     "name": "alive",
+     "kind": "readonly",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "heading",
+     "kind": "property",
+     "type": "number",
+     "doc": "Kompasswinkel der Blickrichtung (Vorn = +Z, heading = π − yaw)."
+    },
+    {
+     "name": "forward",
+     "kind": "readonly",
+     "type": "Vec2",
+     "doc": ""
+    },
+    {
+     "name": "visible",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "opacity",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "tint",
+     "kind": "method",
+     "type": "(color: string | number | null) => void",
+     "doc": "Einfärben (null = Original)."
+    },
+    {
+     "name": "move",
+     "kind": "method",
+     "type": "(x: number, z: number) => Thing",
+     "doc": "Ohne Kollision versetzen."
+    },
+    {
+     "name": "set",
+     "kind": "method",
+     "type": "(o: Partial<{ x: number; y: number; z: number; yaw: number; size: number; scale: number; heading: number; opacity: number; visible: boolean; data: object; team: string; hp: number; solid: number }>) => Thing",
+     "doc": "Mehrere Werte setzen."
+    },
+    {
+     "name": "sync",
+     "kind": "method",
+     "type": "() => void",
+     "doc": "Darstellung und Trefferzonen nach direkter Änderung von x/y/z/yaw/size aktualisieren."
+    },
+    {
+     "name": "part",
+     "kind": "method",
+     "type": "(name: string) => Part | null",
+     "doc": "Teil über Namen."
+    },
+    {
+     "name": "muzzle",
+     "kind": "method",
+     "type": "(partName?: string) => { x: number; y: number; z: number; dx: number; dy: number; dz: number }",
+     "doc": "Mündung eines Teils in Weltkoordinaten."
+    },
+    {
+     "name": "aimAt",
+     "kind": "method",
+     "type": "(target: Vec2 & { y?: number; height?: number }, o?: { yawPart?: string; pitchPart?: string | null; rate?: number; tolerance?: number; minElev?: number; maxElev?: number; dt?: number }) => { aligned: boolean; err: number }",
+     "doc": "Teile auf ein Ziel ausrichten."
+    },
+    {
+     "name": "walk",
+     "kind": "method",
+     "type": "(dx: number, dz: number, o?: { radius?: number }) => { moved: number; blocked: boolean }",
+     "doc": "Mit Gebäudekollision bewegen; andere Objekte blockieren nicht."
+    },
+    {
+     "name": "face",
+     "kind": "method",
+     "type": "(x: number, z: number) => Thing",
+     "doc": "Zu einem Punkt drehen."
+    },
+    {
+     "name": "clips",
+     "kind": "readonly",
+     "type": "{ name: string; duration: number }[]",
+     "doc": "Animationen (nur mit GLB-Modell)."
+    },
+    {
+     "name": "play",
+     "kind": "method",
+     "type": "(name: string, o?: { loop?: boolean; speed?: number; fade?: number; weight?: number }) => any",
+     "doc": "Animation abspielen."
+    },
+    {
+     "name": "stop",
+     "kind": "method",
+     "type": "(name?: string) => void",
+     "doc": "Animation stoppen."
+    },
+    {
+     "name": "hitVolumes",
+     "kind": "method",
+     "type": "() => HitVolume[]",
+     "doc": "Aktuelle Trefferzonen in Weltkoordinaten (pro Bild zwischengespeichert)."
+    },
+    {
+     "name": "segHit",
+     "kind": "method",
+     "type": "(ax: number, ay: number, az: number, bx: number, by: number, bz: number, extra?: number) => { zone: string | null; mult: number; u: number } | null",
+     "doc": "Strecke gegen die Zonen."
+    },
+    {
+     "name": "rayHit",
+     "kind": "method",
+     "type": "(origin: Vec3, dir: Vec3, maxT?: number) => { zone: string | null; mult: number; t: number } | null",
+     "doc": "Strahl gegen die Zonen."
+    },
+    {
+     "name": "damage",
+     "kind": "method",
+     "type": "(n: number, by?: any, zone?: string | null) => void",
+     "doc": "Schaden zufügen (ruft onDamage/onDestroy)."
+    },
+    {
+     "name": "kill",
+     "kind": "method",
+     "type": "() => void",
+     "doc": "Zerstören."
+    },
+    {
+     "name": "heal",
+     "kind": "method",
+     "type": "(n: number) => void",
+     "doc": "Heilen."
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": "Entfernen (ohne Zerstörungs-Ereignis)."
+    }
+   ]
+  },
+  "Part": {
+   "extends": null,
+   "doc": "Ein Teil eines Prefabs (drehbar/verschiebbar). Felder: x, y, z, yaw, pitch, roll, visible; Methode tip().",
+   "tested": false,
+   "members": [
+    {
+     "name": "yaw",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "pitch",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "roll",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "visible",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "tip",
+     "kind": "method",
+     "type": "() => { x: number; y: number; z: number; dx: number; dy: number; dz: number }",
+     "doc": "Spitze in Weltkoordinaten."
+    }
+   ]
+  },
+  "HitVolume": {
+   "extends": null,
+   "doc": "Eine Trefferzone in Weltkoordinaten (Kapsel zwischen zwei Punkten oder Kugel).",
+   "tested": false,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "r",
+     "kind": "property",
+     "type": "number",
+     "doc": "Radius."
+    },
+    {
+     "name": "mult",
+     "kind": "property",
+     "type": "number",
+     "doc": "Schadensfaktor."
+    }
+   ]
+  },
+  "Unit": {
+   "extends": null,
+   "doc": "Eine Einheit (Gegner, Verbündeter) aus einem Einheitentyp.",
+   "tested": true,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "number",
+     "doc": "Stabile Nummer (game.byId)."
+    },
+    {
+     "name": "kind",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "maxHp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "yaw",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "dead",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "radius",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "hitR",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "data",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": "Eigene Daten; werden mit gespeichert."
+    },
+    {
+     "name": "alive",
+     "kind": "readonly",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number",
+     "doc": "Maßstab."
+    },
+    {
+     "name": "heading",
+     "kind": "readonly",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "forward",
+     "kind": "readonly",
+     "type": "Vec2",
+     "doc": ""
+    },
+    {
+     "name": "status",
+     "kind": "readonly",
+     "type": "'idle' | 'moving' | 'arrived' | 'blocked' | 'unreachable'",
+     "doc": "Stand des Auftrags."
+    },
+    {
+     "name": "emerge",
+     "kind": "method",
+     "type": "(sec?: number) => Unit",
+     "doc": "Aus dem Boden steigen."
+    },
+    {
+     "name": "damage",
+     "kind": "method",
+     "type": "(n: number, by?: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "kill",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    },
+    {
+     "name": "goTo",
+     "kind": "method",
+     "type": "(x: number | Vec2, z?: number | GoToOptions, o?: GoToOptions) => Unit",
+     "doc": "Ziel mit Wegsuche anlaufen."
+    },
+    {
+     "name": "follow",
+     "kind": "method",
+     "type": "(who?: 'player' | Unit) => Unit",
+     "doc": "Folgen."
+    }
+   ]
+  },
+  "Widget": {
+   "extends": null,
+   "doc": "Ein Oberflächen-Element.",
+   "tested": true,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "anchor",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "w",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "h",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "visible",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "alpha",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "data",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": ""
+    },
+    {
+     "name": "pointer",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "hover",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "focused",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "down",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "disabled",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "focusable",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "cursor",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "margin",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "clip",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "mouse",
+     "kind": "property",
+     "type": "{ x: number; y: number }",
+     "doc": "Mausposition im Widget."
+    },
+    {
+     "name": "rect",
+     "kind": "property",
+     "type": "{ x: number; y: number; w: number; h: number }",
+     "doc": "Aktuelle Bildschirmfläche."
+    },
+    {
+     "name": "draw",
+     "kind": "property",
+     "type": "null | ((g: any) => void)",
+     "doc": "Zeichenfunktion: g.rect, g.text, g.measure … (siehe Handbuch „Oberfläche“)."
+    },
+    {
+     "name": "onClick",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "onKey",
+     "kind": "property",
+     "type": "null | ((e: any) => boolean | void)",
+     "doc": "true = Taste verbraucht."
+    },
+    {
+     "name": "onEnter",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "onLeave",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "onDown",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "onUp",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "onDisabledClick",
+     "kind": "property",
+     "type": "null | ((e: any) => void)",
+     "doc": ""
+    },
+    {
+     "name": "set",
+     "kind": "method",
+     "type": "(o: object) => Widget",
+     "doc": "Eigenschaften setzen."
+    },
+    {
+     "name": "move",
+     "kind": "method",
+     "type": "(x: number, y: number) => Widget",
+     "doc": ""
+    },
+    {
+     "name": "show",
+     "kind": "method",
+     "type": "(sec?: number) => Widget",
+     "doc": ""
+    },
+    {
+     "name": "hide",
+     "kind": "method",
+     "type": "(sec?: number) => Widget",
+     "doc": ""
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    },
+    {
+     "name": "focus",
+     "kind": "method",
+     "type": "() => Widget",
+     "doc": ""
+    },
+    {
+     "name": "shown",
+     "kind": "readonly",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "Menu": {
+   "extends": "Widget",
+   "doc": "Menü / Dialog.",
+   "tested": true,
+   "members": [
+    {
+     "name": "open",
+     "kind": "method",
+     "type": "() => Menu",
+     "doc": "Öffnen (pausiert das Spiel, wenn pause: true)."
+    },
+    {
+     "name": "close",
+     "kind": "method",
+     "type": "() => Menu",
+     "doc": ""
+    },
+    {
+     "name": "isOpen",
+     "kind": "readonly",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "Rig": {
+   "extends": null,
+   "doc": "Eine Kamera. position/quaternion sind THREE-Objekte.",
+   "tested": true,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "type",
+     "kind": "property",
+     "type": "'perspective' | 'orthographic'",
+     "doc": ""
+    },
+    {
+     "name": "position",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.Vector3"
+    },
+    {
+     "name": "quaternion",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.Quaternion"
+    },
+    {
+     "name": "fov",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number",
+     "doc": "Höhe des Sichtfelds (orthografisch)."
+    },
+    {
+     "name": "near",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "far",
+     "kind": "property",
+     "type": "number | null",
+     "doc": ""
+    },
+    {
+     "name": "native",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "true bei der Ich-Kamera der Engine."
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "setPosition",
+     "kind": "method",
+     "type": "(x: number, y: number, z: number) => Rig",
+     "doc": ""
+    },
+    {
+     "name": "lookAt",
+     "kind": "method",
+     "type": "(x: number, y: number, z: number) => Rig",
+     "doc": ""
+    },
+    {
+     "name": "setAngles",
+     "kind": "method",
+     "type": "(yaw: number, pitch?: number) => Rig",
+     "doc": ""
+    },
+    {
+     "name": "direction",
+     "kind": "readonly",
+     "type": "Vec3",
+     "doc": "Blickrichtung."
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "ModelInfo": {
+   "extends": null,
+   "doc": "Angaben zu einem geladenen Modell.",
+   "tested": false,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "clips",
+     "kind": "property",
+     "type": "{ name: string; duration: number }[]",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": "Maße in Metern."
+    },
+    {
+     "name": "triangles",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "meshes",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "bytes",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "source",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "defaults",
+     "kind": "property",
+     "type": "ModelDefaults",
+     "doc": "Standard-Einstellungen (leer, solange keine gesetzt sind)."
+    }
+   ]
+  },
+  "ModelDefaults": {
+   "extends": null,
+   "doc": "Standardwerte eines Modells (Studio-Vorschau).",
+   "tested": false,
+   "members": [
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": "Zielhöhe in Metern."
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "forward",
+     "kind": "property",
+     "type": "'+z' | '-z' | '+x' | '-x'",
+     "doc": ""
+    },
+    {
+     "name": "origin",
+     "kind": "property",
+     "type": "'bottom' | 'center' | 'keep'",
+     "doc": ""
+    }
+   ]
+  },
+  "ModelInstance": {
+   "extends": null,
+   "doc": "Eine Instanz eines Modells (teilt Geometrie/Materialien mit dem geladenen Modell).",
+   "tested": true,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "object",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.Object3D – in die Szene hängen (ctx.add)."
+    },
+    {
+     "name": "clips",
+     "kind": "property",
+     "type": "any[]",
+     "doc": ""
+    },
+    {
+     "name": "mixer",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    },
+    {
+     "name": "actions",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": ""
+    },
+    {
+     "name": "disposed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    },
+    {
+     "name": "play",
+     "kind": "method",
+     "type": "(name: string, o?: { loop?: boolean; speed?: number; fade?: number; weight?: number }) => any",
+     "doc": ""
+    },
+    {
+     "name": "stop",
+     "kind": "method",
+     "type": "(name?: string) => void",
+     "doc": ""
+    },
+    {
+     "name": "update",
+     "kind": "method",
+     "type": "(dt: number) => void",
+     "doc": ""
+    },
+    {
+     "name": "dispose",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Instanced": {
+   "extends": null,
+   "doc": "Viele gleiche Objekte, ein Zeichenaufruf.",
+   "tested": true,
+   "members": [
+    {
+     "name": "mesh",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.InstancedMesh"
+    },
+    {
+     "name": "max",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "count",
+     "kind": "readonly",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "set",
+     "kind": "method",
+     "type": "(i: number, o: { x?: number; y?: number; z?: number; yaw?: number; pitch?: number; roll?: number; scale?: number; sx?: number; sy?: number; sz?: number; color?: string | number }) => void",
+     "doc": ""
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Zone": {
+   "extends": null,
+   "doc": "Kreisförmiger Bereich.",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "r",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "visible",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "removed",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "Ring": {
+   "extends": null,
+   "doc": "Ring am Boden.",
+   "tested": false,
+   "members": [
+    {
+     "name": "r",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "set",
+     "kind": "method",
+     "type": "(p: { x?: number; z?: number; r?: number; visible?: boolean; opacity?: number }) => void",
+     "doc": ""
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Tween": {
+   "extends": null,
+   "doc": "Weiche Veränderung von Zahlen.",
+   "tested": false,
+   "members": [
+    {
+     "name": "done",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "cancel",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Timer": {
+   "extends": null,
+   "doc": "Zeitgeber.",
+   "tested": false,
+   "members": [
+    {
+     "name": "dead",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "cancel",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Shot": {
+   "extends": null,
+   "doc": "Ein Projektil im Flug.",
+   "tested": false,
+   "members": [
+    {
+     "name": "pos",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.Vector3"
+    },
+    {
+     "name": "vel",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.Vector3"
+    },
+    {
+     "name": "dead",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "remove",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    }
+   ]
+  },
+  "Pickup": {
+   "extends": null,
+   "doc": "Aufsammelbares Ding.",
+   "tested": false,
+   "members": [
+    {
+     "name": "type",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "taken",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "Hit": {
+   "extends": null,
+   "doc": "Ergebnis einer Welt-Abfrage.",
+   "tested": false,
+   "members": [
+    {
+     "name": "hit",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "type",
+     "kind": "property",
+     "type": "'none' | 'world' | 'ground' | 'unit' | 'thing' | 'player'",
+     "doc": ""
+    },
+    {
+     "name": "dist",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "unit",
+     "kind": "property",
+     "type": "Unit | null",
+     "doc": ""
+    },
+    {
+     "name": "thing",
+     "kind": "property",
+     "type": "Thing | null",
+     "doc": ""
+    },
+    {
+     "name": "zone",
+     "kind": "property",
+     "type": "string | null",
+     "doc": "Name der getroffenen Trefferzone."
+    },
+    {
+     "name": "head",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "Kopftreffer bei Einheiten."
+    }
+   ]
+  },
+  "PickResult": {
+   "extends": "Hit",
+   "doc": "Was unter dem Zeiger liegt.",
+   "tested": false,
+   "members": [
+    {
+     "name": "ground",
+     "kind": "property",
+     "type": "Vec2 | null",
+     "doc": "Punkt auf dem Boden unter dem Zeiger."
+    },
+    {
+     "name": "screen",
+     "kind": "property",
+     "type": "{ x: number; y: number }",
+     "doc": ""
+    },
+    {
+     "name": "origin",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    },
+    {
+     "name": "dir",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    }
+   ]
+  },
+  "Clock": {
+   "extends": null,
+   "doc": "Zeiten.",
+   "tested": false,
+   "members": [
+    {
+     "name": "sim",
+     "kind": "property",
+     "type": "number",
+     "doc": "Simulationszeit (Pause und Zeitfaktor berücksichtigt)."
+    },
+    {
+     "name": "real",
+     "kind": "property",
+     "type": "number",
+     "doc": "Echte Zeit."
+    },
+    {
+     "name": "dt",
+     "kind": "property",
+     "type": "number",
+     "doc": "Simulationsschritt dieses Bildes."
+    },
+    {
+     "name": "rdt",
+     "kind": "property",
+     "type": "number",
+     "doc": "Echter Schritt dieses Bildes."
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "frame",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "paused",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "Stats": {
+   "extends": null,
+   "doc": "Messwerte (siehe Handbuch „Diagnose“).",
+   "tested": false,
+   "members": [
+    {
+     "name": "fps",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "frameMs",
+     "kind": "property",
+     "type": "{ avg: number; p95: number; max: number }",
+     "doc": ""
+    },
+    {
+     "name": "sim",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    },
+    {
+     "name": "objects",
+     "kind": "property",
+     "type": "Record<string, number>",
+     "doc": ""
+    },
+    {
+     "name": "systems",
+     "kind": "property",
+     "type": "Record<string, number>",
+     "doc": ""
+    },
+    {
+     "name": "render",
+     "kind": "property",
+     "type": "Record<string, number | null>",
+     "doc": ""
+    },
+    {
+     "name": "assets",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    },
+    {
+     "name": "limits",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": ""
+    }
+   ]
+  },
+  "ModuleHandle": {
+   "extends": null,
+   "doc": "Griff auf ein registriertes Modul.",
+   "tested": true,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "state",
+     "kind": "readonly",
+     "type": "'new' | 'loading' | 'ready' | 'active' | 'failed' | 'disposed'",
+     "doc": ""
+    },
+    {
+     "name": "error",
+     "kind": "readonly",
+     "type": "string | null",
+     "doc": ""
+    },
+    {
+     "name": "enable",
+     "kind": "method",
+     "type": "() => boolean",
+     "doc": ""
+    },
+    {
+     "name": "disable",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    },
+    {
+     "name": "ctx",
+     "kind": "readonly",
+     "type": "ModuleCtx",
+     "doc": ""
+    }
+   ]
+  },
+  "ModuleCtx": {
+   "extends": "Game",
+   "doc": "Das `ctx` eines Moduls: die ganze game-Schnittstelle, aber mit Eigentum – was darüber angelegt wird, räumt das Modul beim Ausschalten auf.",
+   "tested": true,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "game",
+     "kind": "property",
+     "type": "Game",
+     "doc": "Die unveränderte Schnittstelle (ohne Eigentum)."
+    },
+    {
+     "name": "state",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": "Wird automatisch gespeichert/geladen, wenn das Modul state: {…} deklariert."
+    },
+    {
+     "name": "own",
+     "kind": "method",
+     "type": "<T>(x: T, key?: any) => T",
+     "doc": "Etwas dem Modul zuordnen (Funktion, Object3D, Objekt mit dispose/cancel)."
+    },
+    {
+     "name": "track",
+     "kind": "method",
+     "type": "<T>(x: T, key?: any) => T",
+     "doc": "Wie own."
+    },
+    {
+     "name": "release",
+     "kind": "method",
+     "type": "(key: any) => boolean",
+     "doc": "Ein Eigentum sofort freigeben."
+    },
+    {
+     "name": "add",
+     "kind": "method",
+     "type": "(obj: any, parent?: any) => any",
+     "doc": "THREE-Objekt in ctx.root (oder parent) hängen; wird freigegeben."
+    },
+    {
+     "name": "root",
+     "kind": "readonly",
+     "type": "any",
+     "doc": "Eigene THREE.Group des Moduls (lazy)."
+    },
+    {
+     "name": "alive",
+     "kind": "readonly",
+     "type": "boolean",
+     "doc": "Läuft diese Aktivierung noch?"
+    },
+    {
+     "name": "hudSet",
+     "kind": "method",
+     "type": "(key: string, text: string) => void",
+     "doc": "HUD-Zeile des Moduls."
+    },
+    {
+     "name": "model",
+     "kind": "method",
+     "type": "(id: string, o?: ModelOptions) => ModelInstance | null",
+     "doc": "Instanz eines geladenen Modells; gehört dem Modul und wird mit ihm freigegeben."
+    }
+   ]
+  },
+  "PlaceOptions": {
+   "extends": null,
+   "doc": "Optionen für game.place.",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "at",
+     "kind": "property",
+     "type": "string | Vec2",
+     "doc": "Ort-Name oder Punkt."
+    },
+    {
+     "name": "yaw",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "heading",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "data",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    },
+    {
+     "name": "ghost",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "opacity",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "PrefabDef": {
+   "extends": null,
+   "doc": "Beschreibung eines Prefabs: parts ODER build ODER model; dazu Werte und Hooks.",
+   "tested": false,
+   "members": [
+    {
+     "name": "parts",
+     "kind": "property",
+     "type": "PartDef[]",
+     "doc": "Teile aus Grundkörpern."
+    },
+    {
+     "name": "build",
+     "kind": "method",
+     "type": "(thing: Thing, env: { THREE: any; game: Game }) => any",
+     "doc": "Eigene THREE.Object3D bauen (Geometrie gehört dem Objekt und wird mit ihm freigegeben)."
+    },
+    {
+     "name": "model",
+     "kind": "property",
+     "type": "string | { id: string; height?: number; scale?: number; forward?: '+z' | '-z' | '+x' | '-x'; origin?: 'bottom' | 'center' | 'keep' }",
+     "doc": "Geladenes GLB-Modell."
+    },
+    {
+     "name": "hits",
+     "kind": "property",
+     "type": "HitZoneDef[]",
+     "doc": "Eigene Trefferzonen (sonst Zylinder aus radius/height)."
+    },
+    {
+     "name": "solid",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "radius",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "explode",
+     "kind": "property",
+     "type": "number",
+     "doc": "0 = keine Explosion."
+    },
+    {
+     "name": "update",
+     "kind": "method",
+     "type": "(thing: Thing, dt: number) => void",
+     "doc": "Jedes Simulationsbild."
+    },
+    {
+     "name": "onDamage",
+     "kind": "method",
+     "type": "(thing: Thing, e: { amount: number; by: any; zone: string | null }) => void | false | number",
+     "doc": "false = kein Schaden, Zahl = neuer Schaden."
+    },
+    {
+     "name": "onDestroy",
+     "kind": "method",
+     "type": "(thing: Thing, by: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "save",
+     "kind": "method",
+     "type": "(thing: Thing) => object | undefined",
+     "doc": "Eigene Daten für den Spielstand."
+    },
+    {
+     "name": "load",
+     "kind": "method",
+     "type": "(thing: Thing, data: any) => void",
+     "doc": "Eigene Daten wiederherstellen."
+    }
+   ]
+  },
+  "PartDef": {
+   "extends": null,
+   "doc": "Ein Teil eines Prefabs.",
+   "tested": false,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "shape",
+     "kind": "property",
+     "type": "'box' | 'sphere' | 'cylinder' | 'cone'",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number | number[]",
+     "doc": ""
+    },
+    {
+     "name": "pos",
+     "kind": "property",
+     "type": "number[]",
+     "doc": ""
+    },
+    {
+     "name": "color",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "children",
+     "kind": "property",
+     "type": "PartDef[]",
+     "doc": ""
+    },
+    {
+     "name": "muzzle",
+     "kind": "property",
+     "type": "number[]",
+     "doc": ""
+    }
+   ]
+  },
+  "HitZoneDef": {
+   "extends": null,
+   "doc": "Eine Trefferzone eines Prefabs.",
+   "tested": false,
+   "members": [
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "r",
+     "kind": "property",
+     "type": "number",
+     "doc": "Radius."
+    },
+    {
+     "name": "pos",
+     "kind": "property",
+     "type": "number[]",
+     "doc": "Mitte (lokal)."
+    },
+    {
+     "name": "to",
+     "kind": "property",
+     "type": "number[]",
+     "doc": "Zweiter Punkt (Kapsel)."
+    },
+    {
+     "name": "part",
+     "kind": "property",
+     "type": "string",
+     "doc": "Folgt diesem Teil / diesem benannten Knoten."
+    },
+    {
+     "name": "follow",
+     "kind": "method",
+     "type": "(thing: Thing) => any",
+     "doc": "Folgt diesem THREE-Objekt."
+    },
+    {
+     "name": "mult",
+     "kind": "property",
+     "type": "number",
+     "doc": "Schadensfaktor (Kopf = 3)."
+    }
+   ]
+  },
+  "CastOptions": {
+   "extends": null,
+   "doc": "Optionen für Strahlen.",
+   "tested": false,
+   "members": [
+    {
+     "name": "units",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "things",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "ignore",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    }
+   ]
+  },
+  "SpawnOptions": {
+   "extends": null,
+   "doc": "Optionen für game.spawn.",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "at",
+     "kind": "property",
+     "type": "string | Vec2",
+     "doc": ""
+    },
+    {
+     "name": "near",
+     "kind": "property",
+     "type": "string | Vec2",
+     "doc": ""
+    },
+    {
+     "name": "minR",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "maxR",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "ai",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "params",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    }
+   ]
+  },
+  "GoToOptions": {
+   "extends": null,
+   "doc": "Optionen für Unit.goTo.",
+   "tested": false,
+   "members": [
+    {
+     "name": "reach",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "fight",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "direct",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "speed",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "onArrive",
+     "kind": "method",
+     "type": "(u: Unit) => void",
+     "doc": ""
+    },
+    {
+     "name": "onFail",
+     "kind": "method",
+     "type": "(u: Unit, reason: string) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "ShootOptions": {
+   "extends": null,
+   "doc": "Optionen für game.shoot.",
+   "tested": false,
+   "members": [
+    {
+     "name": "from",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    },
+    {
+     "name": "to",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    },
+    {
+     "name": "dir",
+     "kind": "property",
+     "type": "Vec3",
+     "doc": ""
+    },
+    {
+     "name": "target",
+     "kind": "property",
+     "type": "Unit | Thing | 'player'",
+     "doc": ""
+    },
+    {
+     "name": "speed",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "damage",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "splash",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "owner",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    },
+    {
+     "name": "shape",
+     "kind": "property",
+     "type": "'ball' | 'bolt' | 'rocket'",
+     "doc": ""
+    },
+    {
+     "name": "gravity",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "homing",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "life",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "color",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "onHit",
+     "kind": "method",
+     "type": "(i: { x: number; y: number; z: number; zone: string | null; unit: Unit | null; thing: Thing | null; player: boolean; type: string }) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "ExplodeOptions": {
+   "extends": null,
+   "doc": "Optionen für game.explode.",
+   "tested": false,
+   "members": [
+    {
+     "name": "radius",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "damage",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "owner",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    }
+   ]
+  },
+  "KindSpec": {
+   "extends": null,
+   "doc": "Einheitentyp für game.defineKind.",
+   "tested": false,
+   "members": [
+    {
+     "name": "prefab",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "team",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "hp",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "speed",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "run",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "fly",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "hitR",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "score",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "animate",
+     "kind": "method",
+     "type": "(parts: Record<string, Part>, c: { dt: number; speed: number; attack: number; t: number; unit: Unit }) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "PickupOptions": {
+   "extends": null,
+   "doc": "Optionen für game.pickup.",
+   "tested": false,
+   "members": [
+    {
+     "name": "amount",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "weapon",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "stat",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "factor",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "respawn",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "ZoneOptions": {
+   "extends": null,
+   "doc": "Optionen für game.zone.",
+   "tested": false,
+   "members": [
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "at",
+     "kind": "property",
+     "type": "string | Vec2",
+     "doc": ""
+    },
+    {
+     "name": "r",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "name",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "who",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "color",
+     "kind": "property",
+     "type": "string | number",
+     "doc": ""
+    },
+    {
+     "name": "onEnter",
+     "kind": "method",
+     "type": "(who: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "onLeave",
+     "kind": "method",
+     "type": "(who: any) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "RingOptions": {
+   "extends": null,
+   "doc": "Optionen für fx.ring.",
+   "tested": false,
+   "members": [
+    {
+     "name": "color",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "opacity",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "sec",
+     "kind": "property",
+     "type": "number",
+     "doc": "Lebensdauer (0 = bleibt)."
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "TweenOptions": {
+   "extends": null,
+   "doc": "Optionen für game.tween.",
+   "tested": false,
+   "members": [
+    {
+     "name": "ease",
+     "kind": "property",
+     "type": "'linear' | 'in' | 'out' | 'inout' | 'back' | 'bounce'",
+     "doc": "Standard inout."
+    },
+    {
+     "name": "delay",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "from",
+     "kind": "property",
+     "type": "Record<string, number>",
+     "doc": "Startwerte (werden sofort gesetzt)."
+    },
+    {
+     "name": "realtime",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "Echte Zeit statt Simulationszeit (bei Widgets Standard)."
+    },
+    {
+     "name": "onDone",
+     "kind": "method",
+     "type": "(target: any) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "WidgetOptions": {
+   "extends": null,
+   "doc": "Optionen für ui.widget.",
+   "tested": false,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "anchor",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "w",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "h",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "margin",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "visible",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "draw",
+     "kind": "method",
+     "type": "(g: any) => void",
+     "doc": "Zeichnen mit g.rect/g.text/g.measure …"
+    },
+    {
+     "name": "data",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    },
+    {
+     "name": "pointer",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "focusable",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "onClick",
+     "kind": "method",
+     "type": "(e: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "onKey",
+     "kind": "method",
+     "type": "(e: any) => boolean | void",
+     "doc": ""
+    }
+   ]
+  },
+  "MenuOptions": {
+   "extends": null,
+   "doc": "Optionen für ui.menu.",
+   "tested": false,
+   "members": [
+    {
+     "name": "id",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "title",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "text",
+     "kind": "property",
+     "type": "string | (() => string)",
+     "doc": "Fließtext unter dem Titel (wird umbrochen)."
+    },
+    {
+     "name": "items",
+     "kind": "property",
+     "type": "MenuItem[] | (() => MenuItem[])",
+     "doc": ""
+    },
+    {
+     "name": "hint",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "pause",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "Spiel anhalten, solange offen (Standard true)."
+    },
+    {
+     "name": "closeOnSelect",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "onClose",
+     "kind": "method",
+     "type": "() => void",
+     "doc": ""
+    },
+    {
+     "name": "anchor",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "w",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "MenuItem": {
+   "extends": null,
+   "doc": "Ein Menü-Eintrag.",
+   "tested": false,
+   "members": [
+    {
+     "name": "label",
+     "kind": "property",
+     "type": "string | (() => string)",
+     "doc": ""
+    },
+    {
+     "name": "detail",
+     "kind": "property",
+     "type": "string | (() => string)",
+     "doc": ""
+    },
+    {
+     "name": "disabled",
+     "kind": "property",
+     "type": "boolean | (() => boolean)",
+     "doc": ""
+    },
+    {
+     "name": "reason",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "onSelect",
+     "kind": "method",
+     "type": "(item: MenuItem, i: number) => void",
+     "doc": ""
+    }
+   ]
+  },
+  "InputDef": {
+   "extends": null,
+   "doc": "Optionen für input.action / input.axis.",
+   "tested": false,
+   "members": [
+    {
+     "name": "keys",
+     "kind": "property",
+     "type": "string | string[]",
+     "doc": "Quellen der Aktion (\"w\", \"space\", \"Mouse0\", \"WheelUp\" …); Kurzform für pos."
+    },
+    {
+     "name": "pos",
+     "kind": "property",
+     "type": "string | string[]",
+     "doc": "Achse: positive Richtung."
+    },
+    {
+     "name": "neg",
+     "kind": "property",
+     "type": "string | string[]",
+     "doc": "Achse: negative Richtung."
+    },
+    {
+     "name": "context",
+     "kind": "property",
+     "type": "string",
+     "doc": "Nur in diesem Eingabe-Kontext (Standard \"*\" = jeder außer menu)."
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": "Faktor des Achsenwerts."
+    }
+   ]
+  },
+  "RigOptions": {
+   "extends": null,
+   "doc": "Optionen für camera.create.",
+   "tested": false,
+   "members": [
+    {
+     "name": "type",
+     "kind": "property",
+     "type": "'perspective' | 'orthographic'",
+     "doc": ""
+    },
+    {
+     "name": "fov",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "near",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "far",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "x",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "y",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "z",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    }
+   ]
+  },
+  "ControllerDef": {
+   "extends": null,
+   "doc": "Eigene Steuerung (game.controller.define).",
+   "tested": false,
+   "members": [
+    {
+     "name": "context",
+     "kind": "property",
+     "type": "string",
+     "doc": "Eingabe-Kontext."
+    },
+    {
+     "name": "cursor",
+     "kind": "property",
+     "type": "'locked' | 'free'",
+     "doc": ""
+    },
+    {
+     "name": "player",
+     "kind": "property",
+     "type": "'active' | 'idle' | 'off'",
+     "doc": ""
+    },
+    {
+     "name": "viewmodel",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "input",
+     "kind": "property",
+     "type": "Record<string, InputDef>",
+     "doc": ""
+    },
+    {
+     "name": "enter",
+     "kind": "method",
+     "type": "(cc: any, o: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "exit",
+     "kind": "method",
+     "type": "(cc: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "update",
+     "kind": "method",
+     "type": "(cc: any, dt: number) => void",
+     "doc": ""
+    },
+    {
+     "name": "camera",
+     "kind": "method",
+     "type": "(cc: any, dt: number) => void",
+     "doc": ""
+    },
+    {
+     "name": "pointer",
+     "kind": "method",
+     "type": "(cc: any, type: string, e: any) => void",
+     "doc": ""
+    },
+    {
+     "name": "view",
+     "kind": "method",
+     "type": "(cc: any) => { x: number; z: number; shadow?: number; near?: number }",
+     "doc": "Wo die Stadt Details laden soll."
+    }
+   ]
+  },
+  "ModelOptions": {
+   "extends": null,
+   "doc": "Optionen für assets.model / ctx.model.",
+   "tested": false,
+   "members": [
+    {
+     "name": "height",
+     "kind": "property",
+     "type": "number",
+     "doc": "Zielhöhe in Metern."
+    },
+    {
+     "name": "scale",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "forward",
+     "kind": "property",
+     "type": "'+z' | '-z' | '+x' | '-x'",
+     "doc": "Blickrichtung des Modells (Standard +z)."
+    },
+    {
+     "name": "origin",
+     "kind": "property",
+     "type": "'bottom' | 'center' | 'keep'",
+     "doc": ""
+    },
+    {
+     "name": "ownMaterials",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    },
+    {
+     "name": "shadows",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "InstancedOptions": {
+   "extends": null,
+   "doc": "Optionen für game.instanced.",
+   "tested": false,
+   "members": [
+    {
+     "name": "shape",
+     "kind": "property",
+     "type": "'box' | 'sphere' | 'cylinder' | 'cone'",
+     "doc": ""
+    },
+    {
+     "name": "size",
+     "kind": "property",
+     "type": "number | number[]",
+     "doc": ""
+    },
+    {
+     "name": "color",
+     "kind": "property",
+     "type": "string | number",
+     "doc": ""
+    },
+    {
+     "name": "geometry",
+     "kind": "property",
+     "type": "any",
+     "doc": "THREE.BufferGeometry (statt shape)"
+    },
+    {
+     "name": "material",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    },
+    {
+     "name": "max",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "castShadow",
+     "kind": "property",
+     "type": "boolean",
+     "doc": ""
+    }
+   ]
+  },
+  "ModuleDef": {
+   "extends": null,
+   "doc": "Beschreibung eines Moduls.",
+   "tested": false,
+   "members": [
+    {
+     "name": "doc",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "deps",
+     "kind": "property",
+     "type": "string[]",
+     "doc": "Andere Module, die zuerst laufen müssen."
+    },
+    {
+     "name": "state",
+     "kind": "property",
+     "type": "Record<string, any>",
+     "doc": "Anfangszustand; wird automatisch gespeichert (ctx.state)."
+    },
+    {
+     "name": "version",
+     "kind": "property",
+     "type": "number",
+     "doc": "Version des gespeicherten Zustands."
+    },
+    {
+     "name": "auto",
+     "kind": "property",
+     "type": "boolean",
+     "doc": "false = nicht automatisch einschalten."
+    },
+    {
+     "name": "init",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx) => void | Promise<void>",
+     "doc": "Einmal beim Registrieren; darf asynchron sein (Modelle laden)."
+    },
+    {
+     "name": "enable",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx) => void",
+     "doc": "Einschalten."
+    },
+    {
+     "name": "update",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx, dt: number) => void",
+     "doc": "Jedes Simulationsbild (nicht in der Pause)."
+    },
+    {
+     "name": "frame",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx, rdt: number) => void",
+     "doc": "Jedes Bild (auch in der Pause, echte Zeit)."
+    },
+    {
+     "name": "disable",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx) => void",
+     "doc": "Ausschalten (Eigentum wird danach automatisch aufgeräumt)."
+    },
+    {
+     "name": "save",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx) => object",
+     "doc": "Eigener Zustand für den Spielstand."
+    },
+    {
+     "name": "load",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx, data: any, savedVersion: number) => void",
+     "doc": "Zustand wiederherstellen."
+    },
+    {
+     "name": "dispose",
+     "kind": "method",
+     "type": "(ctx: ModuleCtx) => void",
+     "doc": "Endgültig entfernen."
+    }
+   ]
+  },
+  "SaveState": {
+   "extends": null,
+   "doc": "Spielstand (Format 2). Enthält keine Funktionen; Projektile, Partikel, Tweens und Aufträge (goTo) werden NICHT gespeichert.",
+   "tested": false,
+   "members": [
+    {
+     "name": "v",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "api",
+     "kind": "property",
+     "type": "string",
+     "doc": ""
+    },
+    {
+     "name": "nextId",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "modules",
+     "kind": "property",
+     "type": "Record<string, { v: number; data: any }>",
+     "doc": ""
+    },
+    {
+     "name": "score",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "kills",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "time",
+     "kind": "property",
+     "type": "number",
+     "doc": ""
+    },
+    {
+     "name": "extra",
+     "kind": "property",
+     "type": "any",
+     "doc": ""
+    },
+    {
+     "name": "player",
+     "kind": "property",
+     "type": "object",
+     "doc": ""
+    },
+    {
+     "name": "units",
+     "kind": "property",
+     "type": "object[]",
+     "doc": ""
+    },
+    {
+     "name": "pickups",
+     "kind": "property",
+     "type": "object[]",
+     "doc": ""
+    },
+    {
+     "name": "things",
+     "kind": "property",
+     "type": "object[]",
+     "doc": ""
+    }
+   ]
+  }
+ }
+}

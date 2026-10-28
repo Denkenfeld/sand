@@ -1,0 +1,21 @@
+{
+  "name": "desert-forge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tools/check-spec.mjs",
+    "build": "node build.mjs",
+    "dev": "node build.mjs --dev",
+    "docs": "node tools/docs.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cannon-es": "^0.20.0",
+    "esbuild": "^0.28.2",
+    "three": "^0.186.1"
+  },
+  "type": "module"
+}

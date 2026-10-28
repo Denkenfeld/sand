@@ -1,0 +1,347 @@
+<title>Desert Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: Vollbild-Viewport, links Objektliste, rechts Regler, unten Aktionsleiste.
+   Eine bewusst dunkle Werkstatt-Optik (Einzel-Theme): Sand, Rost, oxidiertes Türkis als Statusfarbe. */
+:root {
+  color-scheme: dark;
+  --bg: #110d09;
+  --panel: rgba(25, 19, 13, 0.88);
+  --panel-solid: #1c150f;
+  --raise: #281f16;
+  --line: #3d3022;
+  --line-soft: #2a2117;
+  --fg: #ecdfc6;
+  --muted: #a8977a;
+  --accent: #e8922e;
+  --accent-ink: #1b1007;
+  --teal: #62b9a8;
+  --danger: #dc5a30;
+  --font-display: 'Chakra Petch', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.45 var(--font-body);
+  overflow: hidden;
+}
+#app { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+#stage { position: absolute; inset: 0; }
+#stage canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
+
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* Kopfleiste */
+#top {
+  position: absolute; top: 0; left: 0; right: 0; height: 48px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 var(--gutter-r) 0 var(--gutter-l);
+  background: linear-gradient(180deg, rgba(17, 13, 9, 0.82), rgba(17, 13, 9, 0));
+  pointer-events: none;
+}
+#top > * { pointer-events: auto; }
+.brand { font: 700 17px/1 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; }
+.brand b { color: var(--accent); font-weight: 700; }
+.brand-sub { font: 400 11px/1 var(--font-mono); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.spacer { flex: 1; }
+.toggle-btn { display: none; }
+
+/* Panels */
+.panel {
+  position: absolute; top: 56px; bottom: 76px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+  backdrop-filter: blur(6px);
+  overflow-y: auto; overflow-x: hidden;
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+#left { left: var(--gutter-l); width: 220px; }
+#right { right: var(--gutter-r); width: 300px; }
+
+.cat {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;
+  padding: 12px 14px 6px; background: none; border: 0; text-align: left;
+  font: 600 10.5px/1 var(--font-display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+}
+.cat:hover { color: var(--fg); }
+.cat .cnt { font: 400 10px/1 var(--font-mono); letter-spacing: 0; }
+.cat::before { content: '▾'; margin-right: 2px; font-size: 11px; order: -1; transition: transform .15s; }
+.cat[aria-expanded="false"]::before { transform: rotate(-90deg); }
+.cat-body[hidden] { display: none; }
+.obj-btn {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px; width: 100%;
+  text-align: left; background: none; border: 0; border-left: 3px solid transparent;
+  padding: 8px 14px 8px 11px; color: var(--fg);
+}
+.obj-btn:hover { background: var(--raise); }
+.obj-btn[aria-pressed="true"] { border-left-color: var(--accent); background: var(--raise); }
+.obj-btn .tag { font: 400 10px/1 var(--font-mono); color: var(--muted); white-space: nowrap; }
+
+details { border-bottom: 1px solid var(--line-soft); }
+details:last-child { border-bottom: 0; }
+summary {
+  list-style: none; cursor: pointer; padding: 11px 14px;
+  font: 600 11px/1 var(--font-display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg);
+  display: flex; align-items: center; justify-content: space-between;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font: 500 14px/1 var(--font-mono); color: var(--muted); }
+details[open] > summary::after { content: '–'; }
+.sec { padding: 2px 14px 14px; display: grid; gap: 11px; }
+
+.ctl { display: grid; gap: 4px; min-width: 0; }
+.ctl-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.ctl label, .ctl .lab { color: var(--muted); font-size: 12px; }
+.ctl output { font: 500 11.5px/1 var(--font-mono); color: var(--fg); font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; margin: 0; accent-color: var(--accent); height: 18px; }
+select, input[type="number"] {
+  width: 100%; box-sizing: border-box; background: var(--raise); border: 1px solid var(--line); border-radius: 3px; padding: 6px 8px; min-width: 0;
+}
+.check { display: flex; align-items: center; gap: 9px; color: var(--fg); font-size: 12.5px; }
+.check input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--raise); border: 1px solid var(--line); border-radius: 3px; padding: 5px 9px; font-size: 11.5px; }
+.chip:hover { border-color: var(--accent); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.mini { background: var(--raise); border: 1px solid var(--line); border-radius: 3px; padding: 7px 10px; font-size: 12px; }
+.mini:hover { border-color: var(--accent); }
+.note { color: var(--muted); font-size: 11.5px; margin: 0; }
+
+/* Aktionsleiste */
+#bar {
+  position: absolute; bottom: 14px; left: calc(var(--gutter-l) + 232px); right: calc(var(--gutter-r) + 312px);
+  display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; pointer-events: none;
+}
+#bar > * { pointer-events: auto; }
+.act {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--panel-solid); border: 1px solid var(--line); border-radius: 3px;
+  padding: 10px 16px; font: 600 12px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+}
+.act:hover:not(:disabled) { border-color: var(--accent); }
+.act:disabled { opacity: 0.4; cursor: not-allowed; }
+.act.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.act.danger { border-color: var(--danger); color: #ffb59a; }
+.act.danger:hover:not(:disabled) { background: var(--danger); color: #1a0903; }
+.act[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #08201b; }
+#bar select { width: auto; padding: 9px 8px; font-size: 12px; }
+
+#hud {
+  position: absolute; left: var(--gutter-l); bottom: 14px; width: 220px;
+  font: 400 10.5px/1.5 var(--font-mono); color: var(--muted); pointer-events: none;
+}
+#hud b { color: var(--fg); font-weight: 500; }
+#hint {
+  position: absolute; top: 58px; left: 50%; transform: translateX(-50%);
+  background: var(--panel-solid); border: 1px solid var(--teal); color: var(--fg);
+  padding: 8px 14px; border-radius: 3px; font: 500 12px/1.3 var(--font-mono); text-align: center; max-width: calc(100% - 32px);
+}
+#hint[hidden] { display: none; }
+body.mode-city #hint { top: 92px; }
+
+#loading {
+  position: absolute; inset: 0; z-index: 10; background: var(--bg);
+  display: grid; place-content: center; gap: 14px; text-align: center; padding: 24px;
+  transition: opacity 0.5s;
+}
+#loading.done { opacity: 0; pointer-events: none; }
+#loading .brand { font-size: 24px; }
+#loading-track { width: min(320px, 70vw); height: 3px; background: var(--line); margin: 0 auto; }
+#loading-bar { height: 100%; width: 0; background: var(--accent); transition: width 0.15s; }
+#loading-text { font: 400 12px/1 var(--font-mono); color: var(--muted); }
+
+
+/* ───────── Stadt-Modus ───────── */
+.modes { display: inline-flex; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; background: var(--panel-solid); }
+.modes button { background: none; border: 0; padding: 7px 14px; font: 600 11px/1 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.modes button + button { border-left: 1px solid var(--line); }
+.modes button:hover { color: var(--fg); }
+.modes button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+body:not(.mode-city) #cleft, body:not(.mode-city) #cright, body:not(.mode-city) #sright, body:not(.mode-city) .cityonly { display: none !important; }
+body.mode-city #left, body.mode-city #right, body.mode-city #bar, body.mode-city #hud { display: none !important; }
+#cleft { left: var(--gutter-l); width: 220px; bottom: calc(var(--mm) + 28px); }
+#cright { right: var(--gutter-r); width: 300px; }
+#cbar {
+  position: absolute; bottom: 14px; left: calc(var(--gutter-l) + 232px); right: calc(var(--gutter-r) + 312px);
+  display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; pointer-events: none;
+}
+#cbar > * { pointer-events: auto; }
+#cbar .act { padding-left: 12px; padding-right: 12px; }
+#cbar { gap: 6px 7px; }
+:root { --mm: 200px; }
+#minimap-wrap { position: absolute; left: var(--gutter-l); bottom: 14px; width: var(--mm); height: var(--mm); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #1c150f; box-shadow: 0 2px 14px rgba(0,0,0,.45); }
+#minimap { display: block; width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
+#minimap-wrap .mm-cap { position: absolute; left: 6px; top: 5px; font: 500 9.5px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: #f4e6c8; text-shadow: 0 1px 2px #000; pointer-events: none; }
+#dbanner {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none;
+  font: 700 17px/1.1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.7);
+}
+#dbanner small { display: block; margin-top: 4px; font: 400 10.5px/1.2 var(--font-mono); letter-spacing: .04em; text-transform: none; color: var(--muted); max-width: 46ch; }
+#dbanner .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 9px; vertical-align: 1px; }
+#card {
+  position: absolute; top: 56px; left: calc(var(--gutter-l) + 232px); width: 250px; background: var(--panel); border: 1px solid var(--teal);
+  border-radius: 4px; backdrop-filter: blur(6px); padding: 12px 14px; display: none; z-index: 3;
+}
+#card.show { display: block; }
+#card h3 { margin: 0 0 2px; font: 700 14px/1.2 var(--font-display); letter-spacing: .1em; text-transform: uppercase; }
+#card .sub { color: var(--muted); font: 400 11px/1.3 var(--font-mono); margin-bottom: 8px; }
+#card dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 0 0 10px; font-size: 12px; }
+#card dt { color: var(--muted); }
+#card dd { margin: 0; text-align: right; font-family: var(--font-mono); font-size: 11.5px; }
+#labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+#labels span {
+  position: absolute; left: 0; top: 0; white-space: nowrap; transform: translate(-50%, -50%);
+  font: 700 12px/1 var(--font-display); letter-spacing: .18em; text-transform: uppercase; color: #fff6e0; text-shadow: 0 1px 6px #000, 0 0 2px #000;
+  transition: opacity .25s; will-change: transform;
+}
+#touchpad { position: absolute; right: calc(var(--gutter-r) + 12px); bottom: 70px; display: none; grid-template-columns: repeat(3, 46px); grid-template-rows: repeat(2, 46px); gap: 6px; z-index: 4; }
+#touchpad button { background: rgba(28,21,15,.82); border: 1px solid var(--line); border-radius: 50%; font-size: 18px; touch-action: none; }
+body.mode-city #touchpad.on { display: grid; }
+#touchpad button:active { background: var(--accent); color: var(--accent-ink); }
+#touchpad .drv { display: none; font: 700 11px/1 var(--font-mono); letter-spacing: .04em; }
+body.drive #touchpad .drv { display: block; }
+#touchpad .hb { grid-column: 1; grid-row: 1; } #touchpad .bo { grid-column: 3; grid-row: 1; }
+#vhud { display: none; margin: 0; padding: 6px 14px; background: rgba(28,21,15,.78); border: 1px solid var(--line); border-radius: 3px; font: 500 12px/1.3 var(--font-mono); color: var(--fg); letter-spacing: .06em; pointer-events: none; white-space: pre; }
+body.mode-city.drive #vhud { display: block; min-width: 9em; text-align: center; min-height: 1.3em; }
+#vhud[hidden] { visibility: hidden; }
+#vact { display: none; justify-content: center; gap: 6px; flex-wrap: wrap; }
+body.mode-city.drive #vact { display: flex; }
+.brk { display: none; flex: 0 0 100%; height: 0; }
+body.mode-city.drive .brk { display: block; }
+.act.sm { padding: 6px 10px; font-size: 11px; }
+#touchpad .up { grid-column: 2; grid-row: 1; } #touchpad .lf { grid-column: 1; grid-row: 2; } #touchpad .dn { grid-column: 2; grid-row: 2; } #touchpad .rt { grid-column: 3; grid-row: 2; }
+.dlist { display: grid; }
+.dl-head { display: flex; align-items: center; gap: 9px; width: 100%; padding: 9px 14px 9px 12px; background: none; border: 0; text-align: left; color: var(--fg); font: 600 12px/1.2 var(--font-body); }
+.dl-head:hover { background: var(--raise); }
+.dl-head .sw { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.dl-head .nm { flex: 1; min-width: 0; }
+.dl-head .cnt { font: 400 10px/1 var(--font-mono); color: var(--muted); }
+.dl-head .chev { color: var(--muted); font-size: 11px; transition: transform .15s; }
+.dl-head[aria-expanded="false"] .chev { transform: rotate(-90deg); }
+.dl-body { padding: 0 0 6px 0; }
+.dl-body[hidden] { display: none; }
+.dl-row { display: flex; justify-content: space-between; gap: 8px; width: 100%; text-align: left; background: none; border: 0; border-left: 3px solid transparent; padding: 6px 14px 6px 30px; font-size: 12px; color: var(--fg); }
+.dl-row:hover { background: var(--raise); border-left-color: var(--accent); }
+.dl-row .k { font: 400 10px/1.5 var(--font-mono); color: var(--muted); white-space: nowrap; }
+.dl-row.dist { color: var(--teal); }
+.stat-grid { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; font-size: 12px; }
+.stat-grid span:nth-child(odd) { color: var(--muted); }
+.stat-grid span:nth-child(even) { font: 500 11.5px/1.4 var(--font-mono); text-align: right; }
+.bars { display: grid; gap: 5px; }
+.bars .b { display: grid; grid-template-columns: 78px 1fr 30px; align-items: center; gap: 7px; font-size: 11.5px; color: var(--muted); }
+.bars .b i { display: block; height: 5px; background: var(--accent); border-radius: 2px; opacity: .85; }
+.bars .b em { font: normal 400 10.5px/1 var(--font-mono); color: var(--fg); text-align: right; }
+#loading-sub { font: 400 11px/1.4 var(--font-mono); color: var(--muted); max-width: 46ch; margin: 0 auto; }
+
+/* Mittlere Fenster: Aktionsleiste über die volle Breite, Statistik ausblenden */
+@media (max-width: 1180px) {
+  #bar { left: var(--gutter-l); right: var(--gutter-r); }
+  #hud { display: none; }
+  #cbar { left: calc(var(--gutter-l) + 232px); right: var(--gutter-r); }
+  :root { --mm: 168px; }
+}
+/* Schmale Bildschirme: Panels als Schubladen */
+@media (max-width: 880px) {
+  .toggle-btn { display: inline-block; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 3px; padding: 7px 10px; font: 600 11px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; }
+  .toggle-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .brand-sub, #hud { display: none; }
+  .panel, #cleft, #cright { display: none; left: var(--gutter-l); right: var(--gutter-r); width: auto; top: 54px; bottom: 74px; z-index: 5; background: var(--panel-solid); }
+  body.p-left #left, body.p-right #right { display: block; }
+  body.mode-city.p-left #cleft, body.mode-city.p-right #cright { display: block; }
+  body.mode-city.p-left #left, body.mode-city.p-right #right { display: none !important; }
+  body:not(.mode-city) #cleft, body:not(.mode-city) #cright { display: none !important; }
+  #bar, #cbar { bottom: 12px; left: var(--gutter-l); right: var(--gutter-r); }
+  .act { padding: 9px 11px; font-size: 11px; }
+  :root { --mm: 112px; }
+  #minimap-wrap { left: auto; right: var(--gutter-r); top: 54px; bottom: auto; }
+  #dbanner { left: var(--gutter-l); top: 56px; transform: none; text-align: left; font-size: 13px; }
+  #dbanner small { display: none; }
+  #card { left: var(--gutter-l); top: auto; bottom: 66px; width: min(280px, calc(100% - 2 * var(--gutter-l))); }
+  .modes button { padding: 7px 9px; }
+  body.mode-city #hint { left: var(--gutter-l); transform: none; top: 84px; max-width: calc(100% - var(--mm) - 48px); text-align: left; font-size: 11px; }
+  #touchpad { bottom: 122px; }
+  body.drive #touchpad { bottom: 214px; }
+  #vhud { font-size: 11px; padding: 5px 10px; }
+}
+@media (max-width: 560px) {
+  .brand { display: none; }
+}
+@media (max-width: 700px) {
+  .panel { bottom: 118px; }
+}
+@media (prefers-reduced-motion: reduce) { #loading { transition: none; } }
+</style>
+
+<div id="app">
+  <div id="stage"></div>
+  <div id="labels" class="cityonly"></div>
+
+  <header id="top">
+    <div class="brand">Desert <b>Forge</b></div>
+    <nav class="modes" aria-label="Modus">
+      <button id="m-city" aria-pressed="true">Stadt</button>
+      <button id="m-studio" aria-pressed="false">Studio</button>
+      <button id="m-work" aria-pressed="false">Werkstatt</button>
+    </nav>
+    <div class="brand-sub" id="brand-sub">Objekt-Werkstatt für Wüstenplaneten</div>
+    <div class="spacer"></div>
+    <button class="toggle-btn" id="tg-left" aria-pressed="false">Objekte</button>
+    <button class="toggle-btn" id="tg-right" aria-pressed="false">Regler</button>
+  </header>
+
+  <aside class="panel" id="left" aria-label="Objekte"></aside>
+  <aside class="panel" id="right" aria-label="Einstellungen"></aside>
+
+  <aside class="panel" id="cleft" aria-label="Orte"></aside>
+  <aside class="panel" id="cright" aria-label="Stadt-Einstellungen"></aside>
+  <aside class="panel" id="sright" aria-label="Studio"></aside>
+  <div id="dbanner" class="cityonly"></div>
+  <div id="card" class="cityonly"></div>
+  <div id="minimap-wrap" class="cityonly"><canvas id="minimap" aria-label="Stadtplan, Klick versetzt die Kamera"></canvas><div class="mm-cap">Stadtplan</div></div>
+  <div id="cbar" class="cityonly">
+    <pre id="vhud" hidden></pre><i class="brk"></i>
+    <div id="vact"></div><i class="brk"></i>
+    <button class="act" id="c-orbit" aria-pressed="true">Übersicht</button>
+    <button class="act" id="c-fly" aria-pressed="false">Flug</button>
+    <button class="act" id="c-walk" aria-pressed="false">Spaziergang</button>
+    <button class="act" id="c-drive" aria-pressed="false" title="Buggy fahren (Taste 4)">Fahren</button>
+    <button class="act" id="c-tour" aria-pressed="false">Rundflug</button>
+    <button class="act" id="c-home" title="Gesamtansicht der Stadt">Gesamtansicht</button>
+  </div>
+  <div id="touchpad" class="cityonly"><button class="up" data-k="KeyW" aria-label="Vor">▲</button><button class="lf" data-k="KeyA" aria-label="Links">◀</button><button class="dn" data-k="KeyS" aria-label="Zurück">▼</button><button class="rt" data-k="KeyD" aria-label="Rechts">▶</button><button class="drv hb" data-k="Space" aria-label="Handbremse">HB</button><button class="drv bo" data-k="ShiftLeft" aria-label="Boost">⚡</button></div>
+
+  <div id="hint" hidden></div>
+
+  <div id="bar">
+    <button class="act primary" id="a-build">Aufbauen</button>
+    <select id="a-style" aria-label="Aufbau-Stil">
+      <option value="assemble">Zusammenfliegen</option>
+      <option value="rise">Aus dem Sand</option>
+      <option value="drop">Abwerfen</option>
+      <option value="pop">Aufpoppen</option>
+    </select>
+    <button class="act danger" id="a-boom">Explodieren</button>
+    <button class="act" id="a-reset">Zurücksetzen</button>
+    <button class="act" id="a-test" aria-pressed="false">Testen</button>
+  </div>
+
+  <div id="hud"></div>
+
+  <div id="loading">
+    <div class="brand">Desert <b>Forge</b></div>
+    <div id="loading-track"><div id="loading-bar"></div></div>
+    <div id="loading-text">Starte</div>
+    <div id="loading-sub"></div>
+  </div>
+</div>
+
+<script id="forge-bundle">/*__BUNDLE__*/</script>
