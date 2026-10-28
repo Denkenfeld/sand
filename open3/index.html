@@ -1,0 +1,42 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Dünenplanet</title>
+<link rel="stylesheet" href="css/game.css"></head><body>
+<div id="ld">Planet wird geformt …</div>
+<div id="v"></div>
+<div class="hud" id="t">Wüstenplanet<b>Dünenplanet</b></div>
+<div class="hud" id="s"><b id="sp">0</b> km/h</div>
+<div class="hud" id="m"><canvas id="mc"></canvas><div id="mt">Leuchtstäbe 0/4</div></div>
+<div class="hud" id="msg"></div>
+<div class="hud" id="rad"><b id="rw"></b><span id="rt"></span></div>
+<div id="fl"></div>
+<button class="btn" id="co" style="display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(140px + env(safe-area-inset-bottom));width:auto;height:auto;border-radius:14px;padding:14px 20px;font-size:14px;background:#40d0ffcc;color:#08202a;z-index:6">Weiter: Basisbau (Spielstand)</button>
+<button class="btn" id="nb">Hier Notfallbasis errichten</button>
+<button class="btn" id="ch">Phase 2: Basisbau (Cheat)</button><button class="btn" id="ch2">Level 11 (Cheat)</button>
+<div id="win"><div><h2>Mission geschafft</h2><p id="wt"></p><button class="btn" onclick="location.reload()">Nochmal fahren</button></div></div>
+<div class="hud" id="h">Sammle 4 Leuchtstäbe und kehre zur Basis zurück<br>Links wischen: Lenken und Gas · Tastatur: WASD, Shift, Leertaste</div>
+<div id="jb"><div id="jk"></div></div>
+<button class="btn" id="ju">Sprung</button><button class="btn" id="bo">Boost</button><button class="btn" id="mu">🔊</button>
+<button class="btn" id="pz" aria-label="Pause"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg></button>
+<div id="pm" role="dialog" aria-modal="true" aria-label="Pause"><div class="pm-card"><h2>Pause</h2>
+<div class="pm-row"><label for="pm-vol">Lautstärke</label><input id="pm-vol" type="range" min="0" max="100" value="100"></div>
+<div class="pm-row"><label for="pm-mus">Musik</label><input id="pm-mus" type="range" min="0" max="100" value="100"></div>
+<div class="pm-row"><label>Funk-Stimme</label><button type="button" class="pm-sw on" id="pm-voice" aria-pressed="true" aria-label="Funk-Stimme"></button></div>
+<div class="pm-row"><label>Kamerawackeln</label><button type="button" class="pm-sw on" id="pm-shk" aria-pressed="true" aria-label="Kamerawackeln"></button></div>
+<div class="pm-row"><label for="pm-gq">Grafik</label><select id="pm-gq"><option value="0">Niedrig (schnell)</option><option value="1">Mittel</option><option value="2">Hoch (scharf)</option></select></div>
+<button type="button" class="pm-main" id="pm-go">Weiterspielen</button>
+<button type="button" id="pm-reset" style="width:100%;margin-top:10px;min-height:40px;border-radius:12px;border:1px solid rgba(255,120,100,.5);background:transparent;color:#ff9a8a;font:600 13px system-ui,sans-serif;cursor:pointer">Spielstand löschen</button>
+<!-- Zurück zur Planetenkarte -->
+<button id="back-to-map" type="button" aria-label="Zur Planetenkarte">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 5 7.5 12l7 7M8 12h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span>Zur Karte</span>
+</button>
+</div></div>
+<script src="three.min.js"></script>
+<!-- Grafik (Modelle) -->
+<script src="gfx/shim.js"></script><script src="gfx/common.js"></script><script src="gfx/raumschiff.js"></script><script src="gfx/buggy.js"></script><script src="gfx/arbeiter.js"></script><script src="gfx/bridge.js"></script>
+<!-- Dienste: Speicherstand, Zonen-Manager, Radar, Zonenliste -->
+<script src="core/save.js"></script><script src="core/zones.js"></script><script src="core/radar.js"></script><script src="zones/registry.js"></script>
+<!-- Kern (Reihenfolge wichtig: das war früher ein einziges Skript) -->
+<script src="core/terrain.js"></script><script src="core/shaders.js"></script><script src="core/scene.js"></script><script src="core/input.js"></script><script src="core/physics.js"></script><script src="core/mission.js"></script><script src="core/audio.js"></script><script src="core/loop.js"></script>
+</body></html>

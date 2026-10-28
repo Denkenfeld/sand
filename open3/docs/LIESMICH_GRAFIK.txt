@@ -1,0 +1,32 @@
+Level 11 / Dünenplanet – neue Grafik
+====================================
+Neu eingebaut: Raumschiff „Kojote“ (statt der Zylinder-Rakete), Buggy „Skarab“ (statt des Box-Autos), Arbeiter „Fennek“
+(statt der Block-Arbeiter im Basisbau). Spiellogik, Karte, Physik, Level 11 und rts.js bleiben, wie sie waren.
+
+Dateien (alle in deinen Spielordner kopieren, three.min.js bleibt deine):
+  index.html     angepasst (siehe unten)
+  rts.js         angepasst (nur mkWorker und der Posen-Teil in wUpd)
+  level11.js     unverändert
+  gfx/           neue Grafik: shim.js, common.js (Texturen/Werkzeuge), raumschiff.js, buggy.js, arbeiter.js, bridge.js (Verbindung zum Spiel)
+
+Was sich im Spiel geändert hat
+  Auto      Der Buggy fährt auf der unveränderten Spielphysik. Lenkung, Radfederung, Tempo und Boost kommen aus dem Spiel; das Modell
+            zeichnet sie (Räder federn einzeln, Karosserie neigt sich, Boost-Flamme). Maßstab 0,85, passend zu deinen Rädern.
+  Schiff    Die Kojote steht am Landering (Maßstab 0,6, Kollisionsradius 9,6 statt 4,4). Bei Nacht leuchten Fenster und Lampen. Beim
+            Finale explodiert sie in ihre 13 Bauteile (die alten Block-Trümmer sind aus), die Wrackteile bleiben liegen.
+            Texte: „Die Rakete explodiert!“ -> „Das Schiff explodiert!“, „Rakete verloren!“ -> „Schiff verloren!“.
+  Arbeiter  Im Basisbau laufen und arbeiten die neuen Arbeiter (Brenner mit Lichtbogen beim Arbeiten, Gehanimation, im Stand schaut
+            er auf den Handgelenk-Computer). Soldaten haben eine olivgrüne Variante.
+  Licht     Sonne etwas kräftiger (1,7 -> 1,9), da die Modelle für hellere Beleuchtung gebaut sind; Reflexionen aus einem Himmel-Bild
+            (nur für die neuen Modelle), Stärke folgt der Tageszeit.
+
+Leistung (gemessen im Test-Browser, nicht auf einem echten Handy)
+  Draw-Calls Fahrmodus: Original 71, jetzt ca. 250 direkt am Schiff, ca. 120 weiter weg (Fernansicht der Kojote ab ~100 m).
+  Basisbau: Original 39, jetzt ca. 290 am Start; jeder abgespeckte Arbeiter kostet rund 25 Draw-Calls und 17.000 Dreiecke
+  (zehn Arbeiter: +250 Calls). Bei vielen Einheiten bitte auf dem Handy testen; die Obergrenze für Einheiten (wcap) ist der einfachste Hebel.
+  Technik: statische Teile werden automatisch je Material verschmolzen, einfarbige Materialien zu Vertexfarben-Meshes, die Kojote hat
+  eine Fernansicht, Arbeiter nutzen Vertexfarben statt Texturen. Texturgröße folgt der Grafikqualität (Stufe 2 = 512, sonst 256).
+
+Hinweise
+  - Nicht getestet: Reflexionen (mein Test-Browser kann sie nicht), Touch-Bedienung, Level-11-Ablauf bis zum Ende.
+  - Fehlen die gfx-Dateien, fällt rts.js auf die alten Block-Arbeiter zurück; index.html braucht gfx/ aber (Auto und Schiff).

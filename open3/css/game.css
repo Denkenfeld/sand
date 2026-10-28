@@ -1,0 +1,48 @@
+:root{--g:#ffd9a0;--bg:#0b0710;--ac:#ff9a3c}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;touch-action:none;font-family:ui-monospace,Menlo,monospace;color:var(--g)}
+canvas{display:block;position:fixed;inset:0;width:100%;height:100%}
+.hud{position:fixed;pointer-events:none;text-shadow:0 1px 8px #000a}
+#t{left:max(16px,env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));font-size:11px;opacity:.8}
+#t b{display:block;font:400 28px Georgia,serif;margin-top:2px}
+#s{right:max(16px,env(safe-area-inset-right));top:max(14px,env(safe-area-inset-top));text-align:right;font-size:11px}
+#s b{font:600 40px ui-monospace,Menlo,monospace}
+#h{left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom));text-align:center;font-size:12px;animation:f 1s 12s forwards}
+@keyframes f{to{opacity:0}}
+#v{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,transparent 55%,#0008 100%)}
+.btn{position:fixed;width:84px;height:84px;border-radius:50%;border:2px solid #ffd9a088;background:#2a1408aa;color:var(--g);font:600 12px ui-monospace,Menlo,monospace;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.btn.on{background:var(--ac);color:#2a1408}
+#bo{right:calc(22px + env(safe-area-inset-right));bottom:calc(46px + env(safe-area-inset-bottom))}
+#ju{right:calc(116px + env(safe-area-inset-right));bottom:calc(26px + env(safe-area-inset-bottom));width:68px;height:68px}
+#mu{left:max(16px,env(safe-area-inset-left));top:calc(max(14px,env(safe-area-inset-top)) + 66px);width:44px;height:44px;font-size:18px;padding:0}
+#m{left:50%;transform:translateX(-50%);top:max(10px,env(safe-area-inset-top));text-align:center;font-size:12px}
+#mc{width:108px;height:108px;display:block;margin:0 auto 4px}
+#msg{left:0;right:0;top:calc(max(10px,env(safe-area-inset-top)) + 236px);text-align:center;font:400 22px Georgia,serif;opacity:0;transition:opacity .4s;padding:0 16px}
+#msg.on{opacity:1}
+#win{position:fixed;inset:0;display:none;place-items:center;background:#0b0710bb;text-align:center}
+#win h2{font:400 34px Georgia,serif;margin:0 0 8px}#win p{margin:0 0 20px;font-size:16px}
+#win .btn{position:static;width:auto;height:auto;border-radius:12px;padding:12px 22px;font-size:14px}
+@media(max-width:520px){#t{display:none}#mu{top:max(14px,env(safe-area-inset-top))}#s b{font-size:30px}}
+#rad{left:50%;transform:translateX(-50%);top:calc(max(10px,env(safe-area-inset-top)) + 138px);width:min(88vw,400px);padding:8px 12px;background:#140a06d0;border-left:3px solid var(--ac);font-size:12px;line-height:1.45;opacity:0;transition:opacity .3s;text-align:left}
+#rad.on{opacity:1}#rad b{display:block;color:var(--ac);font-size:10px;margin-bottom:2px}
+#fl{position:fixed;inset:0;background:#ffe9b8;opacity:0;pointer-events:none}
+#nb,#ch,#ch2{display:none;left:50%;transform:translateX(-50%);bottom:calc(140px + env(safe-area-inset-bottom));width:auto;height:auto;border-radius:14px;padding:14px 20px;font-size:14px;background:#ff9a3ccc;color:#2a1408}
+#ch2{bottom:calc(206px + env(safe-area-inset-bottom))}
+#mu,#pz{z-index:7}
+#pz{left:max(16px,env(safe-area-inset-left));top:calc(max(14px,env(safe-area-inset-top)) + 118px);width:44px;height:44px;padding:0;display:grid;place-items:center}
+@media(max-width:520px){#pz{top:calc(max(14px,env(safe-area-inset-top)) + 52px)}}
+#pm{position:fixed;inset:0;z-index:10000;display:none;place-items:center;background:rgba(8,4,12,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:16px}
+.pm-card{width:min(92vw,420px);max-height:92vh;overflow:auto;padding:20px 18px 18px;border-radius:20px;background:linear-gradient(180deg,rgba(40,26,50,.97),rgba(20,12,28,.98));border:1px solid rgba(255,179,71,.5);box-shadow:0 12px 50px rgba(0,0,0,.6);color:#ffe9c9;font:14px/1.4 system-ui,-apple-system,sans-serif}
+.pm-card h2{margin:0 0 12px;font:400 30px Georgia,serif;letter-spacing:.04em;text-align:center}
+.pm-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 2px;border-bottom:1px solid rgba(255,217,160,.12)}
+.pm-row label{font-weight:600}.pm-row input[type=range]{width:48%;accent-color:#ffb347}
+.pm-row select{background:#2a1a33;color:#ffe9c9;border:1px solid rgba(255,179,71,.5);border-radius:10px;padding:9px 10px;font:600 14px system-ui,sans-serif}
+.pm-sw{width:52px;height:30px;border-radius:15px;border:1px solid rgba(255,179,71,.5);background:#2a1a33;position:relative;cursor:pointer;padding:0}
+.pm-sw:after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#9a8a9a;transition:transform .2s,background .2s}
+.pm-sw.on{background:#6b3f12}.pm-sw.on:after{transform:translateX(22px);background:#ffb347}
+.pm-main{width:100%;margin-top:16px;min-height:48px;border-radius:12px;border:0;background:linear-gradient(180deg,#ffb347,#e0801c);color:#2a1408;font:700 16px system-ui,sans-serif;cursor:pointer;touch-action:manipulation}
+#back-to-map{display:flex;width:100%;margin-top:10px;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;color:#ffe9c9;background:linear-gradient(180deg,rgba(36,24,44,.92),rgba(18,12,26,.94));border:1px solid rgba(255,179,71,.5);border-radius:12px;font:600 14px/1.2 system-ui,-apple-system,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.3);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;pointer-events:auto}
+#back-to-map svg{width:20px;height:20px;flex:none}#back-to-map:hover{border-color:#ffcf87;background:rgba(58,35,49,.96)}#back-to-map:active{transform:translateY(1px)}#back-to-map:focus-visible{outline:2px solid #72dcff;outline-offset:3px}
+#jb{position:fixed;display:none;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid #ffd9a066;background:#ffd9a011}
+#jk{position:absolute;left:34px;top:34px;width:52px;height:52px;border-radius:50%;background:#ffd9a0aa}
+#ld{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);font:400 22px Georgia,serif}
