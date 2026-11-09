@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Allein auf See</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4fbff;
+      --ink-dim: rgba(244, 251, 255, 0.72);
+      --glass: rgba(6, 30, 48, 0.55);
+      --glass-line: rgba(255, 255, 255, 0.18);
+      --accent: #ffd27a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0a2236; color: var(--ink);
+      font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif; }
+    #app { position: fixed; inset: 0; }
+    canvas#view { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
+
+    #overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 50% 60%, rgba(8, 40, 64, 0.25), rgba(4, 16, 28, 0.78));
+      backdrop-filter: blur(2px); transition: opacity 0.6s ease; z-index: 10; cursor: pointer; }
+    #overlay.hidden { opacity: 0; pointer-events: none; }
+    .card { max-width: 560px; margin: 16px; padding: 28px 32px; border-radius: 18px; text-align: center;
+      background: var(--glass); border: 1px solid var(--glass-line); box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
+    .card h1 { margin: 0 0 4px; font-size: clamp(26px, 6vw, 38px); letter-spacing: 0.06em; font-weight: 800; text-shadow: 0 2px 18px rgba(0,0,0,0.4); }
+    .card p.sub { margin: 0 0 18px; color: var(--ink-dim); font-size: 15px; }
+    .keys { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; text-align: left; font-size: 14px;
+      margin: 0 auto 20px; width: fit-content; color: var(--ink-dim); }
+    kbd { background: rgba(255,255,255,0.14); border: 1px solid var(--glass-line); border-radius: 6px;
+      padding: 1px 7px; font: 600 12px ui-monospace, monospace; color: var(--ink); margin-right: 3px; }
+    .go { display: inline-block; padding: 11px 26px; border-radius: 999px; font-weight: 700; font-size: 15px;
+      background: var(--accent); color: #2a1a00; letter-spacing: 0.03em; }
+    #loading { margin-top: 10px; font-size: 12px; color: var(--ink-dim); }
+
+    #hud { position: fixed; left: 16px; bottom: 14px; z-index: 5; font-size: 12px; color: var(--ink-dim);
+      pointer-events: none; text-shadow: 0 1px 6px rgba(0,0,0,0.6); line-height: 1.5; }
+    #toast { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 6; padding: 6px 14px;
+      border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-line); font-size: 13px;
+      opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    #toast.show { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { #overlay, #toast { transition: none; } }
+    #fps { position: fixed; right: 12px; bottom: 10px; z-index: 5; font: 11px ui-monospace, monospace;
+      color: var(--ink-dim); pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="app"><canvas id="view" tabindex="0"></canvas></div>
+
+  <div id="overlay">
+    <div class="card">
+      <h1>ALLEIN AUF SEE</h1>
+      <p class="sub">Ein selbstgebautes Floß, ein Junge und der weite Ozean.</p>
+      <div class="keys">
+        <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>Laufen (Pfeiltasten gehen auch)</span>
+        <span><kbd>Maus</kbd></span><span>Umschauen (bei Bedarf Maustaste gedrückt halten)</span>
+        <span><kbd>Space</kbd></span><span>Springen</span>
+        <span><kbd>Shift</kbd></span><span>Rennen</span>
+        <span><kbd>V</kbd></span><span>Ego- / Third-Person</span>
+        <span><kbd>E</kbd></span><span>Interagieren</span>
+        <span><kbd>T</kbd> <kbd>M</kbd> <kbd>G</kbd></span><span>Tageszeit · Ton · Debug-Panel</span>
+      </div>
+      <span class="go" id="goBtn">Klicken zum Starten</span>
+      <div id="loading">Benötigt Tastatur und Maus. Ton an: Lautsprecher bereithalten.</div>
+    </div>
+  </div>
+
+  <div id="hud"></div>
+  <div id="toast"></div>
+  <div id="fps"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
